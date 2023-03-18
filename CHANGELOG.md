@@ -5,6 +5,7 @@
 - Realizamos el ER de se tomara de referencia para la base de datos en donde manejaremos nuestros datos.
 - Fase #1 dicha en el trello de documentacion finalizada.
 - Mejorando el ER.
+- Agreamos los modelos correspondientes del ER al api ya que estos se trabajaran con migraciones.
 
 *16/03/2022*
 - Realizamso el primer paquete para subirlo al github y empezar a cranear la base de datos.
