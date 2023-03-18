@@ -2,7 +2,9 @@
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
 *18/03/2022*
-- Ralizamos el ER de se tomara de referencia para la base de datos en donde manejaremos nuestros datos.
+- Realizamos el ER de se tomara de referencia para la base de datos en donde manejaremos nuestros datos.
+- Fase #1 dicha en el trello de documentacion finalizada.
+- Mejorando el ER.
 
 *16/03/2022*
 - Realizamso el primer paquete para subirlo al github y empezar a cranear la base de datos.
