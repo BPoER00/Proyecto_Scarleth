@@ -7,6 +7,7 @@
 - Agregamos EntityFramework.
 - Agregamos cadena de conexion.
 - Configuramos el ConexionCOntext y program para tener la conexion con EntityFramework.
+- Agregamos la nueva documentacion.
 
 *22/03/2022*
 - Terminamos los Skecth de muestra para como se veran los CRUD.
