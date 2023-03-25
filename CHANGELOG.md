@@ -5,6 +5,8 @@
 - Terminamos de agregar los modelos.
 - Agregamos el modelo ConexionContext para iniciar a configurar la conexion a la base de datos.
 - Agregamos EntityFramework.
+- Agregamos cadena de conexion.
+- Configuramos el ConexionCOntext y program para tener la conexion con EntityFramework.
 
 *22/03/2022*
 - Terminamos los Skecth de muestra para como se veran los CRUD.
