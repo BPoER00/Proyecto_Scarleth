@@ -1,10 +1,26 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*25/03/2022*
+- Terminamos de agregar los modelos.
+- Agregamos el modelo ConexionContext para iniciar a configurar la conexion a la base de datos.
+- Agregamos EntityFramework.
+- Agregamos cadena de conexion.
+- Configuramos el ConexionCOntext y program para tener la conexion con EntityFramework.
+- Agregamos la nueva documentacion.
+
+*22/03/2022*
+- Terminamos los Skecth de muestra para como se veran los CRUD.
+
+*19/03/2022*
+- Realizamos mejora de la documentacion del sistema.
+- Realizamos mejora de el ER.
+
 *18/03/2022*
 - Realizamos el ER de se tomara de referencia para la base de datos en donde manejaremos nuestros datos.
 - Fase #1 dicha en el trello de documentacion finalizada.
 - Mejorando el ER.
+- Agreamos los modelos correspondientes del ER al api ya que estos se trabajaran con migraciones.
 
 *16/03/2022*
 - Realizamso el primer paquete para subirlo al github y empezar a cranear la base de datos.
