@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using app.helpers;
 namespace app.Models
 {
     public class Medico : IControl_Fechas
     {
+        [NotMapped]
         public const int ACTIVO = 1;
+        [NotMapped]
         public const int NO_ACTIVO = 0;
 
         public int id { get; set; }

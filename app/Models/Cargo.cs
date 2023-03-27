@@ -17,11 +17,13 @@ namespace app.Models
 
 
         public int id { get; set; }
+        
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [nombre]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [nombre]")]
         public string nombre { get; set; }
+        
         public int estado { get; set; } = ACTIVO;       
-        public DateTime CreateAt { get; set; }
+        public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
     }
