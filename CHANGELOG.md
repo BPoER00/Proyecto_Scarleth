@@ -3,6 +3,8 @@
 
 *27/03/2022*
 - Agregando data annotations a algunos modelos (terminar).
+- Agregando todos los data annotations.
+- Agregando las llaves fk y pk.
 
 *25/03/2022*
 - Terminamos de agregar los modelos.
