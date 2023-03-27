@@ -1,6 +1,13 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*27/03/2022*
+- Agregando data annotations a algunos modelos (terminar).
+- Agregando todos los data annotations.
+- Agregando las llaves fk y pk.
+- Agregando entity para migraciones.
+- Generamos y agregamos migraciones a la base de datos.
+
 *25/03/2022*
 - Terminamos de agregar los modelos.
 - Agregamos el modelo ConexionContext para iniciar a configurar la conexion a la base de datos.
