@@ -12,7 +12,7 @@ using app.Models;
 namespace app.Migrations
 {
     [DbContext(typeof(ConexionContext))]
-    [Migration("20230327205710_MigrationsFirst")]
+    [Migration("20230327210745_MigrationsFirst")]
     partial class MigrationsFirst
     {
         /// <inheritdoc />
