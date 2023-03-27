@@ -6,6 +6,7 @@
 - Agregando todos los data annotations.
 - Agregando las llaves fk y pk.
 - Agregando entity para migraciones.
+- Generamos y agregamos migraciones a la base de datos.
 
 *25/03/2022*
 - Terminamos de agregar los modelos.
