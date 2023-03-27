@@ -15,10 +15,12 @@ namespace app.Models
         [NotMapped]
         public const int NO_ACTIVO = 0;
 
+        [Key]
         public int id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [nombre]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [nombre]")]
+        [DataType(DataType.Text)]
         public string nombre { get; set; }
         
         public int estado { get; set; } = ACTIVO;

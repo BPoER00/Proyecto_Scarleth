@@ -9,10 +9,12 @@ namespace app.Models
 {
     public class Detalle_Vacuna : IControl_Fechas
     {
+        [Key]
         public int id { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [nombre]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [nombre]")]
+        [DataType(DataType.Text)]
         public string descripcion { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cantidad]")]
@@ -24,8 +26,11 @@ namespace app.Models
         public DateTime fecha_ingreso { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
+        [ForeignKey("Vacuna")]
         public int vacuna_id { get; set; }
-        
+
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
+        [ForeignKey("Usuario")]
         public int usuario_id { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }

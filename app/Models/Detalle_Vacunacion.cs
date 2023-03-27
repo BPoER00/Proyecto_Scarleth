@@ -9,9 +9,11 @@ namespace app.Models
 {
     public class Detalle_Vacunacion : IControl_Fechas
     {
+        [Key]
         public int id { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacunacion]")]
+        [ForeignKey("Vacunacion")]
         public int vacunacion_id { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vacunacion]")]
@@ -22,6 +24,8 @@ namespace app.Models
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
         public int dosis { get; set; }
         
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
+        [ForeignKey("Usuario")]
         public int usuario_id { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
