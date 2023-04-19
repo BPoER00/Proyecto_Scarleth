@@ -18,7 +18,11 @@ namespace app.actions.generos
 
         public async Task<List<Genero>> ejecutar()
         {
-            var lista = await this.db.Generos.ToListAsync();
+            var lista = await this.db
+            .Generos
+            .Where(x => x.estado == Genero.ACTIVO)
+            .ToListAsync();
+
             return lista;
         }
     }

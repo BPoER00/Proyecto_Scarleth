@@ -2,27 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using app.Models;
 using Microsoft.EntityFrameworkCore;
+using app.Models;
 
-namespace app.actions.pacientes
+namespace app.actions.etnias
 {
-    public class ObtenerPacientesAction
+    public class ObtenerEtniasAction
     {
         private ConexionContext db;
 
-        public ObtenerPacientesAction(ConexionContext _db)
+        public ObtenerEtniasAction(ConexionContext _db)
         {
             this.db = _db;
         }
-        
-        public async Task<List<Paciente>> ejecutar()
+
+        public async Task<List<Etnia>> ejecutar()
         {
             var lista = await this.db
-            .Pacientes
-            .Where(x => x.estado == Paciente.ACTIVO)
-            .ToListAsync(); 
-
+            .Etnias
+            .Where(x => x.estado == Etnia.ACTIVO)
+            .ToListAsync();
+            
             return lista;
         }
     }

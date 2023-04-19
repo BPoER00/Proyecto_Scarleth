@@ -7,7 +7,8 @@
 - Agregamos por el momento los siguientes controladores con sus actions.
 	- Pacientes.
 	- Generos.
-
+	- Etnia.
+	
 *18/04/2022*
 - Agregamos configuracion para iniciar con los action y los controladores.
 - realizamos pruebas realizando consultas con postman.
