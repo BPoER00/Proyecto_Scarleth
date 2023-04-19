@@ -1,6 +1,17 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*19/04/2022*
+- Agregamos una nueva configuracion y mejoramos la configuracion anterior de los actions y controladores.
+- Iniciamos realizando pruebas.
+- Agregamos por el momento los siguientes controladores con sus actions.
+	- Pacientes.
+	- Generos.
+
+*18/04/2022*
+- Agregamos configuracion para iniciar con los action y los controladores.
+- realizamos pruebas realizando consultas con postman.
+
 *27/03/2022*
 - Agregando data annotations a algunos modelos (terminar).
 - Agregando todos los data annotations.
