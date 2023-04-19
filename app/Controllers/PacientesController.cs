@@ -51,7 +51,7 @@ namespace app.Controllers
                 {
                     return new Reply
                     {
-                        code = 404,
+                        code = 400,
                         data = ErrorValidationHelper.GetModelStateErrors(ModelState),
                         message = "Campos invalidos"
                     };

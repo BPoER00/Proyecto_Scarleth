@@ -2,29 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using app.Models;
 using Microsoft.EntityFrameworkCore;
+using app.Models;
 
-namespace app.actions.pacientes
+namespace app.actions.direcciones
 {
-    public class ObtenerPacientesAction
+    public class ObtenerDireccionesAction
     {
         private ConexionContext db;
 
-        public ObtenerPacientesAction(ConexionContext _db)
+        public ObtenerDireccionesAction(ConexionContext _db)
         {
             this.db = _db;
         }
-        
-        public async Task<List<Paciente>> ejecutar()
+
+        public async Task<List<Direccion>> ejecutar()
         {
             var lista = await this.db
-            .Pacientes
-            .Where(x => x.estado == Paciente.ACTIVO)
+            .Direccions
+            .Where(x => x.estado == Direccion.ACTIVO)
             .Take(10)
-            .ToListAsync(); 
+            .ToListAsync();
 
             return lista;
         }
+
     }
 }

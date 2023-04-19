@@ -21,6 +21,7 @@ namespace app.actions.generos
             var lista = await this.db
             .Generos
             .Where(x => x.estado == Genero.ACTIVO)
+            .Take(10)
             .ToListAsync();
 
             return lista;

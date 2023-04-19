@@ -8,6 +8,8 @@
 	- Pacientes.
 	- Generos.
 	- Etnia.
+	- Direccio.
+- Agregamos paginado.
 	
 *18/04/2022*
 - Agregamos configuracion para iniciar con los action y los controladores.

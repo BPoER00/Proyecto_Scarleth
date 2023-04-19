@@ -21,6 +21,7 @@ namespace app.actions.etnias
             var lista = await this.db
             .Etnias
             .Where(x => x.estado == Etnia.ACTIVO)
+            .Take(10)
             .ToListAsync();
             
             return lista;

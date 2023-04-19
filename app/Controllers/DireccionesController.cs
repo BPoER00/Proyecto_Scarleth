@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using app.Models;
+using app.actions.direcciones;
 using app.helpers;
-using app.actions.etnias;
+using app.Models;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EtniasController : ControllerBase
+    public class DireccionesController : ControllerBase
     {
-        private EtniasAction action;
-        public EtniasController(ConexionContext _db)
+        private DireccionesAction action;
+        public DireccionesController(ConexionContext _db)
         {
-            this.action = new EtniasAction(_db);
+            this.action = new DireccionesAction(_db);
         }
 
         [HttpGet("Get")]
@@ -27,7 +27,7 @@ namespace app.Controllers
                 return new Reply{
                     code = 1,
                     data = await this.action.obtener(),
-                    message = "Etnias obtenidas Correctamente"
+                    message = "Direcciones obtenidas Correctamente"
                 };
             }
             catch(Exception e)
@@ -35,13 +35,13 @@ namespace app.Controllers
                 return new Reply{
                     code = 0,
                     data = null,
-                    message = $"No se pudieron obtener las etnias | Error{e.Message}"
+                    message = $"No se pudieron obtener las Direcciones | Error{e.Message}"
                 };
             }
         }
 
         [HttpPost("Post")]
-        public async Task<Reply> Post(Etnia etnia)
+        public async Task<Reply> Post(Direccion direccion)
         {
             try
             {
@@ -58,8 +58,8 @@ namespace app.Controllers
                 {
                     return new Reply{
                         code = 1,
-                        data = await this.action.guardar(etnia),
-                        message = "Etnia Guardada Correctamente"
+                        data = await this.action.guardar(direccion),
+                        message = "Direccion Guardada Correctamente"
                     };
                 }
             }
@@ -68,7 +68,7 @@ namespace app.Controllers
                 return new Reply{
                     code = 0,
                     data = null,
-                    message = $"No se pudo guardar la Etnia | Error{e.Message}"
+                    message = $"No se pudo guardar la Direccion | Error{e.Message}"
                 };
             }
         }
