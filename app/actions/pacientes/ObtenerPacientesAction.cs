@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using app.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace app.actions.pacientes
+{
+    public class ObtenerPacientesAction
+    {
+        private ConexionContext db;
+
+        public ObtenerPacientesAction(ConexionContext _db)
+        {
+            this.db = _db;
+        }
+        
+        public async Task<List<Paciente>> ejecutar()
+        {
+            var lista = await this.db
+            .Pacientes
+            .Where(x => x.estado == Paciente.ACTIVO)
+            .Take(10)
+            .ToListAsync(); 
+
+            return lista;
+        }
+    }
+}

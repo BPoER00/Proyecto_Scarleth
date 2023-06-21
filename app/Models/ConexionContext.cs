@@ -19,7 +19,6 @@ namespace app.Models
         {
             var conexionString = this._config.GetConnectionString("NameConnectionString");
 
-            Console.WriteLine(conexionString);
             //conect to sql server with connection string from appsettings.json
             options.UseSqlServer(conexionString);
         }
