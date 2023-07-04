@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/mrkobp/Desktop/Universidad/Semestre_9/Ingenieria_Software/Proyecto_Final/Proyecto_Scarleth/app/app.csproj": {}
+    "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj": {}
   },
   "projects": {
-    "/home/mrkobp/Desktop/Universidad/Semestre_9/Ingenieria_Software/Proyecto_Final/Proyecto_Scarleth/app/app.csproj": {
+    "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mrkobp/Desktop/Universidad/Semestre_9/Ingenieria_Software/Proyecto_Final/Proyecto_Scarleth/app/app.csproj",
+        "projectUniqueName": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj",
         "projectName": "app",
-        "projectPath": "/home/mrkobp/Desktop/Universidad/Semestre_9/Ingenieria_Software/Proyecto_Final/Proyecto_Scarleth/app/app.csproj",
+        "projectPath": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj",
         "packagesPath": "/home/mrkobp/.nuget/packages/",
-        "outputPath": "/home/mrkobp/Desktop/Universidad/Semestre_9/Ingenieria_Software/Proyecto_Final/Proyecto_Scarleth/app/obj/",
+        "outputPath": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/mrkobp/.nuget/NuGet/NuGet.Config"
@@ -20,6 +20,7 @@
           "net7.0"
         ],
         "sources": {
+          "/usr/share/dotnet/sdk/7.0.304/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +39,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -68,12 +73,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.3, 7.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -82,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     }

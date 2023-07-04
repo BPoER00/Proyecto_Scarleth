@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using app.config;
 
 namespace app.Models
 {
     public class ConexionContext : DbContext
     {
-        private readonly IConfiguration _config;
+        private dbString DbString;
 
-        public ConexionContext(IConfiguration _config)
+        public ConexionContext()
         {
-            this._config = _config;
+            this.DbString = new dbString();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var conexionString = this._config.GetConnectionString("NameConnectionString");
-
+            Console.WriteLine(this.DbString.retornar());
             //conect to sql server with connection string from appsettings.json
-            options.UseSqlServer(conexionString);
+            options.UseSqlServer(this.DbString.retornar());
         }
 
         //Dbset para integrar data a la base de datos
