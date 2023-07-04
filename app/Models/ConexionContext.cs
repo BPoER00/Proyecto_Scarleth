@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using app.config;
+using app.seeders;
 
 namespace app.Models
 {
@@ -18,7 +15,6 @@ namespace app.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            Console.WriteLine(this.DbString.retornar());
             //conect to sql server with connection string from appsettings.json
             options.UseSqlServer(this.DbString.retornar());
         }
@@ -37,5 +33,9 @@ namespace app.Models
         public DbSet<Vacuna> Vacunas { get; set; }
         public DbSet<Vacunacion> Vacunacions { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
     }
 }

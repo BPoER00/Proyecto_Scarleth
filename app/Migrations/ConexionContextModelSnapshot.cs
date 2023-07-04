@@ -17,7 +17,7 @@ namespace app.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -153,6 +153,98 @@ namespace app.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Direccions");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5682),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Gualan"
+                        },
+                        new
+                        {
+                            id = 2,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5688),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "La Union"
+                        },
+                        new
+                        {
+                            id = 3,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5693),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Zacapa"
+                        },
+                        new
+                        {
+                            id = 4,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5697),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Rio Hondo"
+                        },
+                        new
+                        {
+                            id = 5,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5702),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Estanzuela"
+                        },
+                        new
+                        {
+                            id = 6,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5706),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Teculutan"
+                        },
+                        new
+                        {
+                            id = 7,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5710),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Usumatlan"
+                        },
+                        new
+                        {
+                            id = 8,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5714),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Huite"
+                        },
+                        new
+                        {
+                            id = 9,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5718),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Cabañas"
+                        },
+                        new
+                        {
+                            id = 10,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(5722),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "San Diego"
+                        });
                 });
 
             modelBuilder.Entity("app.Models.Etnia", b =>
@@ -183,6 +275,62 @@ namespace app.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Etnias");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6039),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Maya"
+                        },
+                        new
+                        {
+                            id = 2,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6042),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Ladino"
+                        },
+                        new
+                        {
+                            id = 3,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6046),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Xinca"
+                        },
+                        new
+                        {
+                            id = 4,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6049),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Afrodescendiente/Creole"
+                        },
+                        new
+                        {
+                            id = 5,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6053),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Garifuna"
+                        },
+                        new
+                        {
+                            id = 6,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6056),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Extranjero"
+                        });
                 });
 
             modelBuilder.Entity("app.Models.Genero", b =>
@@ -213,6 +361,26 @@ namespace app.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Generos");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6093),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Masculino"
+                        },
+                        new
+                        {
+                            id = 2,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6098),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Femenino"
+                        });
                 });
 
             modelBuilder.Entity("app.Models.Medico", b =>
@@ -375,6 +543,35 @@ namespace app.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Rols");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6127),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Administrador"
+                        },
+                        new
+                        {
+                            id = 2,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6131),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Digitador"
+                        },
+                        new
+                        {
+                            id = 3,
+                            CreateAt = new DateTime(2023, 7, 4, 0, 43, 12, 838, DateTimeKind.Local).AddTicks(6134),
+                            DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            estado = 1,
+                            nombre = "Usuario Comun"
+                        });
                 });
 
             modelBuilder.Entity("app.Models.Usuario", b =>

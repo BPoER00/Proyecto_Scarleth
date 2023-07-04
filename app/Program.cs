@@ -1,4 +1,5 @@
 using app.Models;
+using app.seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
