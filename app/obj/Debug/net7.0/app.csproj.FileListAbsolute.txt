@@ -150,3 +150,5 @@
 /home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/obj/Debug/net7.0/app.pdb
 /home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/obj/Debug/net7.0/app.genruntimeconfig.cache
 /home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/obj/Debug/net7.0/ref/app.dll
+/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/bin/Debug/net7.0/DotNetEnv.dll
+/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/bin/Debug/net7.0/Sprache.dll
