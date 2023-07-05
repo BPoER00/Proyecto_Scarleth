@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using app.Models;
+using app.helpers;
 
 namespace app.actions.direcciones
 {
     public class DireccionesAction
     {
-        public DireccionesAction(ConexionContext _db)
+        private ConexionContext _db = new DbContextConection().context();
+
+        public DireccionesAction()
         {
             this.obtenerDireccionesAction = new ObtenerDireccionesAction(_db);
             this.nuevoDireccionesAction = new NuevoDireccionesAction(_db);

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using app.actions.direcciones;
 using app.helpers;
@@ -14,29 +10,33 @@ namespace app.Controllers
     public class DireccionesController : ControllerBase
     {
         private DireccionesAction action;
-        public DireccionesController(ConexionContext _db)
+        public DireccionesController()
         {
-            this.action = new DireccionesAction(_db);
+            this.action = new DireccionesAction();
         }
 
         [HttpGet("Get")]
-        public async Task<Reply> Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                return new Reply{
-                    code = 1,
-                    data = await this.action.obtener(),
-                    message = "Direcciones obtenidas Correctamente"
-                };
+                var resultAction = await this.action.obtener();
+
+                return Accepted(
+                    new Reply
+                    {
+                        code = resultAction.Count < 0 ? Reply.FAIL : Reply.SUCCESSFULL,
+                        data = resultAction,
+                        message = resultAction.Count < 0 ? "Direcciones obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Direcciones obtenidas Correctamente"
+                    }
+                );
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return new Reply{
-                    code = 0,
-                    data = null,
-                    message = $"No se pudieron obtener las Direcciones | Error{e.Message}"
-                };
+                return StatusCode(
+                    500,
+                    $"Error: {e.Message}"
+                );
             }
         }
 
@@ -45,7 +45,7 @@ namespace app.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return new Reply
                     {
@@ -56,16 +56,18 @@ namespace app.Controllers
                 }
                 else
                 {
-                    return new Reply{
+                    return new Reply
+                    {
                         code = 1,
                         data = await this.action.guardar(direccion),
                         message = "Direccion Guardada Correctamente"
                     };
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return new Reply{
+                return new Reply
+                {
                     code = 0,
                     data = null,
                     message = $"No se pudo guardar la Direccion | Error{e.Message}"
