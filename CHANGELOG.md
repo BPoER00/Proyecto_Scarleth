@@ -1,6 +1,11 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*05/07/2023*
+- Mejorando Controladores agregando statuscodes.
+- Agregando un helper de paginado.
+- Agregando un context de la base de datos para no instanciarlo muchas veces.
+
 *04/07/2023*
 - Agregamos archivos como .env y .env-example, agregamos el .gitignore, mejoramos las variables de entorno.
 - Agregamos seeds para poblar la base de datos de datos definidos como lo son genero o direccion.

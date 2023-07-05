@@ -16,11 +16,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]int pagina, [FromQuery] int objetos)
         {
             try
             {
-                var resultAction = await this.action.obtener();
+                var resultAction = await this.action.obtener(pagina, objetos);
 
                 return Accepted(
                     new Reply

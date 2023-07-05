@@ -16,9 +16,9 @@ namespace app.actions.direcciones
         private ObtenerDireccionesAction obtenerDireccionesAction;
         private NuevoDireccionesAction nuevoDireccionesAction;
     
-        public Task<List<Direccion>> obtener()
+        public Task<List<Direccion>> obtener(int tp, int np)
         {
-            return this.obtenerDireccionesAction.ejecutar();
+            return this.obtenerDireccionesAction.ejecutar(tp, np);
         }
 
         public Task<Direccion> guardar(Direccion direccion)
