@@ -20,7 +20,7 @@ namespace app.Controllers
         {
             try
             {
-                var resultAction = await this.action.obtener(pagina, objetos);
+                var resultAction = await this.action.obtener(objetos, pagina);
 
                 return Accepted(
                     new Reply
