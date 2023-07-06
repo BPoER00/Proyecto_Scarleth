@@ -16,7 +16,7 @@ namespace app.actions.direcciones
         private ObtenerDireccionesAction obtenerDireccionesAction;
         private NuevoDireccionesAction nuevoDireccionesAction;
     
-        public Task<List<Direccion>> obtener(int tp, int np)
+        public Task<Object[]> obtener(int tp, int np)
         {
             return this.obtenerDireccionesAction.ejecutar(tp, np);
         }

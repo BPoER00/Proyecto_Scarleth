@@ -14,10 +14,12 @@ namespace app.actions.direcciones
             this.pd = new PaginateData();
         }
 
-        public async Task<List<Direccion>> ejecutar(int tp, int np)
+        public async Task<Object[]> ejecutar(int tp, int np)
         {
-            int[] paginate = this.pd.paginateData(tp, np);
+            
+            int totalObjects = this.db.Direccions.Count();
 
+            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
             .Direccions
             .Where(x => x.estado == Direccion.ACTIVO)
@@ -25,7 +27,7 @@ namespace app.actions.direcciones
             .Take(paginate[1])
             .ToListAsync();
 
-            return lista;
+            return new Object[] { lista, np, tp, paginate[2] };
         }
 
     }

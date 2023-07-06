@@ -1,6 +1,9 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*06/07/2023*
+- mejorando el paginado mostrando el total de paginas, el record osea cuantos objetos contiene la pagina y la pagina actual.
+
 *05/07/2023*
 - Mejorando Controladores agregando statuscodes.
 - Agregando un helper de paginado.

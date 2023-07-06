@@ -16,18 +16,24 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery]int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
         {
             try
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                return Accepted(
-                    new Reply
-                    {
-                        code = resultAction.Count < 0 ? Reply.FAIL : Reply.SUCCESSFULL,
-                        data = resultAction,
-                        message = resultAction.Count < 0 ? "Direcciones obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Direcciones obtenidas Correctamente"
+                List<Direccion> data = (List<Direccion>) resultAction[0];
+                return Ok(
+                    new {
+                        pages = resultAction[3],
+                        records = resultAction[2],
+                        current_page = resultAction[1],
+                        data = new Reply
+                            {
+                                code = data.Count < 0 ? Reply.FAIL : Reply.SUCCESSFULL,
+                                data = data,
+                                message = data.Count < 0 ? "Direcciones obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Direcciones obtenidas Correctamente",
+                            } 
                     }
                 );
             }
