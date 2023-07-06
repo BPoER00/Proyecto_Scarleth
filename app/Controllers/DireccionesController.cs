@@ -24,7 +24,7 @@ namespace app.Controllers
 
                 List<Direccion> data = (List<Direccion>)resultAction[0];
                 return Ok(
-                    new paginateReturn
+                    new PaginateReturn
                     {
                         pages = (int) resultAction[3],
                         objects_page = (int) resultAction[2],

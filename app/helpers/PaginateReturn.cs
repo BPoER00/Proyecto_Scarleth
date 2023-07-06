@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace app.helpers
 {
-    public class paginateReturn
+    public class PaginateReturn
     {
         //total de paginas
         public int pages { get; set; }
