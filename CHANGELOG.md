@@ -1,6 +1,20 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*06/07/2023*
+- mejorando el paginado mostrando el total de paginas, el record osea cuantos objetos contiene la pagina y la pagina actual.
+- cambiando reply a helpers.
+- agregando paginateReturn para ayudarnos a retornar la info del paginado como por ejemplo.
+	- total de paginas.
+	- total de objetos en pagina.
+	- pagina actual.
+	- data.
+
+*05/07/2023*
+- Mejorando Controladores agregando statuscodes.
+- Agregando un helper de paginado.
+- Agregando un context de la base de datos para no instanciarlo muchas veces.
+
 *04/07/2023*
 - Agregamos archivos como .env y .env-example, agregamos el .gitignore, mejoramos las variables de entorno.
 - Agregamos seeds para poblar la base de datos de datos definidos como lo son genero o direccion.
