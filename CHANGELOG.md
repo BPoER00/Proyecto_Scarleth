@@ -3,6 +3,12 @@
 
 *06/07/2023*
 - mejorando el paginado mostrando el total de paginas, el record osea cuantos objetos contiene la pagina y la pagina actual.
+- cambiando reply a helpers.
+- agregando paginateReturn para ayudarnos a retornar la info del paginado como por ejemplo.
+	- total de paginas.
+	- total de objetos en pagina.
+	- pagina actual.
+	- data.
 
 *05/07/2023*
 - Mejorando Controladores agregando statuscodes.

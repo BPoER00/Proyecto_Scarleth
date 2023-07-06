@@ -22,18 +22,19 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Direccion> data = (List<Direccion>) resultAction[0];
+                List<Direccion> data = (List<Direccion>)resultAction[0];
                 return Ok(
-                    new {
-                        pages = resultAction[3],
-                        records = resultAction[2],
-                        current_page = resultAction[1],
-                        data = new Reply
-                            {
-                                code = data.Count < 0 ? Reply.FAIL : Reply.SUCCESSFULL,
-                                data = data,
-                                message = data.Count < 0 ? "Direcciones obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Direcciones obtenidas Correctamente",
-                            } 
+                    new paginateReturn
+                    {
+                        pages = (int) resultAction[3],
+                        objects_page = (int) resultAction[2],
+                        current_page = (int) resultAction[1],
+                        records = new Reply
+                        {
+                            code = data.Count < 0 ? Reply.FAIL : Reply.SUCCESSFULL,
+                            data = data,
+                            message = data.Count < 0 ? "Direcciones obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Direcciones obtenidas Correctamente",
+                        }
                     }
                 );
             }
