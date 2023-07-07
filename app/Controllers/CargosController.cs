@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using app.actions.cargos;
 using app.helpers;
 using app.Models;
@@ -72,7 +68,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = resultAction,
-                            message = resultAction == null ? "Direccion obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Direccion Obtenida Correctamente",
+                            message = resultAction == null ? "Cargo obtenido Correctamente Pero No Se Encontro Ningun Dato" : "Cargo Obtenido Correctamente",
                         }
                     }
                 );
