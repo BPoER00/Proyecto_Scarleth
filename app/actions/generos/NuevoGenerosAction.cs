@@ -14,11 +14,11 @@ namespace app.actions.generos
             this.db = _db;
         }
 
-        public async Task<Genero> ejecutar(Genero genero)
+        public async Task<Boolean> ejecutar(Genero genero)
         {
             this.db.Generos.Add(genero);
-            await this.db.SaveChangesAsync();
-            return genero;
+            int result = await this.db.SaveChangesAsync();
+            return result > 0 ? true : false;
         }
     }
 }
