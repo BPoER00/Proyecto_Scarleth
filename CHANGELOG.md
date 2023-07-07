@@ -1,6 +1,14 @@
 *CHANGELONG PROYECTO SCARLETH*
 *LOS HECHOS LOS ENCONTRARA EN ORDEN CRONOLOGICO*
 
+*07/07/2023*
+- Mejorando codigo de centras de actions modernizando el codigo utilizando funciones flecha.
+- Agregando funcion buscar a los siguientes controladores y de la misma manera modernizadando un poco el codigo y agregando status code.
+	- Cargos.
+	- Direcciones.
+	- Etnias.
+	- Generos.
+
 *06/07/2023*
 - mejorando el paginado mostrando el total de paginas, el record osea cuantos objetos contiene la pagina y la pagina actual.
 - cambiando reply a helpers.
