@@ -16,11 +16,11 @@ namespace app.actions.medicos
             this.db = _db;
         }
 
-        public async Task<Medico> ejecutar(Medico medico)
+        public async Task<Boolean> ejecutar(Medico medico)
         {
             this.db.Medicos.Add(medico);
-            await this.db.SaveChangesAsync();
-            return medico;
+            int result = await this.db.SaveChangesAsync();
+            return result > 0 ? true : false;
         }
 
     }

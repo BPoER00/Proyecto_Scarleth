@@ -15,7 +15,7 @@ namespace app.Controllers
     {
         private GenerosAction action;
 
-        public GeneroController(ConexionContext _db)
+        public GeneroController()
         {
             this.action = new GenerosAction();
         }

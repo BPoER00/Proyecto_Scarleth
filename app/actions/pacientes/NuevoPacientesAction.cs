@@ -14,11 +14,11 @@ namespace app.actions.pacientes
         {
             this.db = _db;
         }
-        public async Task<Paciente> ejecutar(Paciente paciente)
+        public async Task<Boolean> ejecutar(Paciente paciente)
         {
             this.db.Pacientes.Add(paciente);
-            await this.db.SaveChangesAsync();
-            return paciente;
+            int result = await this.db.SaveChangesAsync();
+            return result > 0 ? true : false;
         }
     }
 }

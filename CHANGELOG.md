@@ -8,6 +8,8 @@
 	- Direcciones.
 	- Etnias.
 	- Generos.
+	- Medicos.
+	- Pacientes.
 
 *06/07/2023*
 - mejorando el paginado mostrando el total de paginas, el record osea cuantos objetos contiene la pagina y la pagina actual.

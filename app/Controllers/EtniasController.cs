@@ -10,7 +10,7 @@ namespace app.Controllers
     public class EtniasController : ControllerBase
     {
         private EtniasAction action;
-        public EtniasController(ConexionContext _db)
+        public EtniasController()
         {
             this.action = new EtniasAction();
         }
