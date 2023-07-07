@@ -2,29 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using app.helpers;
 using app.Models;
 
 namespace app.actions.generos
 {
     public class GenerosAction
     {
-        public GenerosAction(ConexionContext _db)
-        {
-            this.obtenerGenerosAction = new ObtenerGenerosAction(_db);
-            this.nuevoGenerosAction = new NuevoGenerosAction(_db);
-        }
-
-        private ObtenerGenerosAction obtenerGenerosAction;
+        private ConexionContext _db = new DbContextConection().context();
+        private BuscarGenerosAction buscarGenerosAction;
         private NuevoGenerosAction nuevoGenerosAction;
+        private ObtenerGenerosAction obtenerGenerosAction;
 
-        public Task<List<Genero>> obtener()
+
+        public GenerosAction()
         {
-            return this.obtenerGenerosAction.ejecutar();
+            this.buscarGenerosAction = new BuscarGenerosAction(_db);
+            this.nuevoGenerosAction = new NuevoGenerosAction(_db);
+            this.obtenerGenerosAction = new ObtenerGenerosAction(_db);
         }
 
-        public Task<Genero> guardar(Genero genero)
-        {
-            return this.nuevoGenerosAction.ejecutar(genero);
-        }
+        public Task<Genero> buscar(int id) => this.buscarGenerosAction.ejecutar(id);
+
+        public Task<Boolean> guardar(Genero genero) => this.nuevoGenerosAction.ejecutar(genero);
+
+        public Task<Object[]> obtener(int tp, int np) => this.obtenerGenerosAction.ejecutar(tp, np);
     }
 }

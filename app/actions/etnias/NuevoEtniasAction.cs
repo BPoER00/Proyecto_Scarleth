@@ -16,11 +16,11 @@ namespace app.actions.etnias
             this.db = _db;
         }
 
-        public async Task<Etnia> ejecutar(Etnia etnia)
+        public async Task<Boolean> ejecutar(Etnia etnia)
         {
             this.db.Etnias.Add(etnia);
-            await this.db.SaveChangesAsync();
-            return etnia;
+            int result = await this.db.SaveChangesAsync();
+            return result > 0 ? true : false;
         }
     }
 }

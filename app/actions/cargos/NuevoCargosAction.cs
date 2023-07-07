@@ -15,11 +15,12 @@ namespace app.actions.cargos
             this.db = _db;
         }
 
-        public async Task<Cargo> ejecutar(Cargo cargo)
+        public async Task<Boolean> ejecutar(Cargo cargo)
         {
             this.db.Cargos.Add(cargo);
-            await this.db.SaveChangesAsync();
-            return cargo;
+            int result = await this.db.SaveChangesAsync();
+            
+            return result > 0 ? true : false;
         }
     }
 }

@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using app.Models;
-using Microsoft.EntityFrameworkCore;
 
-namespace app.actions.medicos
+namespace app.actions.direcciones
 {
-    public class BuscarMedicoAction
+    public class BuscarDireccionesAction
     {
         private ConexionContext db;
 
-        public BuscarMedicoAction(ConexionContext _db)
+        public BuscarDireccionesAction(ConexionContext _db)
         {
             this.db = _db;
         }
 
-        public async Task<Medico> ejecutar(int id)
+        public async Task<Direccion> ejecutar(int id)
         {
-            var lista = await this.db.Medicos
+            var lista = await this.db.Direccions
                         .FindAsync(id);
 
             return lista;

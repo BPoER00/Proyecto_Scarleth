@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using app.Models;
-using app.actions.generos;
+using app.actions.cargos;
 using app.helpers;
+using app.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GeneroController : ControllerBase
+    public class CargosController : ControllerBase
     {
-        private GenerosAction action;
-
-        public GeneroController()
+        private CargosAction action;
+        public CargosController()
         {
-            this.action = new GenerosAction();
+            this.action = new CargosAction();
         }
 
         [HttpGet("Get")]
@@ -27,7 +22,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Genero> data = (List<Genero>)resultAction[0];
+                List<Cargo> data = (List<Cargo>)resultAction[0];
                 return Ok(
                     new PaginateReturn
                     {
@@ -38,7 +33,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = data,
-                            message = data.Count == 0 ? "Generos Obtenidos Correctamente Pero No Se Encontro Ningun Dato" : "Generos obtenidos Correctamente",
+                            message = data.Count == 0 ? "Cargos obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Cargos obtenidas Correctamente",
                         }
                     }
                 );
@@ -73,7 +68,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = resultAction,
-                            message = resultAction == null ? "Genero obtenido Correctamente Pero No Se Encontro Ningun Dato" : "Genero Obtenido Correctamente",
+                            message = resultAction == null ? "Cargo obtenido Correctamente Pero No Se Encontro Ningun Dato" : "Cargo Obtenido Correctamente",
                         }
                     }
                 );
@@ -95,7 +90,7 @@ namespace app.Controllers
         }
 
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(Genero genero)
+        public async Task<IActionResult> Post(Cargo cargo)
         {
             try
             {
@@ -120,9 +115,9 @@ namespace app.Controllers
                         {
                             records = new Reply
                             {
-                                code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(genero),
-                                message = "Genero Guardado Correctamente"
+                                code = 1,
+                                data = await this.action.guardar(cargo),
+                                message = "Cargo Guardada Correctamente"
                             }
                         }
                     );

@@ -16,11 +16,12 @@ namespace app.actions.direcciones
             this.db = _db;
         }
 
-        public async Task<Direccion> ejecutar(Direccion direccion)
+        public async Task<Boolean> ejecutar(Direccion direccion)
         {
             this.db.Direccions.Add(direccion);
-            await this.db.SaveChangesAsync();
-            return direccion;
+            int result = await this.db.SaveChangesAsync();
+            
+            return result > 0 ? true : false;
         }
     }
 }
