@@ -16,7 +16,6 @@ namespace app.actions.direcciones
 
         public async Task<Object[]> ejecutar(int tp, int np)
         {
-            
             int totalObjects = this.db.Direccions.Count();
 
             int[] paginate = this.pd.paginateData(tp, np, totalObjects);

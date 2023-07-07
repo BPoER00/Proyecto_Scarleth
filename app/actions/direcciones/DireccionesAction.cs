@@ -6,6 +6,8 @@ namespace app.actions.direcciones
     public class DireccionesAction
     {
         private ConexionContext _db = new DbContextConection().context();
+        private ObtenerDireccionesAction obtenerDireccionesAction;
+        private NuevoDireccionesAction nuevoDireccionesAction;
 
         public DireccionesAction()
         {
@@ -13,17 +15,8 @@ namespace app.actions.direcciones
             this.nuevoDireccionesAction = new NuevoDireccionesAction(_db);
         }
 
-        private ObtenerDireccionesAction obtenerDireccionesAction;
-        private NuevoDireccionesAction nuevoDireccionesAction;
-    
-        public Task<Object[]> obtener(int tp, int np)
-        {
-            return this.obtenerDireccionesAction.ejecutar(tp, np);
-        }
+        public Task<Object[]> obtener(int tp, int np) => this.obtenerDireccionesAction.ejecutar(tp, np);
+        public Task<Direccion> guardar(Direccion direccion) => this.nuevoDireccionesAction.ejecutar(direccion);
 
-        public Task<Direccion> guardar(Direccion direccion)
-        {
-            return this.nuevoDireccionesAction.ejecutar(direccion);
-        }
     }
 }
