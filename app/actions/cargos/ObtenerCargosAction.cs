@@ -23,7 +23,7 @@ namespace app.actions.cargos
             int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
             .Cargos
-            .Where(x => x.estado == Direccion.ACTIVO)
+            .Where(x => x.estado == Cargo.ACTIVO)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();
