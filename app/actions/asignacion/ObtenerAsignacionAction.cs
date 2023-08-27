@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using app.helpers;
 using app.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.actions.medicos
 {
-    public class ObtenerMedicoAction
+    public class ObtenerAsignacionAction
     {
         private ConexionContext db;
         private PaginateData pd;
 
-        public ObtenerMedicoAction(ConexionContext _db)
+        public ObtenerAsignacionAction(ConexionContext _db)
         {
             this.db = _db;
             this.pd = new PaginateData();
@@ -21,12 +17,12 @@ namespace app.actions.medicos
 
         public async Task<Object[]> ejecutar(int tp, int np)
         {
-            int totalObjects = this.db.Medicos.Count();
+            int totalObjects = this.db.Asignacions.Count();
 
             int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
-            .Medicos
-            .Where(x => x.estado == Medico.ACTIVO)
+            .Asignacions
+            .Where(x => x.estado == Asignacion.ACTIVO)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();

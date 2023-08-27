@@ -83,52 +83,6 @@ namespace app.seeders
                             }
                         );
 
-            modelBuilder.Entity<Etnia>()
-                        .HasData(
-                            new Etnia
-                            {
-                                id = 1,
-                                nombre = "Maya",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            },
-                            new Etnia
-                            {
-                                id = 2,
-                                nombre = "Ladino",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            },
-                            new Etnia
-                            {
-                                id = 3,
-                                nombre = "Xinca",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            },
-                            new Etnia
-                            {
-                                id = 4,
-                                nombre = "Afrodescendiente/Creole",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            },
-                            new Etnia
-                            {
-                                id = 5,
-                                nombre = "Garifuna",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            },
-                            new Etnia
-                            {
-                                id = 6,
-                                nombre = "Extranjero",
-                                estado = Etnia.ACTIVO,
-                                CreateAt = DateTime.Now
-                            }
-                        );
-
             modelBuilder.Entity<Genero>()
                         .HasData(
                             new Genero

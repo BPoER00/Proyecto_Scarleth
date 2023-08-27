@@ -11,14 +11,14 @@ namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MedicosController : ControllerBase
+    public class AsignacionController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private MedicosAction action; 
+        private AsignacionAction action; 
 
-        public MedicosController()
+        public AsignacionController()
         {
-            this.action = new MedicosAction();
+            this.action = new AsignacionAction();
         }
 
         [HttpGet("Get")]
@@ -28,7 +28,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Medico> data = (List<Medico>)resultAction[0];
+                List<Asignacion> data = (List<Asignacion>)resultAction[0];
                 return Ok(
                     new PaginateReturn
                     {
@@ -39,7 +39,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = data,
-                            message = data.Count == 0 ? "Medicos Obtenidos Correctamente Pero No Se Encontro Ningun Dato" : "Medicos obtenidos Correctamente",
+                            message = data.Count == 0 ? "Asignaciones Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Asignaciones obtenidas Correctamente",
                         }
                     }
                 );
@@ -74,7 +74,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = resultAction,
-                            message = resultAction == null ? "Medico obtenido Correctamente Pero No Se Encontro Ningun Dato" : "Medico Obtenido Correctamente",
+                            message = resultAction == null ? "Asignacion obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Asignacion Obtenida Correctamente",
                         }
                     }
                 );
@@ -96,7 +96,7 @@ namespace app.Controllers
         }
 
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(Medico medico)
+        public async Task<IActionResult> Post(Asignacion asignacion)
         {
             try
             {
@@ -122,8 +122,8 @@ namespace app.Controllers
                             records = new Reply
                             {
                                 code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(medico),
-                                message = "Medico Guardado Correctamente"
+                                data = await this.action.guardar(asignacion),
+                                message = "Asignacion Guardada Correctamente"
                             }
                         }
                     );
