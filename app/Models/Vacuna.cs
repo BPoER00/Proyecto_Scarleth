@@ -25,15 +25,10 @@ namespace app.Models
         public string nombre { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [unidades]")]
-        public int unidades { get; set; }
+        public long unidades { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
-        public int dosis { get; set; }
-
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vencimiento]")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime fecha_vencimiento { get; set; }
+        public string dosis { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [descripcion]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [descripcion]")]
@@ -44,11 +39,12 @@ namespace app.Models
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [cubre]")]
         [DataType(DataType.Text)]
         public string cubre { get; set; }
-        public int estado { get; set; } = ACTIVO;
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cubre]")]
         [ForeignKey("Usuario")]
         public int usuario_id { get; set; }
+        public int estado { get; set; } = ACTIVO;
+
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }

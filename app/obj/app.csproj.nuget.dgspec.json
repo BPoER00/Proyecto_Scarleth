@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj": {}
+    "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj": {}
   },
   "projects": {
-    "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj": {
+    "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj",
+        "projectUniqueName": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj",
         "projectName": "app",
-        "projectPath": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj",
+        "projectPath": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj",
         "packagesPath": "/home/mrkobp/.nuget/packages/",
-        "outputPath": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/obj/",
+        "outputPath": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/mrkobp/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,6 @@
           "net7.0"
         ],
         "sources": {
-          "/usr/share/dotnet/sdk/7.0.304/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

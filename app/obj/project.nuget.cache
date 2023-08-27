@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bRlfdtDVboZtpcY1Ntrw36e7Ewx4f1Tfr1zh3+5J6EIjwHpTsIVd+gerSbEhegm7VWZQMcrz4RTENk/y/olT/Q==",
+  "dgSpecHash": "zxx7Sti0v25d8klR1fdqSz8JwcqCkEmHdKAglJ/pzP3olqpQiYr4O4E6kwVbqYEt5DEJpXBAWpVe3jjT4vxv+g==",
   "success": true,
-  "projectFilePath": "/home/mrkobp/Escritorio/Proyectos/dotnet_core/personal/Proyecto_Scarleth/app/app.csproj",
+  "projectFilePath": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj",
   "expectedPackageFiles": [
     "/home/mrkobp/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",

@@ -23,31 +23,27 @@ namespace app.Models
         public string descripcion { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [medico]")]
-        [ForeignKey("Medico")]
-        public int medico_id { get; set; }
+        [ForeignKey("Asignacion")]
+        public int asignacion_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
         [ForeignKey("Vacuna")]
         public int vacuna_id { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [paciento]")]
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [paciente]")]
         [ForeignKey("Paciente")]
         public int paciente_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
         public long dosis { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha registro]")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime fecha_registro { get; set; }
         public int estado { get; set; } = ACTIVO;
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
         [NotMapped]
-        public virtual Medico Medico { get; set; }
+        public virtual Asignacion Asignacion { get; set; }
         [NotMapped]
         public virtual Vacuna Vacuna { get; set; }
         [NotMapped]

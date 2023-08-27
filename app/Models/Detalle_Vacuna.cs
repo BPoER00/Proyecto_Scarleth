@@ -11,20 +11,20 @@ namespace app.Models
     {
         [Key]
         public int id { get; set; }
-        
+
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [nombre]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [nombre]")]
         [DataType(DataType.Text)]
         public string descripcion { get; set; }
-        
+
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cantidad]")]
         public long cantidad { get; set; }
-        
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha ingreso]")]
-        [DataType(DataType.Date)]
+
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vencimiento]")]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime fecha_ingreso { get; set; }
-        
+        public DateTime fecha_vencimiento { get; set; }
+
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
         [ForeignKey("Vacuna")]
         public int vacuna_id { get; set; }

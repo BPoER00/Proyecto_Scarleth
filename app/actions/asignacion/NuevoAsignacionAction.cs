@@ -2,25 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using app.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace app.actions.etnias
+namespace app.actions.medicos
 {
-    public class NuevoEtniasAction
+    public class NuevoAsignacionAction
     {
         private ConexionContext db;
 
-        public NuevoEtniasAction(ConexionContext _db)
+        public NuevoAsignacionAction(ConexionContext _db)
         {
             this.db = _db;
         }
 
-        public async Task<Boolean> ejecutar(Etnia etnia)
+        public async Task<Boolean> ejecutar(Asignacion asignacion)
         {
-            this.db.Etnias.Add(etnia);
+            this.db.Asignacions.Add(asignacion);
             int result = await this.db.SaveChangesAsync();
             return result > 0 ? true : false;
         }
+
     }
 }
