@@ -25,7 +25,6 @@ namespace app.Models
         public DbSet<Direccion> Direccions { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Asignacion> Asignacions { get; set; }
-        public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Vacuna> Vacunas { get; set; }
         public DbSet<Vacunacion> Vacunacions { get; set; }
         public DbSet<Detalle_Vacuna> Detalle_Vacunas { get; set; }
