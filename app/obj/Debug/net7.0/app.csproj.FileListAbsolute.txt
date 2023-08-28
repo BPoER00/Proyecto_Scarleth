@@ -242,3 +242,4 @@
 /home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/obj/Debug/net7.0/app.pdb
 /home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/obj/Debug/net7.0/app.genruntimeconfig.cache
 /home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/obj/Debug/net7.0/ref/app.dll
+/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/bin/Debug/net7.0/BCrypt.Net-Next.dll
