@@ -22,17 +22,11 @@ namespace app.Models
         [DataType(DataType.Text)]
         public string descripcion { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [medico]")]
-        [ForeignKey("Asignacion")]
-        public int asignacion_id { get; set; }
-
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
-        [ForeignKey("Vacuna")]
         public int vacuna_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [paciente]")]
-        [ForeignKey("Paciente")]
-        public int paciente_id { get; set; }
+        public int persona_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
         public long dosis { get; set; }
@@ -42,11 +36,10 @@ namespace app.Models
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
-        [NotMapped]
-        public virtual Asignacion Asignacion { get; set; }
-        [NotMapped]
+        [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
-        [NotMapped]
-        public virtual Paciente Paciente { get; set; }
+
+        [ForeignKey("paciente_id")]
+        public virtual Persona Persona { get; set; }
     }
 }

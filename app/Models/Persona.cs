@@ -35,27 +35,21 @@ namespace app.Models
         public DateTime fecha_nacimiento { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [direccion]")]
-        [ForeignKey("Direccion")]
         public int direccion_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [genero]")]
-        [ForeignKey("Genero")]
         public int genero_id { get; set; }
 
         public int estado { get; set; } = ACTIVO;
         
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
-        [ForeignKey("Usuario")]
-        public int usuario_id { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
-        [NotMapped]
+        [ForeignKey("genero_id")]
         public virtual Genero Genero { get; set; }
-        [NotMapped]
+
+        [ForeignKey("direccion_id")]
         public virtual Direccion Direccion { get; set; }
-        [NotMapped]
-        public virtual Usuario Usuario { get; set; }
     }
 }
