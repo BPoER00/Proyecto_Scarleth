@@ -1,20 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
-using app.Models;
 using app.helpers;
-using app.actions.medicos;
+using app.Models;
+using app.actions.persona;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AsignacionController : ControllerBase
+    public class PersonaController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private AsignacionAction action; 
+        private PersonasActions action;
 
-        public AsignacionController()
+        public PersonaController()
         {
-            this.action = new AsignacionAction();
+            this.action = new PersonasActions();
         }
 
         [HttpGet("Get")]
@@ -24,7 +24,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Asignacion> data = (List<Asignacion>)resultAction[0];
+                List<Persona> data = (List<Persona>)resultAction[0];
                 return Ok(
                     new PaginateReturn
                     {
@@ -35,7 +35,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = data,
-                            message = data.Count == 0 ? "Asignaciones Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Asignaciones obtenidas Correctamente",
+                            message = data.Count == 0 ? "Personas Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Personas obtenidas Correctamente",
                         }
                     }
                 );
@@ -70,7 +70,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = resultAction,
-                            message = resultAction == null ? "Asignacion obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Asignacion Obtenida Correctamente",
+                            message = resultAction == null ? "Persona obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Persona Obtenida Correctamente",
                         }
                     }
                 );
@@ -92,7 +92,7 @@ namespace app.Controllers
         }
 
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(Asignacion asignacion)
+        public async Task<IActionResult> Post(Persona persona)
         {
             try
             {
@@ -118,8 +118,8 @@ namespace app.Controllers
                             records = new Reply
                             {
                                 code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(asignacion),
-                                message = "Asignacion Guardada Correctamente"
+                                data = await this.action.guardar(persona),
+                                message = "Persona Guardada Correctamente"
                             }
                         }
                     );

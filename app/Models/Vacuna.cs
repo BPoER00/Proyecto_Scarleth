@@ -40,16 +40,12 @@ namespace app.Models
         [DataType(DataType.Text)]
         public string cubre { get; set; }
         
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cubre]")]
-        [ForeignKey("Usuario")]
-        public int usuario_id { get; set; }
         public int estado { get; set; } = ACTIVO;
 
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
     
-        [NotMapped]
-        public virtual Usuario Usuario { get; set; }
+
     }
 }

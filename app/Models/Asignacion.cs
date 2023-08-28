@@ -18,7 +18,6 @@ namespace app.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [persona]")]
-        [ForeignKey("Persona")]
         public int persona_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [numero colegiado]")]
@@ -27,7 +26,6 @@ namespace app.Models
         public string numero_colegiado { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cargo]")]
-        [ForeignKey("Cargo")]
         public int cargo_id { get; set; }
 
         public int estado { get; set; } = ACTIVO;
@@ -38,9 +36,10 @@ namespace app.Models
         public DateTime DeleteAt { get; set; }
 
 
-        [NotMapped]
-        public virtual Cargo Cargo { get; set; }
-        [NotMapped]
+        [ForeignKey("persona_id")]
         public virtual Persona Persona { get; set; }
+
+        [ForeignKey("cargo_id")]
+        public virtual Cargo Cargo { get; set; }
     }
 }

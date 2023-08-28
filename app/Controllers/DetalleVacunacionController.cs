@@ -1,20 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.helpers;
-using app.actions.medicos;
+using app.actions.detalle_vacunacion;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AsignacionController : ControllerBase
+    public class DetalleVacunacionController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private AsignacionAction action; 
+        private DetalleVacunacionActions action; 
 
-        public AsignacionController()
+        public DetalleVacunacionController()
         {
-            this.action = new AsignacionAction();
+            this.action = new DetalleVacunacionActions();
         }
 
         [HttpGet("Get")]
@@ -24,7 +24,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Asignacion> data = (List<Asignacion>)resultAction[0];
+                List<Detalle_Vacunacion> data = (List<Detalle_Vacunacion>)resultAction[0];
                 return Ok(
                     new PaginateReturn
                     {
@@ -35,7 +35,7 @@ namespace app.Controllers
                         {
                             code = Reply.SUCCESSFULL,
                             data = data,
-                            message = data.Count == 0 ? "Asignaciones Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Asignaciones obtenidas Correctamente",
+                            message = data.Count == 0 ? "Detalle Vacunaciones Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Detalle Vacunaciones Obtenidas Correctamente",
                         }
                     }
                 );
@@ -46,41 +46,6 @@ namespace app.Controllers
                     new
                     {
                         records = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
-                );
-            }
-        }
-
-        [HttpGet("Get/{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                var resultAction = await this.action.buscar(id);
-
-                return Ok(
-                    new
-                    {
-                        records = new Reply
-                        {
-                            code = Reply.SUCCESSFULL,
-                            data = resultAction,
-                            message = resultAction == null ? "Asignacion obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Asignacion Obtenida Correctamente",
-                        }
-                    }
-                );
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500,
-                    new
-                    {
-                        record = new Reply
                         {
                             code = Reply.FAIL,
                             data = null,
@@ -92,7 +57,7 @@ namespace app.Controllers
         }
 
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(Asignacion asignacion)
+        public async Task<IActionResult> Post(Detalle_Vacunacion detalle_Vacunacion)
         {
             try
             {
@@ -118,8 +83,8 @@ namespace app.Controllers
                             records = new Reply
                             {
                                 code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(asignacion),
-                                message = "Asignacion Guardada Correctamente"
+                                data = await this.action.guardar(detalle_Vacunacion),
+                                message = "Detalle Vacunacion Guardada Correctamente"
                             }
                         }
                     );

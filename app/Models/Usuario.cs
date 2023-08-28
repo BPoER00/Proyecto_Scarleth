@@ -18,7 +18,6 @@ namespace app.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [Persona]")]
-        [ForeignKey("Persona")]
         public int persona_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [nombre usuario]")]
@@ -44,7 +43,6 @@ namespace app.Models
         public string password_confirm { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [rol]")]
-        [ForeignKey("Rol")]
         public int rol_id { get; set; }
         public string Sal { get; set; }
         public int estado { get; set; } = ACTIVO;
@@ -52,9 +50,10 @@ namespace app.Models
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
-        [NotMapped]
+        [ForeignKey("rol_id")]
         public virtual Rol Rol { get; set; }
-        [NotMapped]
+
+        [ForeignKey("persona_id")]
         public virtual Persona Persona { get; set; }
     }
 }

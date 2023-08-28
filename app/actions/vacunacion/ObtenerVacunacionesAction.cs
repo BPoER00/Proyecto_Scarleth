@@ -1,28 +1,28 @@
-using app.helpers;
 using app.Models;
+using app.helpers;
 using Microsoft.EntityFrameworkCore;
 
-namespace app.actions.pacientes
+namespace app.actions.vacunacion
 {
-    public class ObtenerPacientesAction
+    public class ObtenerVacunacionesAction
     {
         private ConexionContext db;
         private PaginateData pd;
 
-        public ObtenerPacientesAction(ConexionContext _db)
+        public ObtenerVacunacionesAction(ConexionContext _db)
         {
             this.db = _db;
             this.pd = new PaginateData();
         }
-        
+
         public async Task<Object[]> ejecutar(int tp, int np)
         {
-            int totalObjects = this.db.Pacientes.Count();
+            int totalObjects = this.db.Vacunacions.Count();
 
             int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
-            .Pacientes
-            .Where(x => x.estado == Paciente.ACTIVO)
+            .Vacunacions
+            .Where(x => x.estado == Vacunacion.ACTIVO)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();

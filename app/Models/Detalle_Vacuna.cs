@@ -26,19 +26,20 @@ namespace app.Models
         public DateTime fecha_vencimiento { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
-        [ForeignKey("Vacuna")]
         public int vacuna_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
-        [ForeignKey("Usuario")]
         public int usuario_id { get; set; }
+
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
-        [NotMapped]
+        [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
-        [NotMapped]
+
+        [ForeignKey("usuario_id")]
         public virtual Usuario Usuario { get; set; }
+
     }
 }

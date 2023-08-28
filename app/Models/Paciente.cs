@@ -34,11 +34,9 @@ namespace app.Models
         public string comunidad { get; set; }
         
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [direccion]")]
-        [ForeignKey("Direccion")]
         public int direccion_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [genero]")]
-        [ForeignKey("Genero")]
         public int genero_id { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [telefono]")]
@@ -46,20 +44,17 @@ namespace app.Models
         [DataType(DataType.PhoneNumber)]
         public string telefono { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
-        [ForeignKey("Usuario")]
-        public int usuario_id { get; set; }
 
         public int estado { get; set; } = ACTIVO;
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         
-        [NotMapped]
+        [ForeignKey("direccion_id")]
         public virtual Direccion Direccion { get; set; }
-        [NotMapped]
+
+        [ForeignKey("genero_id")]
         public virtual Genero Genero { get; set; }
-        [NotMapped]
-        public virtual Usuario Usuario { get; set; }
+        
     }
 }
