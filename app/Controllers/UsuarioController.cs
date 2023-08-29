@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using app.helpers;
 using app.Models;
 using app.actions.usuario;
+using app.Models.ModelView;
+
 namespace app.Controllers
 {
     [ApiController]
@@ -23,7 +25,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Persona> data = (List<Persona>)resultAction[0];
+                List<UsuarioInfo> data = (List<UsuarioInfo>)resultAction[0];
                 return Ok(
                     new PaginateReturn
                     {

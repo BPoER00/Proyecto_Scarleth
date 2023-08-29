@@ -19,6 +19,7 @@ namespace app.actions.usuario
             {
                 persona_id = usuario.persona_id,
                 nombre_usuario = usuario.nombre_usuario,
+                correo = usuario.correo,
                 password = hash.HashPassword(usuario.password),
                 rol_id = usuario.rol_id
             };

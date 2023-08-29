@@ -1,4 +1,5 @@
 using app.Models;
+using app.Models.ModelView;
 using app.helpers;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,18 +26,18 @@ namespace app.actions.usuario
             .Where(x => x.estado == Usuario.ACTIVO)
             .Skip(paginate[0])
             .Take(paginate[1])
-            .Select(x => new
+            .Select(x => new UsuarioInfo // Utiliza la clase UsuarioInfo
             {
-                x.id,
-                x.Persona.cui,
-                x.nombre_usuario,
-                x.correo,
-                x.estado,
-                x.rol_id,
-                x.Rol.nombre,
-                x.CreateAt,
-                x.UpdateAt,
-                x.DeleteAt
+                Id = x.id,
+                Cui = x.Persona.cui,
+                NombreUsuario = x.nombre_usuario,
+                Correo = x.correo,
+                Estado = x.estado,
+                RolId = x.rol_id,
+                RolNombre = x.Rol.nombre,
+                CreateAt = x.CreateAt,
+                UpdateAt = x.UpdateAt,
+                DeleteAt = x.DeleteAt
             })
             .ToListAsync();
 
