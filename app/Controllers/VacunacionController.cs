@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -11,10 +12,13 @@ namespace app.Controllers
     {
         //variable principal para la conexion de cada uno
         private VacunacionesActions action;
+        private VacunacionValidation validation;
 
         public VacunacionController()
         {
             this.action = new VacunacionesActions();
+            this.validation = new VacunacionValidation();
+
         }
 
         [HttpGet("Get")]

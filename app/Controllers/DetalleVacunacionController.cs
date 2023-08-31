@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.helpers;
 using app.actions.detalle_vacunacion;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -11,10 +12,13 @@ namespace app.Controllers
     {
         //variable principal para la conexion de cada uno
         private DetalleVacunacionActions action;
+        private DetalleVacunacionValidation validation;
 
         public DetalleVacunacionController()
         {
             this.action = new DetalleVacunacionActions();
+            this.validation = new DetalleVacunacionValidation();
+
         }
 
         [HttpGet("Get")]
@@ -75,6 +79,18 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (!await validation.validateVacunacion(detalle_Vacunacion.vacunacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateAsignacion(detalle_Vacunacion.asignacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Medico", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
                     var result = await this.action.guardar(detalle_Vacunacion);
 
                     return StatusCode(201,

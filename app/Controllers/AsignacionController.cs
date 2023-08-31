@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.helpers;
-using app.actions.medicos;
+using app.actions.asignacion;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -11,10 +12,13 @@ namespace app.Controllers
     {
         //variable principal para la conexion de cada uno
         private AsignacionAction action;
+        private AsignacionValidation validation;
 
         public AsignacionController()
         {
             this.action = new AsignacionAction();
+            this.validation = new AsignacionValidation();
+
         }
 
         [HttpGet("Get")]
@@ -122,6 +126,17 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (!await validation.validatePersona(asignacion.persona_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateCargo(asignacion.cargo_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Cargo", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
 
                     var result = await this.action.guardar(asignacion);
 

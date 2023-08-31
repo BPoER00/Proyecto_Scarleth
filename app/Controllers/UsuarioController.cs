@@ -3,6 +3,7 @@ using app.helpers;
 using app.Models;
 using app.actions.usuario;
 using app.Models.ModelView;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -12,10 +13,13 @@ namespace app.Controllers
     {
         //variable principal para la conexion de cada uno
         private UsuarioActions action;
+        private UsuarioValidation validation;
 
         public UsuarioController()
         {
             this.action = new UsuarioActions();
+            this.validation = new UsuarioValidation();
+
         }
 
         [HttpGet("Get")]
@@ -123,6 +127,18 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (!await validation.validatePersona(usuario.persona_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateRol(usuario.rol_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Rol", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
                     var result = await this.action.guardar(usuario);
 
                     return StatusCode(201,

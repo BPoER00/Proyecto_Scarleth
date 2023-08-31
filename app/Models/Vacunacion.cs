@@ -39,7 +39,7 @@ namespace app.Models
         [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
 
-        [ForeignKey("paciente_id")]
+        [ForeignKey("persona_id")]
         public virtual Persona Persona { get; set; }
     }
 }
