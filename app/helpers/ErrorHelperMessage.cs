@@ -12,6 +12,7 @@ namespace app.helpers
         public const int GUARDADO = 6;
         public const int NO_GUARDADO = 7;
         public const int OBTENIDO = 8;
+        public const int REPETIDO = 9;
 
         public const String campoRequired = "El Campo es obligatorio";
         public const String campoLenght = "El campo tiene un maximo de";
@@ -52,6 +53,10 @@ namespace app.helpers
 
                 case OBTENIDO:
                     mensaje = "Datos Obtenidos Correctamente";
+                    break;
+                
+                case REPETIDO:
+                    mensaje = $"El Campo {campo}, Ya Existe En La Base De Datos";
                     break;
 
                 default:

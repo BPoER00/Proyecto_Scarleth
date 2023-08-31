@@ -14,11 +14,13 @@ namespace app.Controllers
         //variable principal para la conexion de cada uno
         private UsuarioActions action;
         private UsuarioValidation validation;
+        private VerifyRepeatData<Usuario> verify;
 
         public UsuarioController()
         {
             this.action = new UsuarioActions();
             this.validation = new UsuarioValidation();
+            this.verify = new VerifyRepeatData<Usuario>();
 
         }
 
@@ -127,6 +129,18 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (await verify.IsDataDuplicated("nombre_usuario", usuario.nombre_usuario))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(usuario.nombre_usuario, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
+                    if (await verify.IsDataDuplicated("persona_id", usuario.persona_id))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages($"{usuario.persona_id}", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     if (!await validation.validatePersona(usuario.persona_id))
                         return BadRequest(
                             new ReturnClassDefault()
