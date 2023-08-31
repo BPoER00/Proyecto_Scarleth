@@ -90,8 +90,6 @@ namespace app.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
                     unidades = table.Column<long>(type: "bigint", nullable: false),
-                    dosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    descripcion = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
                     cubre = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
                     estado = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -301,16 +299,16 @@ namespace app.Migrations
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9968), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Gualan" },
-                    { 2, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9977), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "La Union" },
-                    { 3, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9981), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Zacapa" },
-                    { 4, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9984), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rio Hondo" },
-                    { 5, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9988), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Estanzuela" },
-                    { 6, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9991), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Teculutan" },
-                    { 7, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9995), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Usumatlan" },
-                    { 8, new DateTime(2023, 8, 27, 22, 37, 37, 495, DateTimeKind.Local).AddTicks(9998), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Huite" },
-                    { 9, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(1), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Cabañas" },
-                    { 10, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(5), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "San Diego" }
+                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2567), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Gualan" },
+                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2605), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "La Union" },
+                    { 3, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2647), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Zacapa" },
+                    { 4, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2693), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rio Hondo" },
+                    { 5, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2732), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Estanzuela" },
+                    { 6, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2775), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Teculutan" },
+                    { 7, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2813), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Usumatlan" },
+                    { 8, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2851), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Huite" },
+                    { 9, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2894), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Cabañas" },
+                    { 10, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2931), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "San Diego" }
                 });
 
             migrationBuilder.InsertData(
@@ -318,8 +316,8 @@ namespace app.Migrations
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(499), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Masculino" },
-                    { 2, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(504), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Femenino" }
+                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3265), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Masculino" },
+                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3307), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Femenino" }
                 });
 
             migrationBuilder.InsertData(
@@ -327,9 +325,9 @@ namespace app.Migrations
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "descripcion", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(543), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Administrador" },
-                    { 2, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(549), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Digitador" },
-                    { 3, new DateTime(2023, 8, 27, 22, 37, 37, 496, DateTimeKind.Local).AddTicks(552), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Usuario Comun" }
+                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3402), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Administrador" },
+                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Digitador" },
+                    { 3, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3484), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Usuario Comun" }
                 });
 
             migrationBuilder.CreateIndex(

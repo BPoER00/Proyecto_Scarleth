@@ -25,33 +25,29 @@ namespace app.Controllers
                 var resultAction = await this.action.obtener(objetos, pagina);
 
                 List<Detalle_Vacuna> data = (List<Detalle_Vacuna>)resultAction[0];
+
                 return Ok(
-                    new PaginateReturn
-                    {
-                        pages = (int)resultAction[3],
-                        objects_page = (int)resultAction[2],
-                        current_page = (int)resultAction[1],
-                        records = new Reply
-                        {
-                            code = Reply.SUCCESSFULL,
-                            data = data,
-                            message = data.Count == 0 ? "Detalle Vacunas Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Detalle Vacunas Obtenidas Correctamente",
-                        }
-                    }
+                    new ReturnClassDefault().returnDataPaginate(
+                        resultAction,
+                        Reply.SUCCESSFULL,
+                        data,
+                        new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.OBTENIDO
+                                )
+                    )
                 );
             }
             catch (Exception e)
             {
                 return StatusCode(500,
-                    new
-                    {
-                        records = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
                 );
             }
         }
@@ -64,44 +60,46 @@ namespace app.Controllers
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(
-                        new
-                        {
-                            records = new Reply
-                            {
-                                code = Reply.FAIL,
-                                data = ErrorValidationHelper.GetModelStateErrors(ModelState),
-                                message = "Campos invalidos"
-                            }
-                        }
+                        new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.FAIL,
+                            ErrorValidationHelper.GetModelStateErrors(ModelState),
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.INVALIDO
+                                )
+                        )
                     );
                 }
                 else
                 {
+                    var result = await this.action.guardar(detalle_Vacuna);
+
                     return StatusCode(201,
-                        new
-                        {
-                            records = new Reply
-                            {
-                                code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(detalle_Vacuna),
-                                message = "Detalle Vacuna Guardada Correctamente"
-                            }
-                        }
+                        new ReturnClassDefault()
+                        .returnDataDefault(result ? Reply.SUCCESSFULL : Reply.FAIL,
+                        result,
+                        new ErrorHelperMessage()
+                            .ErrorMessages(
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    result ? ErrorHelperMessage.GUARDADO : ErrorHelperMessage.NO_GUARDADO
+                                    )
+                        )
                     );
                 }
             }
             catch (Exception e)
             {
                 return StatusCode(500,
-                    new
-                    {
-                        record = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
                 );
             }
         }
