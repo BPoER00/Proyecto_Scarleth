@@ -26,14 +26,6 @@ namespace app.Models
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [unidades]")]
         public long unidades { get; set; }
-        
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
-        public string dosis { get; set; }
-
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [descripcion]")]
-        [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [descripcion]")]
-        [DataType(DataType.Text)]
-        public string descripcion { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cubre]")]
         [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [cubre]")]

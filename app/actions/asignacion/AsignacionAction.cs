@@ -1,7 +1,7 @@
 using app.helpers;
 using app.Models;
 
-namespace app.actions.medicos
+namespace app.actions.asignacion
 {
     public class AsignacionAction
     {

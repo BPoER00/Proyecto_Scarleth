@@ -1,21 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
-using app.Models.ModelView;
 using app.helpers;
-using app.actions.vacuna;
+using app.actions.detalle_vacuna;
+using app.middlewares;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacunasController : ControllerBase
+    public class DetalleVacunasController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private VacunasActions action;
+        private DetalleVacunasActions action;
+        private DetalleVacunaValidation validation;
 
-        public VacunasController()
+        public DetalleVacunasController()
         {
-            this.action = new VacunasActions();
+            this.action = new DetalleVacunasActions();
+            this.validation = new DetalleVacunaValidation();
+
         }
 
         [HttpGet("Get")]
@@ -25,7 +28,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Vacuna> data = (List<Vacuna>)resultAction[0];
+                List<Detalle_Vacuna> data = (List<Detalle_Vacuna>)resultAction[0];
 
                 return Ok(
                     new ReturnClassDefault().returnDataPaginate(
@@ -53,55 +56,8 @@ namespace app.Controllers
             }
         }
 
-        [HttpGet("Get/{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                if (id <= 0) return BadRequest(
-                    new ReturnClassDefault()
-                    .returnDataDefault(
-                        Reply.FAIL,
-                        Reply.DATA_FAIL,
-                        new ErrorHelperMessage().ErrorMessages(
-                                "id",
-                                ErrorHelperMessage.DEFAULT_VALUE,
-                                ErrorHelperMessage.INVALIDO
-                                )
-                    )
-                );
-
-                var resultAction = await this.action.buscar(id);
-
-                return Ok(
-                    new ReturnClassDefault()
-                        .returnDataDefault
-                        (
-                            Reply.SUCCESSFULL,
-                            resultAction,
-                            new ErrorHelperMessage().ErrorMessages(
-                                ErrorHelperMessage.DEFAULT_VALUE,
-                                ErrorHelperMessage.DEFAULT_VALUE,
-                                ErrorHelperMessage.OBTENIDO
-                                )
-                        )
-                );
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500,
-                    new ReturnClassDefault()
-                        .returnDataDefault(
-                        Reply.FAIL,
-                        Reply.DATA_FAIL,
-                        $"Error: {e.Message}"
-                        )
-                );
-            }
-        }
-
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(VacunasDetalles vacunas)
+        public async Task<IActionResult> Post(Detalle_Vacuna detalle_Vacuna)
         {
             try
             {
@@ -123,7 +79,19 @@ namespace app.Controllers
                 }
                 else
                 {
-                    var result = await this.action.guardar(vacunas);
+                    if (!await validation.validateVacuna(detalle_Vacuna.vacuna_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacuna", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateUsuario(detalle_Vacuna.usuario_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Usuario", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    var result = await this.action.guardar(detalle_Vacuna);
 
                     return StatusCode(201,
                         new ReturnClassDefault()

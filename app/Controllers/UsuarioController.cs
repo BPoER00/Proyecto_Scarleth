@@ -1,21 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
-using app.Models;
-using app.Models.ModelView;
 using app.helpers;
-using app.actions.vacuna;
+using app.Models;
+using app.actions.usuario;
+using app.Models.ModelView;
+using app.middlewares;
 
 namespace app.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacunasController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private VacunasActions action;
+        private UsuarioActions action;
+        private UsuarioValidation validation;
+        private VerifyRepeatData<Usuario> verify;
 
-        public VacunasController()
+        public UsuarioController()
         {
-            this.action = new VacunasActions();
+            this.action = new UsuarioActions();
+            this.validation = new UsuarioValidation();
+            this.verify = new VerifyRepeatData<Usuario>();
+
         }
 
         [HttpGet("Get")]
@@ -25,7 +31,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Vacuna> data = (List<Vacuna>)resultAction[0];
+                List<UsuarioInfo> data = (List<UsuarioInfo>)resultAction[0];
 
                 return Ok(
                     new ReturnClassDefault().returnDataPaginate(
@@ -44,11 +50,11 @@ namespace app.Controllers
             {
                 return StatusCode(500,
                     new ReturnClassDefault()
-                        .returnDataDefault(
+                    .returnDataDefault(
                         Reply.FAIL,
                         Reply.DATA_FAIL,
                         $"Error: {e.Message}"
-                        )
+                    )
                 );
             }
         }
@@ -91,17 +97,17 @@ namespace app.Controllers
             {
                 return StatusCode(500,
                     new ReturnClassDefault()
-                        .returnDataDefault(
+                    .returnDataDefault(
                         Reply.FAIL,
                         Reply.DATA_FAIL,
                         $"Error: {e.Message}"
-                        )
+                    )
                 );
             }
         }
 
         [HttpPost("Post")]
-        public async Task<IActionResult> Post(VacunasDetalles vacunas)
+        public async Task<IActionResult> Post(Usuario usuario)
         {
             try
             {
@@ -123,7 +129,31 @@ namespace app.Controllers
                 }
                 else
                 {
-                    var result = await this.action.guardar(vacunas);
+                    if (await verify.IsDataDuplicated("nombre_usuario", usuario.nombre_usuario))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(usuario.nombre_usuario, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
+                    if (await verify.IsDataDuplicated("persona_id", usuario.persona_id))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages($"{usuario.persona_id}", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
+                    if (!await validation.validatePersona(usuario.persona_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateRol(usuario.rol_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Rol", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    var result = await this.action.guardar(usuario);
 
                     return StatusCode(201,
                         new ReturnClassDefault()
@@ -143,11 +173,11 @@ namespace app.Controllers
             {
                 return StatusCode(500,
                     new ReturnClassDefault()
-                        .returnDataDefault(
+                    .returnDataDefault(
                         Reply.FAIL,
                         Reply.DATA_FAIL,
                         $"Error: {e.Message}"
-                        )
+                    )
                 );
             }
         }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using app.helpers;
@@ -44,7 +40,6 @@ namespace app.Models
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [rol]")]
         public int rol_id { get; set; }
-        public string Sal { get; set; }
         public int estado { get; set; } = ACTIVO;
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.helpers;
-using app.actions.medicos;
+using app.actions.asignacion;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -10,11 +11,14 @@ namespace app.Controllers
     public class AsignacionController : ControllerBase
     {
         //variable principal para la conexion de cada uno
-        private AsignacionAction action; 
+        private AsignacionAction action;
+        private AsignacionValidation validation;
 
         public AsignacionController()
         {
             this.action = new AsignacionAction();
+            this.validation = new AsignacionValidation();
+
         }
 
         [HttpGet("Get")]
@@ -25,33 +29,29 @@ namespace app.Controllers
                 var resultAction = await this.action.obtener(objetos, pagina);
 
                 List<Asignacion> data = (List<Asignacion>)resultAction[0];
+
                 return Ok(
-                    new PaginateReturn
-                    {
-                        pages = (int)resultAction[3],
-                        objects_page = (int)resultAction[2],
-                        current_page = (int)resultAction[1],
-                        records = new Reply
-                        {
-                            code = Reply.SUCCESSFULL,
-                            data = data,
-                            message = data.Count == 0 ? "Asignaciones Obtenidas Correctamente Pero No Se Encontro Ningun Dato" : "Asignaciones obtenidas Correctamente",
-                        }
-                    }
+                    new ReturnClassDefault().returnDataPaginate(
+                        resultAction,
+                        Reply.SUCCESSFULL,
+                        data,
+                        new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.OBTENIDO
+                                )
+                    )
                 );
             }
             catch (Exception e)
             {
                 return StatusCode(500,
-                    new
-                    {
-                        records = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
                 );
             }
         }
@@ -61,32 +61,44 @@ namespace app.Controllers
         {
             try
             {
+                if (id <= 0) return BadRequest(
+                    new ReturnClassDefault()
+                    .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        new ErrorHelperMessage().ErrorMessages(
+                                "id",
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.INVALIDO
+                                )
+                    )
+                );
+
                 var resultAction = await this.action.buscar(id);
 
                 return Ok(
-                    new
-                    {
-                        records = new Reply
-                        {
-                            code = Reply.SUCCESSFULL,
-                            data = resultAction,
-                            message = resultAction == null ? "Asignacion obtenida Correctamente Pero No Se Encontro Ningun Dato" : "Asignacion Obtenida Correctamente",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.SUCCESSFULL,
+                            resultAction,
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.OBTENIDO
+                                )
+                        )
                 );
             }
             catch (Exception e)
             {
                 return StatusCode(500,
-                    new
-                    {
-                        record = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
                 );
             }
         }
@@ -99,44 +111,58 @@ namespace app.Controllers
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(
-                        new
-                        {
-                            records = new Reply
-                            {
-                                code = Reply.FAIL,
-                                data = ErrorValidationHelper.GetModelStateErrors(ModelState),
-                                message = "Campos invalidos"
-                            }
-                        }
+                        new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.FAIL,
+                            ErrorValidationHelper.GetModelStateErrors(ModelState),
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.INVALIDO
+                                )
+                        )
                     );
                 }
                 else
                 {
+                    if (!await validation.validatePersona(asignacion.persona_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateCargo(asignacion.cargo_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Cargo", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    var result = await this.action.guardar(asignacion);
+
                     return StatusCode(201,
-                        new
-                        {
-                            records = new Reply
-                            {
-                                code = Reply.SUCCESSFULL,
-                                data = await this.action.guardar(asignacion),
-                                message = "Asignacion Guardada Correctamente"
-                            }
-                        }
+                        new ReturnClassDefault()
+                        .returnDataDefault(result ? Reply.SUCCESSFULL : Reply.FAIL,
+                        result,
+                        new ErrorHelperMessage()
+                            .ErrorMessages(
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    result ? ErrorHelperMessage.GUARDADO : ErrorHelperMessage.NO_GUARDADO
+                                    )
+                        )
                     );
                 }
             }
             catch (Exception e)
             {
                 return StatusCode(500,
-                    new
-                    {
-                        record = new Reply
-                        {
-                            code = Reply.FAIL,
-                            data = null,
-                            message = $"Error: {e.Message}",
-                        }
-                    }
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
                 );
             }
         }

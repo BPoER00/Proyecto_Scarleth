@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using app.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace app.actions.medicos
+namespace app.actions.asignacion
 {
     public class NuevoAsignacionAction
     {
