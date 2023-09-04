@@ -7920,11 +7920,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj",
+      "projectUniqueName": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
       "projectName": "app",
-      "projectPath": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/app.csproj",
+      "projectPath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
       "packagesPath": "/home/mrkobp/.nuget/packages/",
-      "outputPath": "/home/mrkobp/Desktop/Proyectos/dotnet-core/Proyecto_Scarleth/app/obj/",
+      "outputPath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/mrkobp/.nuget/NuGet/NuGet.Config"
@@ -8001,7 +8001,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.110/RuntimeIdentifierGraph.json"
       }
     }
   }

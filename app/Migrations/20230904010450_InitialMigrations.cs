@@ -136,6 +136,32 @@ namespace app.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vacunacions",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    descripcion = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
+                    vacuna_id = table.Column<int>(type: "int", nullable: false),
+                    persona_id = table.Column<int>(type: "int", nullable: false),
+                    dosis = table.Column<long>(type: "bigint", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vacunacions", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Vacunacions_Vacunas_vacuna_id",
+                        column: x => x.vacuna_id,
+                        principalTable: "Vacunas",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Asignacions",
                 columns: table => new
                 {
@@ -200,33 +226,32 @@ namespace app.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vacunacions",
+                name: "Detalle_Vacunacions",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    descripcion = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
-                    vacuna_id = table.Column<int>(type: "int", nullable: false),
-                    persona_id = table.Column<int>(type: "int", nullable: false),
-                    dosis = table.Column<long>(type: "bigint", nullable: false),
-                    estado = table.Column<int>(type: "int", nullable: false),
+                    vacunacion_id = table.Column<int>(type: "int", nullable: false),
+                    fecha_vacunacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dosis = table.Column<int>(type: "int", nullable: false),
+                    asignacion_id = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeleteAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    paciente_id = table.Column<int>(type: "int", nullable: true)
+                    DeleteAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vacunacions", x => x.id);
+                    table.PrimaryKey("PK_Detalle_Vacunacions", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Vacunacions_Personas_paciente_id",
-                        column: x => x.paciente_id,
-                        principalTable: "Personas",
-                        principalColumn: "id");
+                        name: "FK_Detalle_Vacunacions_Asignacions_asignacion_id",
+                        column: x => x.asignacion_id,
+                        principalTable: "Asignacions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vacunacions_Vacunas_vacuna_id",
-                        column: x => x.vacuna_id,
-                        principalTable: "Vacunas",
+                        name: "FK_Detalle_Vacunacions_Vacunacions_vacunacion_id",
+                        column: x => x.vacunacion_id,
+                        principalTable: "Vacunacions",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -263,52 +288,21 @@ namespace app.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Detalle_Vacunacions",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    vacunacion_id = table.Column<int>(type: "int", nullable: false),
-                    fecha_vacunacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    dosis = table.Column<int>(type: "int", nullable: false),
-                    asignacion_id = table.Column<int>(type: "int", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeleteAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Detalle_Vacunacions", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Detalle_Vacunacions_Asignacions_asignacion_id",
-                        column: x => x.asignacion_id,
-                        principalTable: "Asignacions",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Detalle_Vacunacions_Vacunacions_vacunacion_id",
-                        column: x => x.vacunacion_id,
-                        principalTable: "Vacunacions",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Direccions",
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2567), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Gualan" },
-                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2605), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "La Union" },
-                    { 3, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2647), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Zacapa" },
-                    { 4, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2693), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rio Hondo" },
-                    { 5, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2732), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Estanzuela" },
-                    { 6, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2775), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Teculutan" },
-                    { 7, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2813), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Usumatlan" },
-                    { 8, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2851), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Huite" },
-                    { 9, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2894), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Cabañas" },
-                    { 10, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(2931), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "San Diego" }
+                    { 1, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9339), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Gualan" },
+                    { 2, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9343), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "La Union" },
+                    { 3, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9346), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Zacapa" },
+                    { 4, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9349), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Rio Hondo" },
+                    { 5, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9352), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Estanzuela" },
+                    { 6, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9355), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Teculutan" },
+                    { 7, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9359), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Usumatlan" },
+                    { 8, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9362), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Huite" },
+                    { 9, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9365), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Cabañas" },
+                    { 10, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9368), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "San Diego" }
                 });
 
             migrationBuilder.InsertData(
@@ -316,8 +310,8 @@ namespace app.Migrations
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3265), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Masculino" },
-                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3307), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Femenino" }
+                    { 1, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9643), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Masculino" },
+                    { 2, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9647), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Femenino" }
                 });
 
             migrationBuilder.InsertData(
@@ -325,9 +319,9 @@ namespace app.Migrations
                 columns: new[] { "id", "CreateAt", "DeleteAt", "UpdateAt", "descripcion", "estado", "nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3402), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Administrador" },
-                    { 2, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Digitador" },
-                    { 3, new DateTime(2023, 8, 29, 22, 33, 41, 835, DateTimeKind.Local).AddTicks(3484), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Usuario Comun" }
+                    { 1, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9676), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Administrador" },
+                    { 2, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9679), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Digitador" },
+                    { 3, new DateTime(2023, 9, 3, 19, 4, 50, 561, DateTimeKind.Local).AddTicks(9683), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "Usuario Comun" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -336,9 +330,22 @@ namespace app.Migrations
                 column: "cargo_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Asignacions_numero_colegiado",
+                table: "Asignacions",
+                column: "numero_colegiado",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Asignacions_persona_id",
                 table: "Asignacions",
-                column: "persona_id");
+                column: "persona_id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cargos_nombre",
+                table: "Cargos",
+                column: "nombre",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Detalle_Vacunacions_asignacion_id",
@@ -361,6 +368,24 @@ namespace app.Migrations
                 column: "vacuna_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Direccions_nombre",
+                table: "Direccions",
+                column: "nombre",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Generos_nombre",
+                table: "Generos",
+                column: "nombre",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personas_cui",
+                table: "Personas",
+                column: "cui",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Personas_direccion_id",
                 table: "Personas",
                 column: "direccion_id");
@@ -371,9 +396,28 @@ namespace app.Migrations
                 column: "genero_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Rols_nombre",
+                table: "Rols",
+                column: "nombre",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_correo",
+                table: "Usuarios",
+                column: "correo",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_nombre_usuario",
+                table: "Usuarios",
+                column: "nombre_usuario",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_persona_id",
                 table: "Usuarios",
-                column: "persona_id");
+                column: "persona_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_rol_id",
@@ -381,14 +425,15 @@ namespace app.Migrations
                 column: "rol_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vacunacions_paciente_id",
-                table: "Vacunacions",
-                column: "paciente_id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Vacunacions_vacuna_id",
                 table: "Vacunacions",
                 column: "vacuna_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vacunas_nombre",
+                table: "Vacunas",
+                column: "nombre",
+                unique: true);
         }
 
         /// <inheritdoc />
