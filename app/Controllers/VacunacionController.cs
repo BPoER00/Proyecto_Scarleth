@@ -126,6 +126,13 @@ namespace app.Controllers
                 }
                 else
                 {
+
+                    if (!await validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona/Asignacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.MISMA_PERSONA)));
+
                     if (!await validation.validateAsignacion(vacuncion.asignacion_id))
                         return BadRequest(
                             new ReturnClassDefault()
