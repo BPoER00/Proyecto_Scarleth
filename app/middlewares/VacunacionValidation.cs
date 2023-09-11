@@ -36,7 +36,7 @@ namespace app.middlewares
             return result != null;
         }
 
-        public async Task<Boolean> validatePersonaAsignacion(int id_persona, int id_asignacion)
+        public Boolean validatePersonaAsignacion(int id_persona, int id_asignacion)
         {
             return id_asignacion != id_persona; 
         }

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using app.Models;
 using app.actions.generos;
 using app.helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class GeneroController : ControllerBase

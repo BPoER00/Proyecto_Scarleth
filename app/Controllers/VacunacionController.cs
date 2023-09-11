@@ -3,9 +3,11 @@ using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
 using app.middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class VacunacionController : ControllerBase
@@ -127,7 +129,7 @@ namespace app.Controllers
                 else
                 {
 
-                    if (!await validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
+                    if (!validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
                         return BadRequest(
                             new ReturnClassDefault()
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()

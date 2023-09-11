@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bQFNlj3RFxWi+GN7ctxy8m1Rr5lFYIdZD2fCuwNFReViNjTVkDqiTkedYETN3fVHt6wuTU6vXg6z+tvBvC6WBQ==",
+  "dgSpecHash": "dHhdFxre+KUoo/1R3gJoRNavAPF1+aa2QTy2MXW1crmuXqGDtKgzkKHiGtxRb2hFCalBFP6CYUPzIAfyQKYwCA==",
   "success": true,
   "projectFilePath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "/home/mrkobp/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/dotnetenv/2.5.0/dotnetenv.2.5.0.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/home/mrkobp/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.10/microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.8/microsoft.aspnetcore.cryptography.internal.7.0.8.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.8/microsoft.aspnetcore.cryptography.keyderivation.7.0.8.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.8/microsoft.aspnetcore.identity.entityframeworkcore.7.0.8.nupkg.sha512",

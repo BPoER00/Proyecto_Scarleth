@@ -3,9 +3,11 @@ using app.helpers;
 using app.Models;
 using app.actions.persona;
 using app.middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PersonaController : ControllerBase
