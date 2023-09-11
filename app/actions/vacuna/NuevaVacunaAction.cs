@@ -37,14 +37,12 @@ namespace app.actions.vacuna
 
             if (result > 0)
             {
-                Console.WriteLine(newVacuna.id);
                 newDetalleVacuna.vacuna_id = newVacuna.id;
                 this.db.Detalle_Vacunas.Add(newDetalleVacuna);
                 resultD = await this.db.SaveChangesAsync();
-
             }
 
-            return resultD > 0 ? true : false;
+            return resultD > 0;
         }
 
 

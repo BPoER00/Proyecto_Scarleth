@@ -35,6 +35,53 @@ namespace app.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
+
+            //cargos unicos
+            modelBuilder.Entity<Cargo>()
+                .HasIndex(p => p.nombre)
+                .IsUnique();
+
+            modelBuilder.Entity<Genero>()
+                .HasIndex(p => p.nombre)
+                .IsUnique();
+
+            modelBuilder.Entity<Direccion>()
+                .HasIndex(p => p.nombre)
+                .IsUnique();
+
+            modelBuilder.Entity<Persona>()
+                .HasIndex(p => p.cui)
+                .IsUnique();
+
+            modelBuilder.Entity<Asignacion>()
+                .HasIndex(p => p.persona_id)
+                .IsUnique();
+
+            modelBuilder.Entity<Asignacion>()
+                .HasIndex(p => p.numero_colegiado)
+                .IsUnique();
+
+            modelBuilder.Entity<Vacuna>()
+                .HasIndex(p => p.nombre)
+                .IsUnique();
+
+            modelBuilder.Entity<Rol>()
+                .HasIndex(p => p.nombre)
+                .IsUnique();
+
+            modelBuilder.Entity<Usuario>()
+                .HasIndex(p => p.persona_id)
+                .IsUnique();
+
+            modelBuilder.Entity<Usuario>()
+                .HasIndex(p => p.nombre_usuario)
+                .IsUnique();
+
+            modelBuilder.Entity<Usuario>()
+                .HasIndex(p => p.correo)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -1,5 +1,6 @@
 using app.actions.vacuna;
 using app.actions.persona;
+using app.actions.asignacion;
 
 
 namespace app.middlewares
@@ -8,11 +9,13 @@ namespace app.middlewares
     {
         private VacunasActions vacunasActions;
         private PersonasActions personasActions;
+        private AsignacionAction asignacionAction;
 
         public VacunacionValidation()
         {
             this.vacunasActions = new VacunasActions();
             this.personasActions = new PersonasActions();
+            this.asignacionAction = new AsignacionAction();
         }
 
         public async Task<Boolean> validateVacuna(int id)
@@ -25,6 +28,17 @@ namespace app.middlewares
         {
             var result = await this.personasActions.buscar(id);
             return result != null;
+        }
+
+        public async Task<Boolean> validateAsignacion(int id)
+        {
+            var result = await this.asignacionAction.buscar(id);
+            return result != null;
+        }
+
+        public Boolean validatePersonaAsignacion(int id_persona, int id_asignacion)
+        {
+            return id_asignacion != id_persona; 
         }
     }
 }

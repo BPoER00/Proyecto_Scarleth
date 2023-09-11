@@ -1,10 +1,12 @@
 using app.actions.cargos;
 using app.helpers;
 using app.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CargosController : ControllerBase

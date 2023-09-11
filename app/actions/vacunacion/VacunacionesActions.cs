@@ -19,7 +19,7 @@ namespace app.actions.vacunacion
 
         public Task<Vacunacion> buscar(int id) => this.buscarVacunacionesAction.ejecutar(id);
 
-        public Task<Boolean> guardar(Vacunacion vacunacion) => this.nuevaVacunacionesAction.ejecutar(vacunacion);
+        public Task<Boolean> guardar(VacunacionDetalles vacunacion) => this.nuevaVacunacionesAction.ejecutar(vacunacion);
 
         public Task<Object[]> obtener(int tp, int np) => this.obtenerVacunacionesAction.ejecutar(tp, np);
     }

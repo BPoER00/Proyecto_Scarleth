@@ -2,16 +2,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using app.helpers;
 
+
 namespace app.Models
 {
-    public class Detalle_Vacunacion : IControl_Fechas
+
+    public class VacunacionDetalles
     {
-        [Key]
-        public int id { get; set; }
-
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacunacion]")]
-        public int vacunacion_id { get; set; }
-
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vacunacion]")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
@@ -23,15 +19,15 @@ namespace app.Models
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [medico]")]
         public int asignacion_id { get; set; }
 
-        public DateTime CreateAt { get; set; } = DateTime.Now;
-        public DateTime UpdateAt { get; set; }
-        public DateTime DeleteAt { get; set; }
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [descripcion]")]
+        [StringLength(85, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [85 caracteres] [descripcion]")]
+        [DataType(DataType.Text)]
+        public string descripcion { get; set; }
 
-        [ForeignKey("vacunacion_id")]
-        public virtual Vacunacion Vacunacion { get; set; }
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
+        public int vacuna_id { get; set; }
 
-        [ForeignKey("asignacion_id")]
-        public virtual Asignacion Asignacion { get; set; }
-
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [paciente]")]
+        public int persona_id { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace app.actions.detalle_vacuna
 
             int result = await this.db.SaveChangesAsync();
 
-            return result > 0 ? true : false;
+            return result > 0;
         }
     }
 }

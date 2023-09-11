@@ -3,9 +3,11 @@ using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
 using app.middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class VacunacionController : ControllerBase
@@ -28,7 +30,7 @@ namespace app.Controllers
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
 
-                List<Vacuna> data = (List<Vacuna>)resultAction[0];
+                List<Vacunacion> data = (List<Vacunacion>)resultAction[0];
 
                 return Ok(
                     new ReturnClassDefault().returnDataPaginate(
@@ -89,6 +91,83 @@ namespace app.Controllers
                                 )
                         )
                 );
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    new ReturnClassDefault()
+                        .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                        )
+                );
+            }
+        }
+
+        [HttpPost("Post")]
+        public async Task<IActionResult> Post(VacunacionDetalles vacuncion)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(
+                        new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.FAIL,
+                            ErrorValidationHelper.GetModelStateErrors(ModelState),
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.INVALIDO
+                                )
+                        )
+                    );
+                }
+                else
+                {
+
+                    if (!validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona/Asignacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.MISMA_PERSONA)));
+
+                    if (!await validation.validateAsignacion(vacuncion.asignacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Asignacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validatePersona(vacuncion.persona_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    if (!await validation.validateVacuna(vacuncion.vacuna_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacuna", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
+
+                    var result = await this.action.guardar(vacuncion);
+
+                    return StatusCode(201,
+                        new ReturnClassDefault()
+                        .returnDataDefault(result ? Reply.SUCCESSFULL : Reply.FAIL,
+                        result,
+                        new ErrorHelperMessage()
+                            .ErrorMessages(
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    ErrorHelperMessage.DEFAULT_VALUE,
+                                    result ? ErrorHelperMessage.GUARDADO : ErrorHelperMessage.NO_GUARDADO
+                                    )
+                        )
+                    );
+                }
             }
             catch (Exception e)
             {

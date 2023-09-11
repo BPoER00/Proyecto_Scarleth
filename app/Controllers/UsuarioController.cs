@@ -4,9 +4,11 @@ using app.Models;
 using app.actions.usuario;
 using app.Models.ModelView;
 using app.middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase

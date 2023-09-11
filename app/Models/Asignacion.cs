@@ -24,7 +24,7 @@ namespace app.Models
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cargo]")]
         public int cargo_id { get; set; }
 
-        public int estado { get; set; } = ACTIVO;
+        public int estado { get; set; } = ACTIVO; 
 
 
         public DateTime CreateAt { get; set; } = DateTime.Now;

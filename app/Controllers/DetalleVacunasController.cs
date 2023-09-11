@@ -3,9 +3,11 @@ using app.Models;
 using app.helpers;
 using app.actions.detalle_vacuna;
 using app.middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DetalleVacunasController : ControllerBase

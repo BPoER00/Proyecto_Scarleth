@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using app.actions.direcciones;
 using app.helpers;
 using app.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
+    [ApiController]
     public class DireccionesController : ControllerBase
     {
         private DireccionesAction action;
