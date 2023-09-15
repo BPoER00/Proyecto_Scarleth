@@ -22,6 +22,6 @@ namespace app.actions.direcciones
 
         public Task<Boolean> guardar(Direccion direccion) => this.nuevoDireccionesAction.ejecutar(direccion);
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerDireccionesAction.ejecutar(tp, np);
+        public Task<List<Direccion>> obtener() => this.obtenerDireccionesAction.ejecutar();
     }
 }

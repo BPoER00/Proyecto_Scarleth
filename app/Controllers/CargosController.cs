@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace app.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CargosController : ControllerBase

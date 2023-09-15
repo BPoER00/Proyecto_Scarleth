@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DireccionesController : ControllerBase
@@ -18,25 +18,26 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener();
 
-                List<Direccion> data = (List<Direccion>)resultAction[0];
+                List<Direccion> data = resultAction;
 
                 return Ok(
-                    new ReturnClassDefault().returnDataPaginate(
-                        resultAction,
-                        Reply.SUCCESSFULL,
-                        data,
-                        new ErrorHelperMessage().ErrorMessages(
+                    new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.SUCCESSFULL,
+                            resultAction,
+                            new ErrorHelperMessage().ErrorMessages(
                                 ErrorHelperMessage.DEFAULT_VALUE,
                                 ErrorHelperMessage.DEFAULT_VALUE,
                                 ErrorHelperMessage.OBTENIDO
                                 )
-                    )
+                        )
                 );
             }
             catch (Exception e)

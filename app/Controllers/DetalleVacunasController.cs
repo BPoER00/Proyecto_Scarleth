@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DetalleVacunasController : ControllerBase
