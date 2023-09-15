@@ -1,12 +1,7 @@
-import { get } from "@/api/Vacuna.Api.js";
+import Login from "./Login/page.js";
 
 function page() {
-  const direccion = async () => {
-    console.log(await get());
-  };
-
-  direccion();
-  return <div>page</div>;
+  return <Login />;
 }
 
 export default page;
