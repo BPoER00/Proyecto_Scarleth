@@ -1,10 +1,12 @@
 import CargoProvider from "@/context/Cargo.Context";
 import Default from "@/components/Globales/Default";
+import CargoActions from "@/components/Cargo/CargoActions";
+
 
 function page() {
   return (
     <CargoProvider>
-      <Default>page</Default>
+      <Default><CargoActions/></Default>
     </CargoProvider>
   );
 }

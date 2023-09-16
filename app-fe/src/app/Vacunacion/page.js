@@ -1,10 +1,11 @@
 import VacunacionProvider from "@/context/Vacunacion.Context";
 import Default from "@/components/Globales/Default";
+import VacunacionActions from "@/components/Vacunación/VacunacionActions";
 
 function page() {
   return (
     <VacunacionProvider>
-      <Default>page</Default>
+      <Default><VacunacionActions/></Default>
     </VacunacionProvider>
   );
 }
