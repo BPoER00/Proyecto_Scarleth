@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ValidateAsignacion } from "@/validations/Asignacion.Validation.js";
+import { ValidateVacuna } from "@/validations/Vacuna.Validation.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useAsignacion } from "@/context/Asignacion.Context.js";
+import { useVacuna } from "@/context/Vacuna.Context";
 import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 
-function AsignacionNew() {
-  const { auto, componente, insert, changePage } = useAsignacion();
+function VacunaNew() {
+  const { auto, componente, insert, changePage } = useVacuna();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -21,7 +21,7 @@ function AsignacionNew() {
     formState: { errors },
     control,
   } = useForm({
-    resolver: yupResolver(ValidateAsignacion),
+    resolver: yupResolver(ValidateVacuna),
   });
 
   const onSubmit = async (e) => {
@@ -44,7 +44,7 @@ function AsignacionNew() {
             className="w-full h-auto bg-cyan-100 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
             style={{
               backgroundImage:
-                "url('https://cdn-icons-png.flaticon.com/512/5387/5387223.png')",
+                "url('https://img.freepik.com/iconos-gratis/vacuna_318-819662.jpg?w=2000')",
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
@@ -110,4 +110,4 @@ function AsignacionNew() {
   );
 }
 
-export default AsignacionNew;
+export default VacunaNew;

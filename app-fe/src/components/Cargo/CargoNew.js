@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ValidateAsignacion } from "@/validations/Asignacion.Validation.js";
+import { ValidateCargo } from "@/validations/Cargo.Validation.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useAsignacion } from "@/context/Asignacion.Context.js";
+import { useCargo } from "@/context/Cargo.Context.js";
 import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 
-function AsignacionNew() {
-  const { auto, componente, insert, changePage } = useAsignacion();
+function CargoNew() {
+  const { auto, componente, insert, changePage } = useCargo();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -21,7 +21,7 @@ function AsignacionNew() {
     formState: { errors },
     control,
   } = useForm({
-    resolver: yupResolver(ValidateAsignacion),
+    resolver: yupResolver(ValidateCargo),
   });
 
   const onSubmit = async (e) => {
@@ -44,7 +44,7 @@ function AsignacionNew() {
             className="w-full h-auto bg-cyan-100 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
             style={{
               backgroundImage:
-                "url('https://cdn-icons-png.flaticon.com/512/5387/5387223.png')",
+                "url('https://img.freepik.com/vector-gratis/medicos-enfermeras-dibujos-animados_52683-59918.jpg')",
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
@@ -110,4 +110,4 @@ function AsignacionNew() {
   );
 }
 
-export default AsignacionNew;
+export default CargoNew;
