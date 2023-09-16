@@ -6,7 +6,7 @@ import ContenidoTabla from "./ContenidoTabla";
 import { useVacunacion } from "@/context/Vacunacion.Context.js";
 
 function VacunacionList() {
-  const { revision } = useVacunacion();
+  const { Vacunacion } = useVacunacion();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function VacunacionList() {
   }, []);
 
   const info = async () => {
-    setData(await revision());
+    setData(await Vacunacion());
   };
 
   const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];

@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { get } from "@/api/Vacunacion.Api";
 
 const VacunacionContext = createContext();
 
@@ -26,8 +27,18 @@ function VacunacionProvider({ children }) {
     );
   };
 
+  const Vacunacion = async () => {
+    const vacunacion = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return vacunacion;
+  };
+
   return (
-    <VacunacionContext.Provider value={{ paginate, changePage }}>
+    <VacunacionContext.Provider value={{ Vacunacion, paginate, changePage }}>
       {children}
     </VacunacionContext.Provider>
   );

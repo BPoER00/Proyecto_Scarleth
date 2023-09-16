@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { get } from "@/api/Asignacion.Api";
 
 const AsignacionContext = createContext();
 
@@ -26,8 +27,18 @@ function AsignacionProvider({ children }) {
     );
   };
 
+  const Asignacion = async () => {
+    const asignacion = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return asignacion;
+  };
+
   return (
-    <AsignacionContext.Provider value={{ paginate, changePage }}>
+    <AsignacionContext.Provider value={{ Asignacion, paginate, changePage }}>
       {children}
     </AsignacionContext.Provider>
   );

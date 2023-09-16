@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { get } from "@/api/Persona.Api";
 
 const PersonaContext = createContext();
 
@@ -26,8 +27,18 @@ function PersonaProvider({ children }) {
     );
   };
 
+  const Persona = async () => {
+    const persona = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return persona;
+  };
+
   return (
-    <PersonaContext.Provider value={{ paginate, changePage }}>
+    <PersonaContext.Provider value={{ Persona, paginate, changePage }}>
       {children}
     </PersonaContext.Provider>
   );

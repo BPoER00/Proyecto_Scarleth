@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { get } from "@/api/Usuario.Api";
 
 const UsuarioContext = createContext();
 
@@ -26,8 +27,19 @@ function UsuarioProvider({ children }) {
     );
   };
 
+  const Usuario = async () => {
+    const usuario = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return usuario;
+  };
+
+
   return (
-    <UsuarioContext.Provider value={{ paginate, changePage }}>
+    <UsuarioContext.Provider value={{ Usuario, paginate, changePage }}>
       {children}
     </UsuarioContext.Provider>
   );

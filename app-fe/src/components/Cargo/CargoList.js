@@ -6,7 +6,7 @@ import ContenidoTabla from "./ContenidoTabla";
 import { useCargo } from "@/context/Cargo.Context.js";
 
 function CargoList() {
-  const { revision } = useCargo();
+  const { Cargos } = useCargo();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function CargoList() {
   }, []);
 
   const info = async () => {
-    setData(await revision());
+    setData(await Cargos());
   };
 
   const cabeceras = ["Nombre Cargo", "Opciones"];

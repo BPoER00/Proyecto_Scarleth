@@ -3,7 +3,7 @@ function TableData({ children, cabecera }) {
     for (let i = 0; i < cabecera.length; i++) {
       elementosCabecera.push(
         <th key={i} scope="col" className="p-4">
-          <div className="flex items-center">{cabecera[i]}</div>
+          <div className="flex items-center text-black">{cabecera[i]}</div>
         </th>
       );
     }

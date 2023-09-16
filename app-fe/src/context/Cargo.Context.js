@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { get } from "@/api/Cargo.Api";
 
 const CargoContext = createContext();
 
@@ -26,8 +27,18 @@ function CargoProvider({ children }) {
     );
   };
 
+  const Cargos = async () => {
+    const cargo = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return cargo;
+  };
+
   return (
-    <CargoContext.Provider value={{ paginate, changePage }}>
+    <CargoContext.Provider value={{ Cargos, paginate, changePage }}>
       {children}
     </CargoContext.Provider>
   );
