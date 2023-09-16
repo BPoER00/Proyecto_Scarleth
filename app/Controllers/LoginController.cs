@@ -18,17 +18,20 @@ namespace app.Controllers
     {
         private UsuarioActions actions;
         private PasswordHasherService hash;
+        private UsuarioValidation validation;
+
 
         public LoginController()
         {
             this.actions = new UsuarioActions();
             this.hash = new PasswordHasherService();
+            this.validation = new UsuarioValidation();
 
         }
         private string SecretKey = Environment.GetEnvironmentVariable("JWT_KEY");
         private static readonly TimeSpan TokenLifeTime = TimeSpan.FromHours(8);
 
-        [HttpPost]
+        [HttpPost("Post")]
         public async Task<IActionResult> Post(Login login)
         {
             try
@@ -51,9 +54,10 @@ namespace app.Controllers
                 }
                 else
                 {
+
                     var usuario = await this.actions.buscarXNombre(login.nombre_usuario);
 
-                    if (string.IsNullOrEmpty(usuario.nombre_usuario))
+                    if (string.IsNullOrEmpty(usuario != null ? usuario.nombre_usuario : ""))
                         return BadRequest(
                         new ReturnClassDefault()
                         .returnDataDefault(

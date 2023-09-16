@@ -9,7 +9,7 @@ function ProgresBar() {
   `;
 
   return (
-    <div className="flex items-center justify-center h-screen bg-black">
+    <div className="flex items-center justify-center h-screen" style={{background: "#a7d0ea"}}>
       <BeatLoader color={"#fff"} css={override} size={20} />
     </div>
   );
