@@ -23,6 +23,7 @@ namespace app.actions.vacunacion
             var lista = await this.db
             .Vacunacions
             .Where(x => x.estado == Vacunacion.ACTIVO)
+            .Include(x => x.Vacuna)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();

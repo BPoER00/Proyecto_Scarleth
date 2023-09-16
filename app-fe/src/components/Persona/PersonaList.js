@@ -17,7 +17,14 @@ function PersonaList() {
     setData(await revision());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = [
+    "Nombre",
+    "CUI",
+    "Telefono",
+    "Genero",
+    "Direccion",
+    "Opciones",
+  ];
   if (data.length === 0) {
     return (
       <>

@@ -17,7 +17,7 @@ function CargoList() {
     setData(await revision());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = ["Nombre Cargo", "Opciones"];
   if (data.length === 0) {
     return (
       <>

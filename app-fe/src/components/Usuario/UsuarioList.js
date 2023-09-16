@@ -17,7 +17,7 @@ function UsuarioList() {
     setData(await revision());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol", "Opciones"];
   if (data.length === 0) {
     return (
       <>

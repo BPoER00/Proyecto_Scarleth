@@ -17,7 +17,7 @@ function VacunacionList() {
     setData(await revision());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];
   if (data.length === 0) {
     return (
       <>

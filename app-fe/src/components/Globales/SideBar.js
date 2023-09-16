@@ -30,19 +30,6 @@ function SideBar() {
             </ComponentSidebarRedirect>
           </Link>
 
-          <button type="button" onClick={() => router.push("/Familia")}>
-            <ComponentSidebarRedirect>
-              <div className="flex items-center justify-between">
-                <p className="inline-flex justify-center items-center mr-1">
-                  <PlusIcon className="h-7 w-7" />
-                </p>
-                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
-                  Familia
-                </span>
-              </div>
-            </ComponentSidebarRedirect>
-          </button>
-
           <button type="button" onClick={() => router.push("/Persona")}>
             <ComponentSidebarRedirect>
               <div className="flex items-center justify-between">
@@ -56,14 +43,79 @@ function SideBar() {
             </ComponentSidebarRedirect>
           </button>
 
-          <button type="button" onClick={() => router.push("/TipoDocumento")}>
+          <button type="button" onClick={() => router.push("/Asignacion")}>
             <ComponentSidebarRedirect>
               <div className="flex items-center justify-between">
                 <p className="inline-flex justify-center items-center mr-1">
                   <PlusIcon className="h-7 w-7" />
                 </p>
                 <span className="ml-2 text-sm font-semibold tracking-wide truncate">
-                  Tipo Documento
+                  Asignacion
+                </span>
+              </div>
+            </ComponentSidebarRedirect>
+          </button>
+
+          <button type="button" onClick={() => router.push("/Vacunacion")}>
+            <ComponentSidebarRedirect>
+              <div className="flex items-center justify-between">
+                <p className="inline-flex justify-center items-center mr-1">
+                  <PlusIcon className="h-7 w-7" />
+                </p>
+                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
+                  Vacunacion
+                </span>
+              </div>
+            </ComponentSidebarRedirect>
+          </button>
+
+          <button type="button" onClick={() => router.push("/Vacuna")}>
+            <ComponentSidebarRedirect>
+              <div className="flex items-center justify-between">
+                <p className="inline-flex justify-center items-center mr-1">
+                  <PlusIcon className="h-7 w-7" />
+                </p>
+                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
+                  Vacuna
+                </span>
+              </div>
+            </ComponentSidebarRedirect>
+          </button>
+
+          <button type="button" onClick={() => router.push("/Cargo")}>
+            <ComponentSidebarRedirect>
+              <div className="flex items-center justify-between">
+                <p className="inline-flex justify-center items-center mr-1">
+                  <PlusIcon className="h-7 w-7" />
+                </p>
+                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
+                  Cargo
+                </span>
+              </div>
+            </ComponentSidebarRedirect>
+          </button>
+
+          <button type="button" onClick={() => router.push("/Reportes")}>
+            <ComponentSidebarRedirect>
+              <div className="flex items-center justify-between">
+                <p className="inline-flex justify-center items-center mr-1">
+                  <PlusIcon className="h-7 w-7" />
+                </p>
+                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
+                  Reportes
+                </span>
+              </div>
+            </ComponentSidebarRedirect>
+          </button>
+
+          <button type="button" onClick={() => router.push("/Usuario")}>
+            <ComponentSidebarRedirect>
+              <div className="flex items-center justify-between">
+                <p className="inline-flex justify-center items-center mr-1">
+                  <PlusIcon className="h-7 w-7" />
+                </p>
+                <span className="ml-2 text-sm font-semibold tracking-wide truncate">
+                  Usuarios
                 </span>
               </div>
             </ComponentSidebarRedirect>
