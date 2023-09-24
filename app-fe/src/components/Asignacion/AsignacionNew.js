@@ -9,7 +9,7 @@ import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 
 function AsignacionNew() {
-  const { auto, componente, insert, changePage } = useAsignacion();
+  const { persona, cargo, insert, changePage } = useAsignacion();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -48,57 +48,47 @@ function AsignacionNew() {
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
-            <h3 className="pt-4 text-2xl text-center">Revision!</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="px-8 pt-6 pb-8 mb-4 dark:bg-gray-900 rounded"
             >
               <div className="mb-4">
                 <InputSelect
-                  label={"Auto"}
-                  name={"auto"}
-                  options={auto}
+                  label={"Persona"}
+                  name={"persona_id"}
+                  options={persona}
                   control={control}
-                  placeholder={"Ingrese auto..."}
-                  errors={errors.auto?.message}
+                  placeholder={"Ingrese Persona..."}
+                  errors={errors.persona_id?.message}
                 />
               </div>
               <div className="mb-4">
                 <InputSelect
-                  label={"Componente"}
-                  name={"componente"}
-                  options={componente}
+                  label={"Cargo"}
+                  name={"cargo_id"}
+                  options={cargo}
                   control={control}
-                  placeholder={"Ingrese componente..."}
-                  errors={errors.componente?.message}
+                  placeholder={"Ingrese Cargo..."}
+                  errors={errors.cargo_id?.message}
                 />
               </div>
               <div className="mb-4">
                 <InputText
-                  label={"Descripcion"}
-                  name={"descripcion"}
+                  label={"Numero Colegiado"}
+                  name={"numero_colegiado"}
                   type={"text"}
-                  placeholder={"Ingrese descripcion..."}
+                  placeholder={"Ingrese Numero Colegiado..."}
                   register={register}
-                  errors={errors.descripcion?.message}
+                  errors={errors.numero_colegiado?.message}
                 />
               </div>
-              <div className="mb-4">
-                <InputText
-                  label={"Estatus"}
-                  name={"status"}
-                  type={"number"}
-                  placeholder={"Ingrese estatus..."}
-                  register={register}
-                  errors={errors.status?.message}
-                />
-              </div>
+
               <div className="mb-6 text-center">
                 <button
                   className="w-full mt-3 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                   type="submit"
                 >
-                  Registrar Revision
+                  Registrar Asignacion
                 </button>
               </div>
               <hr className="mb-6 border-t" />

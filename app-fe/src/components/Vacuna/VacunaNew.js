@@ -48,51 +48,65 @@ function VacunaNew() {
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
-            <h3 className="pt-4 text-2xl text-center">Revision!</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="px-8 pt-6 pb-8 mb-4 dark:bg-gray-900 rounded"
             >
               <div className="mb-4">
-                <InputSelect
-                  label={"Auto"}
-                  name={"auto"}
-                  options={auto}
-                  control={control}
-                  placeholder={"Ingrese auto..."}
-                  errors={errors.auto?.message}
-                />
-              </div>
-              <div className="mb-4">
-                <InputSelect
-                  label={"Componente"}
-                  name={"componente"}
-                  options={componente}
-                  control={control}
-                  placeholder={"Ingrese componente..."}
-                  errors={errors.componente?.message}
-                />
-              </div>
-              <div className="mb-4">
                 <InputText
                   label={"Descripcion"}
                   name={"descripcion"}
+                  type={"text"}
+                  placeholder={"Ingrese Descripcion..."}
+                  register={register}
+                  errors={errors.descripcion?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Cantidad"}
+                  name={"cantidad"}
+                  type={"text"}
+                  placeholder={"Ingrese Cantidad..."}
+                  register={register}
+                  errors={errors.cantidad?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Fecha vencimiento"}
+                  name={"fecha_vencimiento"}
                   type={"text"}
                   placeholder={"Ingrese descripcion..."}
                   register={register}
                   errors={errors.descripcion?.message}
                 />
               </div>
+              
               <div className="mb-4">
                 <InputText
-                  label={"Estatus"}
-                  name={"status"}
-                  type={"number"}
+                  label={"Nombre Vacuna"}
+                  name={"nombre"}
+                  type={"text"}
                   placeholder={"Ingrese estatus..."}
                   register={register}
-                  errors={errors.status?.message}
+                  errors={errors.nombre?.message}
                 />
               </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Cubre"}
+                  name={"cubre"}
+                  type={"text"}
+                  placeholder={"Ingrese Cubre..."}
+                  register={register}
+                  errors={errors.cubre?.message}
+                />
+              </div>
+
               <div className="mb-6 text-center">
                 <button
                   className="w-full mt-3 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"

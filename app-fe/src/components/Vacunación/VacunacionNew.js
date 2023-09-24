@@ -9,7 +9,7 @@ import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 
 function VacunacionNew() {
-  const { auto, componente, insert, changePage } = useVacunacion();
+  const { asignacion, vacuna, persona, insert, changePage } = useVacunacion();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -55,44 +55,70 @@ function VacunacionNew() {
             >
               <div className="mb-4">
                 <InputSelect
-                  label={"Auto"}
-                  name={"auto"}
-                  options={auto}
+                  label={"Asignacion"}
+                  name={"asignacion_id"}
+                  options={asignacion}
                   control={control}
-                  placeholder={"Ingrese auto..."}
-                  errors={errors.auto?.message}
+                  placeholder={"Ingrese Asignacion..."}
+                  errors={errors.asignacion_id?.message}
                 />
               </div>
+
               <div className="mb-4">
                 <InputSelect
-                  label={"Componente"}
-                  name={"componente"}
-                  options={componente}
+                  label={"Vacuna"}
+                  name={"vacuna_id"}
+                  options={vacuna}
                   control={control}
-                  placeholder={"Ingrese componente..."}
-                  errors={errors.componente?.message}
+                  placeholder={"Ingrese Vacuna..."}
+                  errors={errors.vacuna_id?.message}
                 />
               </div>
+
+              <div className="mb-4">
+                <InputSelect
+                  label={"Persona"}
+                  name={"persona_id"}
+                  options={persona}
+                  control={control}
+                  placeholder={"Ingrese Persona..."}
+                  errors={errors.persona_id?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Fecha Vacunacion"}
+                  name={"fecha_vacunacion"}
+                  type={"date"}
+                  placeholder={"Ingrese Fecha Vacunacion..."}
+                  register={register}
+                  errors={errors.fecha_vacunacion?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Dosis"}
+                  name={"dosis"}
+                  type={"number"}
+                  placeholder={"Ingrese Dosis..."}
+                  register={register}
+                  errors={errors.dosis?.message}
+                />
+              </div>
+
               <div className="mb-4">
                 <InputText
                   label={"Descripcion"}
                   name={"descripcion"}
                   type={"text"}
-                  placeholder={"Ingrese descripcion..."}
+                  placeholder={"Ingrese Descripcion..."}
                   register={register}
                   errors={errors.descripcion?.message}
                 />
               </div>
-              <div className="mb-4">
-                <InputText
-                  label={"Estatus"}
-                  name={"status"}
-                  type={"number"}
-                  placeholder={"Ingrese estatus..."}
-                  register={register}
-                  errors={errors.status?.message}
-                />
-              </div>
+
               <div className="mb-6 text-center">
                 <button
                   className="w-full mt-3 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"

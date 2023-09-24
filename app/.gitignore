@@ -6,6 +6,9 @@
 #quitando el .env
 .env
 
+#quitando migraciones
+Migrations
+
 # User-specific files
 *.rsuser
 *.suo
