@@ -6,7 +6,7 @@ const CargosApi = axios.create({
   baseURL: `${END_POINT_API}/Cargos`,
   headers: {
     "Content-Type": "application/json",
-    "x-access-token": getCookie(),
+    "Authorization": getCookie(),
   },
 });
 

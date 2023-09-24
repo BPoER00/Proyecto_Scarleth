@@ -6,7 +6,7 @@ const AsignacionApi = axios.create({
   baseURL: `${END_POINT_API}/Asignacion`,
   headers: {
     "Content-Type": "application/json",
-    "x-access-token": getCookie(),
+    "Authorization": getCookie(),
   },
 });
 

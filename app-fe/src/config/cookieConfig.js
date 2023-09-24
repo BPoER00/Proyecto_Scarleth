@@ -1,5 +1,5 @@
 import cookie from "js-cookie";
-import { SECRET_KEY_COOKIE } from '../config/props.js'
+import { SECRET_KEY_COOKIE } from "../config/props.js";
 
 export const postCookie = (data) => {
   cookie.set(SECRET_KEY_COOKIE, data, {
@@ -10,7 +10,7 @@ export const postCookie = (data) => {
 };
 
 export const getCookie = () => {
-  return cookie.get(SECRET_KEY_COOKIE);
+  return "Bearer " + cookie.get(SECRET_KEY_COOKIE);
 };
 
 export const deleteCookie = () => {
