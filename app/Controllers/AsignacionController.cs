@@ -15,11 +15,14 @@ namespace app.Controllers
         //variable principal para la conexion de cada uno
         private AsignacionAction action;
         private AsignacionValidation validation;
+        private VerifyRepeatData<Asignacion> verify;
+
 
         public AsignacionController()
         {
             this.action = new AsignacionAction();
             this.validation = new AsignacionValidation();
+            this.verify = new VerifyRepeatData<Asignacion>();
 
         }
 
@@ -128,6 +131,18 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (await verify.IsDataDuplicated("numero_colegiado", asignacion.numero_colegiado))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(asignacion.numero_colegiado, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
+                    if (await verify.IsDataDuplicated("persona_id", asignacion.persona_id))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages("Persona", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     if (!await validation.validatePersona(asignacion.persona_id))
                         return BadRequest(
                             new ReturnClassDefault()

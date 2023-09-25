@@ -26,7 +26,6 @@ function PersonaList() {
     "Opciones",
   ];
 
-  console.log(data);
   if (data.length === 0) {
     return (
       <>

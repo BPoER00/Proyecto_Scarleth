@@ -26,12 +26,14 @@ function AsignacionNew() {
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    if (res.status === 204) {
+    if (res.data === true) {
       toast.success("Revision Realizada Correctamente");
       await sleep(3000);
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {
       toast.warning(`Error ${res.data.message}`);
+    } else if (res.status === 500) {
+      toast.warning("Error al guardar la asignacion");
     }
   };
 

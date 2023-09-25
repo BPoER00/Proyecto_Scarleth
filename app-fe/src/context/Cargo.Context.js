@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-import { get } from "@/api/Cargo.Api";
-
+import { get, post } from "@/api/Cargo.Api";
 
 const CargoContext = createContext();
 
@@ -38,8 +37,10 @@ function CargoProvider({ children }) {
     return cargo;
   };
 
+  const insert = async (credentials) => post(credentials);
+
   return (
-    <CargoContext.Provider value={{ Cargos, paginate, changePage }}>
+    <CargoContext.Provider value={{ insert, Cargos, paginate, changePage }}>
       {children}
     </CargoContext.Provider>
   );

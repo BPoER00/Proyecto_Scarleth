@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get } from "@/api/Asignacion.Api";
+import { get, post } from "@/api/Asignacion.Api";
 import { get as getPersona } from "@/api/Persona.Api";
 import { get as getCargo } from "@/api/Cargo.Api";
 const AsignacionContext = createContext();
@@ -49,8 +49,10 @@ function AsignacionProvider({ children }) {
     return asignacion;
   };
 
+  const insert = async (credentials) => post(credentials);
+
   return (
-    <AsignacionContext.Provider value={{ persona, cargo, Asignacion, paginate, changePage }}>
+    <AsignacionContext.Provider value={{ insert, persona, cargo, Asignacion, paginate, changePage }}>
       {children}
     </AsignacionContext.Provider>
   );

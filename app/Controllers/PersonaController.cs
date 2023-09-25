@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    [Authorize] 
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PersonaController : ControllerBase
@@ -15,11 +15,13 @@ namespace app.Controllers
         //variable principal para la conexion de cada uno
         private PersonasActions action;
         private PersonaValidation validation;
+        private VerifyRepeatData<Persona> verify;
 
         public PersonaController()
         {
             this.action = new PersonasActions();
             this.validation = new PersonaValidation();
+            this.verify = new VerifyRepeatData<Persona>();
         }
 
         [HttpGet("Get")]
@@ -127,6 +129,13 @@ namespace app.Controllers
                 }
                 else
                 {
+
+                    if (await verify.IsDataDuplicated("cui", persona.cui))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(persona.cui, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     if (!await validation.validateDirecciones(persona.direccion_id))
                         return BadRequest(
                             new ReturnClassDefault()

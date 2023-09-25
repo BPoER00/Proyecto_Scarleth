@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get } from "@/api/Persona.Api";
+import { get, post } from "@/api/Persona.Api";
 import { get as getDireccion } from "@/api/Direccion.Api";
 import { get as getGenero } from "@/api/Genero.Api";
 
@@ -50,8 +50,20 @@ function PersonaProvider({ children }) {
     return persona;
   };
 
+  const insert = async (credentials) =>
+    post({
+      nombre: credentials.nombre,
+      cui: `${credentials.cui}`,
+      telefono: `${credentials.telefono}`,
+      fecha_nacimiento: credentials.fecha_nacimiento,
+      direccion_id: credentials.direccion_id,
+      genero_id: credentials.genero_id,
+    });
+
   return (
-    <PersonaContext.Provider value={{ direccion, genero, Persona, paginate, changePage }}>
+    <PersonaContext.Provider
+      value={{ insert, direccion, genero, Persona, paginate, changePage }}
+    >
       {children}
     </PersonaContext.Provider>
   );
