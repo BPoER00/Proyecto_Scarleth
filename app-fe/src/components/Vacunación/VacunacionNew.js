@@ -26,7 +26,8 @@ function VacunacionNew() {
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    if (res.status === 204) {
+    console.log(res);
+    if (res.status === 201) {
       toast.success("Revision Realizada Correctamente");
       await sleep(3000);
       changePage(1);
@@ -48,7 +49,6 @@ function VacunacionNew() {
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
-            <h3 className="pt-4 text-2xl text-center">Revision!</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="px-8 pt-6 pb-8 mb-4 dark:bg-gray-900 rounded"

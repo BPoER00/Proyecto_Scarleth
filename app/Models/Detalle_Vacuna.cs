@@ -28,18 +28,12 @@ namespace app.Models
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
         public int vacuna_id { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
-        public int usuario_id { get; set; }
-
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
 
         [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
-
-        [ForeignKey("usuario_id")]
-        public virtual Usuario Usuario { get; set; }
 
     }
 }

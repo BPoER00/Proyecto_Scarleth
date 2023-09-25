@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get } from "@/api/Vacunacion.Api";
+import { get, post } from "@/api/Vacunacion.Api";
 import { get as getAsignacion } from "@/api/Asignacion.Api";
 import { get as getVacuna } from "@/api/Vacuna.Api";
 import { get as getPersona } from "@/api/Persona.Api";
@@ -34,8 +34,9 @@ function VacunacionProvider({ children }) {
   };
 
   useEffect(() => {
-    getAsignacion().then((data) =>
-      setAsignacion(data.map((m) => ({ value: m.id, label: m.nombre.persona.nombre })))
+    getAsignacion().then(
+      (data) => 
+      setAsignacion(data.map((m) => ({ value: m.id, label: m.persona.nombre })))
     );
     getVacuna().then((data) =>
       setVacuna(data.map((m) => ({ value: m.id, label: m.nombre })))
@@ -54,10 +55,12 @@ function VacunacionProvider({ children }) {
 
     return vacunacion;
   };
+  
+  const insert = async (credentials) => post(credentials);
 
   return (
     <VacunacionContext.Provider
-      value={{ asignacion, vacuna, persona, Vacunacion, paginate, changePage }}
+      value={{ insert, asignacion, vacuna, persona, Vacunacion, paginate, changePage }}
     >
       {children}
     </VacunacionContext.Provider>

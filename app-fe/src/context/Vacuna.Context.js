@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-import { get } from "@/api/Vacuna.Api";
+import { get, post } from "@/api/Vacuna.Api";
 
 const VacunaContext = createContext();
 
@@ -37,8 +37,10 @@ function VacunaProvider({ children }) {
     return vacuna;
   };
 
+  const insert = async (credentials) => post(credentials);
+
   return (
-    <VacunaContext.Provider value={{ Vacuna, paginate, changePage }}>
+    <VacunaContext.Provider value={{ insert, Vacuna, paginate, changePage }}>
       {children}
     </VacunaContext.Provider>
   );

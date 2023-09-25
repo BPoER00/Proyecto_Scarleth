@@ -6,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useVacuna } from "@/context/Vacuna.Context";
 import InputText from "../Inputs/InputText";
-import InputSelect from "../Inputs/InputSelect";
 
 function VacunaNew() {
-  const { auto, componente, insert, changePage } = useVacuna();
+  const { insert, changePage } = useVacuna();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -19,19 +18,21 @@ function VacunaNew() {
     register,
     handleSubmit,
     formState: { errors },
-    control,
   } = useForm({
     resolver: yupResolver(ValidateVacuna),
   });
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    if (res.status === 204) {
-      toast.success("Revision Realizada Correctamente");
+    console.log(res);
+    if (res.status === 201) {
+      toast.success("Se Ingreso la vacuna correctamente");
       await sleep(3000);
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {
       toast.warning(`Error ${res.data.message}`);
+    } else if (res.status === 500) {
+      toast.warning("Error al guardar la vacuna");
     }
   };
 
@@ -78,13 +79,13 @@ function VacunaNew() {
                 <InputText
                   label={"Fecha vencimiento"}
                   name={"fecha_vencimiento"}
-                  type={"text"}
+                  type={"date"}
                   placeholder={"Ingrese descripcion..."}
                   register={register}
                   errors={errors.descripcion?.message}
                 />
               </div>
-              
+
               <div className="mb-4">
                 <InputText
                   label={"Nombre Vacuna"}

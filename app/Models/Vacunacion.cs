@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using app.helpers;
@@ -38,5 +34,8 @@ namespace app.Models
 
         [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
+
+        [ForeignKey("persona_id")]
+        public virtual Persona Persona { get; set; }
     }
 }

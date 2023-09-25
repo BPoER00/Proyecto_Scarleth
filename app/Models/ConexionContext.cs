@@ -81,6 +81,12 @@ namespace app.Models
                 .HasIndex(p => p.correo)
                 .IsUnique();
 
+            modelBuilder.Entity<Detalle_Vacunacion>()
+                        .HasOne(d => d.Asignacion)
+                        .WithMany()
+                        .HasForeignKey(d => d.asignacion_id)
+                        .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(modelBuilder);
         }
     }
