@@ -46,8 +46,8 @@ function VacunacionProvider({ children }) {
     );
   }, []);
 
-  const Vacunacion = async () => {
-    const vacunacion = await get()
+  const Vacunacion = async (Paginate) => {
+    const vacunacion = await get(Paginate)
       .then((data) => {
         return data;
       })

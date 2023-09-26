@@ -4,17 +4,19 @@ import LoadingBar from "../Inputs/LoadingBar.js";
 import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useVacunacion } from "@/context/Vacunacion.Context.js";
+import Paginate from "./Paginate.js";
 
 function VacunacionList() {
   const { Vacunacion } = useVacunacion();
   const [data, setData] = useState([]);
+  const [paginate, setPaginate] = useState(1);
 
   useEffect(() => {
     info();
-  }, []);
+  }, [paginate]);
 
   const info = async () => {
-    setData(await Vacunacion());
+    setData(await Vacunacion(paginate));
   };
 
   const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];
@@ -43,10 +45,11 @@ function VacunacionList() {
           <LoadingBar />
         ) : (
           <TableData cabecera={cabeceras}>
-            <ContenidoTabla data={data} />
+            <ContenidoTabla data={data.records.data} />
           </TableData>
         )}
       </div>
+      <Paginate paginate={data.pages} setPagina={setPaginate} />
     </CardComponentsAll>
   );
 }

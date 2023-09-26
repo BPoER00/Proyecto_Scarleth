@@ -6,14 +6,14 @@ const VacunacionApi = axios.create({
   baseURL: `${END_POINT_API}/Vacunacion`,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": getCookie(),
+    Authorization: getCookie(),
   },
 });
 
-export const get = async () => {
-  const res = await VacunacionApi.get(`/Get`)
+export const get = async (pagina) => {
+  const res = await VacunacionApi.get(`/Get?pagina=${pagina}`)
     .then((response) => {
-      return response.data.records.data;
+      return response.data;
     })
     .catch((error) => {
       return error.response;

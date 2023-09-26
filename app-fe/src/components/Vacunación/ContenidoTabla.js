@@ -1,5 +1,4 @@
 function ContenidoTabla({ data }) {
-  console.log(data);
   return (
     <>
       {data.map((d, i) => (
@@ -8,7 +7,7 @@ function ContenidoTabla({ data }) {
             {d.descripcion}
           </td>
           <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {d.persona_id}
+            {d.persona.nombre}
           </td>
           <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {d.dosis}

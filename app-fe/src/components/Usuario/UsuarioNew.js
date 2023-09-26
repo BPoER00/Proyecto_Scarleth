@@ -25,7 +25,6 @@ function CargoNew() {
   });
 
   const onSubmit = async (e) => {
-    console.log(e);
     // const res = await insert(e);
     // if (res.status === 204) {
     //   toast.success("Revision Realizada Correctamente");

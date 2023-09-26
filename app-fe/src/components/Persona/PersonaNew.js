@@ -26,7 +26,6 @@ function PersonaNew() {
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    console.log(res);
     if (res.status === 201) {
       toast.success("Revision Realizada Correctamente");
       await sleep(3000);

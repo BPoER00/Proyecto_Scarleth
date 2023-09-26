@@ -24,8 +24,8 @@ function SideBar() {
   const isHome = url.includes("/Dashboard");
   const isPersona = url.includes("/Persona");
   const isAsignacion = url.includes("/Asignacion");
-  const isVacunacion = url.includes("/Vacunacion");
-  const isVacuna = url.includes("/Vacuna");
+  const isVacunacion = url.endsWith("/Vacunacion");
+  const isVacuna = url.endsWith("/Vacuna");
   const isCargo = url.includes("/Cargo");
   const isReportes = url.includes("/Reportes");
   const isUsuario = url.includes("/Usuario");

@@ -3,7 +3,6 @@ using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
 using app.middlewares;
-using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
@@ -129,7 +128,7 @@ namespace app.Controllers
                 else
                 {
 
-                    if (!validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
+                    if (await validation.ValidatePersonaAsignacionAsync(vacuncion.persona_id, vacuncion.asignacion_id))
                         return BadRequest(
                             new ReturnClassDefault()
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()

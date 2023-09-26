@@ -24,6 +24,7 @@ namespace app.actions.vacunacion
             .Vacunacions
             .Where(x => x.estado == Vacunacion.ACTIVO)
             .Include(x => x.Vacuna)
+            .Include(x => x.Persona)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();
