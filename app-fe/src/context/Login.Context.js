@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import { post } from "@/api/Login.Api";
 
 const LoginContext = createContext();
 
@@ -9,8 +10,12 @@ export const useLogin = () => {
   return context;
 };
 
+const Login = async (credentials) => post(credentials);
+
 function LoginProvider({ children }) {
-  return <LoginContext.Provider value={{}}>{children}</LoginContext.Provider>;
+  return (
+    <LoginContext.Provider value={{ Login }}>{children}</LoginContext.Provider>
+  );
 }
 
 export default LoginProvider;

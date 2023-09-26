@@ -6,7 +6,7 @@ const DetalleVacunacionApi = axios.create({
   baseURL: `${END_POINT_API}/DetalleVacunacion`,
   headers: {
     "Content-Type": "application/json",
-    "x-access-token": getCookie(),
+    "Authorization": getCookie(),
   },
 });
 

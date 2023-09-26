@@ -22,14 +22,11 @@ namespace app.Models
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vencimiento]")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime fecha_vencimiento { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [vacuna]")]
         public int vacuna_id { get; set; }
-
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [usuario]")]
-        public int usuario_id { get; set; }
 
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; }
@@ -37,9 +34,6 @@ namespace app.Models
 
         [ForeignKey("vacuna_id")]
         public virtual Vacuna Vacuna { get; set; }
-
-        [ForeignKey("usuario_id")]
-        public virtual Usuario Usuario { get; set; }
 
     }
 }

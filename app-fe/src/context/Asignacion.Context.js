@@ -1,6 +1,8 @@
 "use client";
-import { createContext, useContext, useState } from "react";
-
+import { createContext, useContext, useEffect, useState } from "react";
+import { get, post } from "@/api/Asignacion.Api";
+import { get as getPersona } from "@/api/Persona.Api";
+import { get as getCargo } from "@/api/Cargo.Api";
 const AsignacionContext = createContext();
 
 export const useAsignacion = () => {
@@ -16,6 +18,8 @@ function AsignacionProvider({ children }) {
   ];
 
   const [paginate, setPaginate] = useState(defaultPaginate);
+  const [persona, setPersona] = useState();
+  const [cargo, setCargo] = useState();
 
   const changePage = (id) => {
     setPaginate((prevPaginate) =>
@@ -26,8 +30,29 @@ function AsignacionProvider({ children }) {
     );
   };
 
+  useEffect(() => {
+    getPersona().then((data) =>
+      setPersona(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
+    getCargo().then((data) =>
+      setCargo(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
+  }, []);
+
+  const Asignacion = async () => {
+    const asignacion = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return asignacion;
+  };
+
+  const insert = async (credentials) => post(credentials);
+
   return (
-    <AsignacionContext.Provider value={{ paginate, changePage }}>
+    <AsignacionContext.Provider value={{ insert, persona, cargo, Asignacion, paginate, changePage }}>
       {children}
     </AsignacionContext.Provider>
   );

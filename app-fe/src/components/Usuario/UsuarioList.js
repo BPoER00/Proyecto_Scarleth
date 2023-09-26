@@ -6,7 +6,7 @@ import ContenidoTabla from "./ContenidoTabla";
 import { useUsuario } from "@/context/Usuario.Context.js";
 
 function UsuarioList() {
-  const { revision } = useUsuario();
+  const { Usuario } = useUsuario();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,10 @@ function UsuarioList() {
   }, []);
 
   const info = async () => {
-    setData(await revision());
+    setData(await Usuario());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol", "Opciones"];
   if (data.length === 0) {
     return (
       <>

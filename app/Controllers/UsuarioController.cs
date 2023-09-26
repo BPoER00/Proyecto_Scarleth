@@ -143,6 +143,12 @@ namespace app.Controllers
                                 .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
                                 .ErrorMessages($"{usuario.persona_id}", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
 
+                    if (await verify.IsDataDuplicated("correo", usuario.correo))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(usuario.correo, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     if (!await validation.validatePersona(usuario.persona_id))
                         return BadRequest(
                             new ReturnClassDefault()

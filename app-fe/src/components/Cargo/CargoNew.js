@@ -6,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useCargo } from "@/context/Cargo.Context.js";
 import InputText from "../Inputs/InputText";
-import InputSelect from "../Inputs/InputSelect";
 
 function CargoNew() {
-  const { auto, componente, insert, changePage } = useCargo();
+  const { insert, changePage } = useCargo();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -19,19 +18,20 @@ function CargoNew() {
     register,
     handleSubmit,
     formState: { errors },
-    control,
   } = useForm({
     resolver: yupResolver(ValidateCargo),
   });
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    if (res.status === 204) {
+    if (res.status === 201) {
       toast.success("Revision Realizada Correctamente");
       await sleep(3000);
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {
       toast.warning(`Error ${res.data.message}`);
+    }  else if (res.status === 500) {
+      toast.warning("Error al guardar el cargo");
     }
   };
 
@@ -48,49 +48,18 @@ function CargoNew() {
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
-            <h3 className="pt-4 text-2xl text-center">Revision!</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="px-8 pt-6 pb-8 mb-4 dark:bg-gray-900 rounded"
             >
               <div className="mb-4">
-                <InputSelect
-                  label={"Auto"}
-                  name={"auto"}
-                  options={auto}
-                  control={control}
-                  placeholder={"Ingrese auto..."}
-                  errors={errors.auto?.message}
-                />
-              </div>
-              <div className="mb-4">
-                <InputSelect
-                  label={"Componente"}
-                  name={"componente"}
-                  options={componente}
-                  control={control}
-                  placeholder={"Ingrese componente..."}
-                  errors={errors.componente?.message}
-                />
-              </div>
-              <div className="mb-4">
                 <InputText
-                  label={"Descripcion"}
-                  name={"descripcion"}
+                  label={"Nombre"}
+                  name={"nombre"}
                   type={"text"}
-                  placeholder={"Ingrese descripcion..."}
+                  placeholder={"Ingrese Nombre Cargo..."}
                   register={register}
-                  errors={errors.descripcion?.message}
-                />
-              </div>
-              <div className="mb-4">
-                <InputText
-                  label={"Estatus"}
-                  name={"status"}
-                  type={"number"}
-                  placeholder={"Ingrese estatus..."}
-                  register={register}
-                  errors={errors.status?.message}
+                  errors={errors.nombre?.message}
                 />
               </div>
               <div className="mb-6 text-center">

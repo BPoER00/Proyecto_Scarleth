@@ -29,7 +29,6 @@ namespace app.actions.vacuna
                 descripcion = vacuna.descripcion,
                 cantidad = vacuna.cantidad,
                 fecha_vencimiento = vacuna.fecha_vencimiento,
-                usuario_id = vacuna.usuario_id
             };
 
             this.db.Vacunas.Add(newVacuna);

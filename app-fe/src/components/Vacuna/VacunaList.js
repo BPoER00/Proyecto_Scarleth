@@ -6,7 +6,7 @@ import ContenidoTabla from "./ContenidoTabla";
 import { useVacuna } from "@/context/Vacuna.Context.js";
 
 function VacunaList() {
-  const { revision } = useVacuna();
+  const { Vacuna } = useVacuna();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,10 @@ function VacunaList() {
   }, []);
 
   const info = async () => {
-    setData(await revision());
+    setData(await Vacuna());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = ["Nombre", "Unidades", "Cubre", "Opciones"];
   if (data.length === 0) {
     return (
       <>

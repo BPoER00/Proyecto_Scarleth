@@ -6,7 +6,7 @@ import ContenidoTabla from "./ContenidoTabla";
 import { usePersona } from "@/context/Persona.Context.js";
 
 function PersonaList() {
-  const { revision } = usePersona();
+  const { Persona } = usePersona();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,18 @@ function PersonaList() {
   }, []);
 
   const info = async () => {
-    setData(await revision());
+    setData(await Persona());
   };
 
-  const cabeceras = ["Auto", "Cantidad De Revisiones", "Opciones"];
+  const cabeceras = [
+    "Nombre",
+    "CUI",
+    "Telefono",
+    "Genero",
+    "Direccion",
+    "Opciones",
+  ];
+
   if (data.length === 0) {
     return (
       <>

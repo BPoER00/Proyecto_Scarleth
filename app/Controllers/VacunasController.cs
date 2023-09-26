@@ -4,6 +4,7 @@ using app.Models.ModelView;
 using app.helpers;
 using app.actions.vacuna;
 using Microsoft.AspNetCore.Authorization;
+using app.middlewares;
 
 namespace app.Controllers
 {
@@ -14,10 +15,12 @@ namespace app.Controllers
     {
         //variable principal para la conexion de cada uno
         private VacunasActions action;
+        private VerifyRepeatData<Vacuna> verify;
 
         public VacunasController()
         {
             this.action = new VacunasActions();
+            this.verify = new VerifyRepeatData<Vacuna>();
         }
 
         [HttpGet("Get")]
@@ -125,6 +128,12 @@ namespace app.Controllers
                 }
                 else
                 {
+                    if (await verify.IsDataDuplicated("nombre", vacunas.nombre))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(vacunas.nombre, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     var result = await this.action.guardar(vacunas);
 
                     return StatusCode(201,

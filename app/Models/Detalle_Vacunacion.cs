@@ -14,7 +14,7 @@ namespace app.Models
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vacunacion]")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime fecha_vacunacion { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]

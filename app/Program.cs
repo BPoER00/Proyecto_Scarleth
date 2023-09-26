@@ -8,6 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy("Politica", app => 
+    {
+        app.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(x =>
 {
@@ -46,6 +56,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("Politica");
 
 app.UseAuthentication();
 app.UseAuthorization();

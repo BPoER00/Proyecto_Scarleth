@@ -9,7 +9,7 @@ import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 
 function PersonaNew() {
-  const { auto, componente, insert, changePage } = usePersona();
+  const { direccion, genero, insert, changePage } = usePersona();
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -26,12 +26,15 @@ function PersonaNew() {
 
   const onSubmit = async (e) => {
     const res = await insert(e);
-    if (res.status === 204) {
+    console.log(res);
+    if (res.status === 201) {
       toast.success("Revision Realizada Correctamente");
       await sleep(3000);
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {
       toast.warning(`Error ${res.data.message}`);
+    } else if (res.status === 500) {
+      toast.warning("Error al guardar la persona");
     }
   };
 
@@ -48,51 +51,76 @@ function PersonaNew() {
             }}
           ></div>
           <div className="w-full lg:w-7/12 dark:bg-gray-800 p-5 rounded-lg lg:rounded-l-none">
-            <h3 className="pt-4 text-2xl text-center">Revision!</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="px-8 pt-6 pb-8 mb-4 dark:bg-gray-900 rounded"
             >
               <div className="mb-4">
-                <InputSelect
-                  label={"Auto"}
-                  name={"auto"}
-                  options={auto}
-                  control={control}
-                  placeholder={"Ingrese auto..."}
-                  errors={errors.auto?.message}
-                />
-              </div>
-              <div className="mb-4">
-                <InputSelect
-                  label={"Componente"}
-                  name={"componente"}
-                  options={componente}
-                  control={control}
-                  placeholder={"Ingrese componente..."}
-                  errors={errors.componente?.message}
-                />
-              </div>
-              <div className="mb-4">
                 <InputText
-                  label={"Descripcion"}
-                  name={"descripcion"}
+                  label={"Nombre"}
+                  name={"nombre"}
                   type={"text"}
-                  placeholder={"Ingrese descripcion..."}
+                  placeholder={"Ingrese Nombre..."}
                   register={register}
-                  errors={errors.descripcion?.message}
+                  errors={errors.nombre?.message}
                 />
               </div>
+
               <div className="mb-4">
                 <InputText
-                  label={"Estatus"}
-                  name={"status"}
-                  type={"number"}
-                  placeholder={"Ingrese estatus..."}
+                  label={"CUI"}
+                  name={"cui"}
+                  type={"text"}
+                  placeholder={"Ingrese Cui..."}
                   register={register}
-                  errors={errors.status?.message}
+                  errors={errors.cui?.message}
                 />
               </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Telefono"}
+                  name={"telefono"}
+                  type={"text"}
+                  placeholder={"Ingrese Telefono..."}
+                  register={register}
+                  errors={errors.telefono?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
+                  label={"Fecha Nacimiento"}
+                  name={"fecha_nacimiento"}
+                  type={"date"}
+                  placeholder={"Ingrese Fecha Nacimiento..."}
+                  register={register}
+                  errors={errors.fecha_nacimiento?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputSelect
+                  label={"Direccion"}
+                  name={"direccion_id"}
+                  options={direccion}
+                  control={control}
+                  placeholder={"Ingrese Direccion..."}
+                  errors={errors.direccion_id?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputSelect
+                  label={"Genero"}
+                  name={"genero_id"}
+                  options={genero}
+                  control={control}
+                  placeholder={"Ingrese Genero..."}
+                  errors={errors.genero_id?.message}
+                />
+              </div>
+
               <div className="mb-6 text-center">
                 <button
                   className="w-full mt-3 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"

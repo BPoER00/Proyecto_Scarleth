@@ -1,5 +1,7 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { get } from "@/api/Usuario.Api";
+import { get as getPersona } from "@/api/Persona.Api";
 
 const UsuarioContext = createContext();
 
@@ -16,6 +18,9 @@ function UsuarioProvider({ children }) {
   ];
 
   const [paginate, setPaginate] = useState(defaultPaginate);
+  const [persona, setPersona] = useState();
+  const [rol, setRol] = useState();
+
 
   const changePage = (id) => {
     setPaginate((prevPaginate) =>
@@ -26,8 +31,32 @@ function UsuarioProvider({ children }) {
     );
   };
 
+  const Usuario = async () => {
+    const usuario = await get()
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return usuario;
+  };
+
+  const roles = [
+    { id: 1, nombre: "Administracion" },
+    { id: 2, nombre: "Digitador" },
+    { id: 3, nombre: "Usuario Comun" },
+  ];
+
+  useEffect(() => {
+    getPersona().then((data) =>
+      setPersona(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
+    setRol(roles.map((m) => ({ value: m.id, label: m.nombre })))
+
+  }, []);
+
   return (
-    <UsuarioContext.Provider value={{ paginate, changePage }}>
+    <UsuarioContext.Provider value={{ rol, persona, Usuario, paginate, changePage }}>
       {children}
     </UsuarioContext.Provider>
   );

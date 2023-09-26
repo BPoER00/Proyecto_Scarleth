@@ -31,7 +31,7 @@ namespace app.Models
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha nacimiento]")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime fecha_nacimiento { get; set; }
 
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [direccion]")]

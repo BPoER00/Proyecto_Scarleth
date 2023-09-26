@@ -1,5 +1,6 @@
 using app.actions.cargos;
 using app.helpers;
+using app.middlewares;
 using app.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,12 @@ namespace app.Controllers
     public class CargosController : ControllerBase
     {
         private CargosAction action;
+        private VerifyRepeatData<Cargo> verify;
+
         public CargosController()
         {
             this.action = new CargosAction();
+            this.verify = new VerifyRepeatData<Cargo>();
         }
 
         [HttpGet("Get")]
@@ -122,6 +126,13 @@ namespace app.Controllers
                 }
                 else
                 {
+
+                    if (await verify.IsDataDuplicated("nombre", cargo.nombre))
+                        return BadRequest(
+                                new ReturnClassDefault()
+                                .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                                .ErrorMessages(cargo.nombre, ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REPETIDO)));
+
                     var result = await this.action.guardar(cargo);
 
                     return StatusCode(201,

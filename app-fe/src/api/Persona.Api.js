@@ -6,7 +6,7 @@ const PersonaApi = axios.create({
   baseURL: `${END_POINT_API}/Persona`,
   headers: {
     "Content-Type": "application/json",
-    "x-access-token": getCookie(),
+    Authorization: getCookie(),
   },
 });
 

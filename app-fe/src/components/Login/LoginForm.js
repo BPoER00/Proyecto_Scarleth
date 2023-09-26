@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLogin } from "@/context/Login.Context.js";
 import { useRouter } from "next/navigation";
-import { ValidateLogin } from "@/validations/Login.Validation.js";
+import { ValidateUsuario } from "@/validations/Login.Validation.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import ProgresBar from "../Inputs/ProgresBar.js";
@@ -25,11 +25,12 @@ function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(ValidateLogin),
+    resolver: yupResolver(ValidateUsuario),
   });
 
   const onSubmit = async (e) => {
     const res = await Login(e);
+    console.log(res);
     if (res.status === 200) {
       toast.success(res.data.message);
       router.push("/Dashboard");
@@ -47,20 +48,16 @@ function LoginForm() {
         <div
           className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
           style={{
-            backgroundImage:
-              "url('https://i.pinimg.com/1200x/41/c0/a3/41c0a3a1899736a930e1bd628eb43fd1.jpg')",
+            background: "#a7d0ea",
           }}
         >
           <ToastContainer />
           <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-w-sm">
             <div className="text-white items-center">
               <div className="mb-8 flex flex-col items-center">
-                <img
-                  src="https://img.freepik.com/iconos-gratis/conductor_318-403022.jpg"
-                  width="150"
-                />
-                <h1 className="mb-2 mt-3 text-2xl">Colonia Ramirez</h1>
-                <span className="text-gray-300">Enter Login Details</span>
+                <img src="vacunaT.png" width="150" />
+                <h1 className="mb-2 mt-3 text-2xl">Vacuna T</h1>
+                <span className="text-gray-300">Datos De Inicio De Sesion</span>
               </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -68,21 +65,21 @@ function LoginForm() {
               >
                 <div className="mb-4 text-lg items-center">
                   <input
-                    className="rounded-2xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                    className="rounded-2xl border-none bg-white bg-opacity-90 px-6 py-2 text-center text-black placeholder-slate-400 shadow-lg outline-none backdrop-blur-md"
                     type="text"
-                    placeholder="Username"
-                    {...register("username")}
+                    placeholder="Usuario"
+                    {...register("nombre_usuario")}
                   />
                   <span className="text-red-500 text-center">
-                    {errors.username?.message}
+                    {errors.nombre_usuario?.message}
                   </span>
                 </div>
 
                 <div className="mb-4 text-lg">
                   <input
-                    className="rounded-2xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                    className="rounded-2xl border-none bg-white bg-opacity-90 px-6 py-2 text-center text-black placeholder-slate-400 shadow-lg outline-none backdrop-blur-md"
                     type="Password"
-                    placeholder="*********"
+                    placeholder="contraseña"
                     {...register("password")}
                   />
                   <span className="text-red-500">
@@ -92,9 +89,10 @@ function LoginForm() {
                 <div className="mt-8 flex justify-center text-lg text-black">
                   <button
                     type="submit"
-                    className="rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600"
+                    style={{ background: "#a7d0ea" }}
+                    className="rounded-3xl bg-opacity-50 px-10 py-2 text-black shadow-xl backdrop-blur-md transition-colors duration-300"
                   >
-                    Login
+                    INICIAR SESION
                   </button>
                 </div>
               </form>

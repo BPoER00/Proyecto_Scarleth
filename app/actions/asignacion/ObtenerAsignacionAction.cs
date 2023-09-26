@@ -23,6 +23,8 @@ namespace app.actions.asignacion
             var lista = await this.db
             .Asignacions
             .Where(x => x.estado == Asignacion.ACTIVO)
+            .Include(x => x.Cargo)
+            .Include(x => x.Persona)
             .Skip(paginate[0])
             .Take(paginate[1])
             .ToListAsync();

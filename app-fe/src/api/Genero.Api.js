@@ -6,7 +6,7 @@ const GeneroApi = axios.create({
   baseURL: `${END_POINT_API}/Genero`,
   headers: {
     "Content-Type": "application/json",
-    "x-access-token": getCookie(),
+    "Authorization": getCookie(),
   },
 });
 
