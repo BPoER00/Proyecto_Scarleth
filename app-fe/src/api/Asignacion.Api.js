@@ -10,10 +10,10 @@ const AsignacionApi = axios.create({
   },
 });
 
-export const get = async () => {
-  const res = await AsignacionApi.get(`/Get`)
+export const get = async (pagina) => {
+  const res = await AsignacionApi.get(`/Get?pagina=${pagina}`)
     .then((response) => {
-      return response.data.records.data;
+      return response.data;
     })
     .catch((error) => {
       return error.response;

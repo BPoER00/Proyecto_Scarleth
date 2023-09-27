@@ -31,8 +31,8 @@ function UsuarioProvider({ children }) {
     );
   };
 
-  const Usuario = async () => {
-    const usuario = await get()
+  const Usuario = async (pagina) => {
+    const usuario = await get(pagina)
       .then((data) => {
         return data;
       })

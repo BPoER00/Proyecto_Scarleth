@@ -40,8 +40,8 @@ function PersonaProvider({ children }) {
     );
   }, []);
 
-  const Persona = async () => {
-    const persona = await get()
+  const Persona = async (pagina) => {
+    const persona = await get(pagina)
       .then((data) => {
         return data;
       })

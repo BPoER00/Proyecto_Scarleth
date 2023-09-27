@@ -39,8 +39,8 @@ function AsignacionProvider({ children }) {
     );
   }, []);
 
-  const Asignacion = async () => {
-    const asignacion = await get()
+  const Asignacion = async (pagina) => {
+    const asignacion = await get(pagina)
       .then((data) => {
         return data;
       })

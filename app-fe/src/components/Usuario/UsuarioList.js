@@ -4,17 +4,19 @@ import LoadingBar from "../Inputs/LoadingBar.js";
 import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useUsuario } from "@/context/Usuario.Context.js";
+import Paginate from "../Globales/Paginate.js";
 
 function UsuarioList() {
   const { Usuario } = useUsuario();
   const [data, setData] = useState([]);
+  const [paginate, setPaginate] = useState(1);
 
   useEffect(() => {
     info();
-  }, []);
+  }, [paginate]);
 
   const info = async () => {
-    setData(await Usuario());
+    setData(await Usuario(paginate));
   };
 
   const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol", "Opciones"];
@@ -38,15 +40,26 @@ function UsuarioList() {
 
   return (
     <CardComponentsAll>
-      <div className="w-full max-h-[55vh] overflow-auto">
+      <div className="w-full max-h-[55vh]">
         {data.length === 0 ? (
           <LoadingBar />
         ) : (
-          <TableData cabecera={cabeceras}>
-            <ContenidoTabla data={data} />
-          </TableData>
+          <>
+            {/* <Filtros /> */}
+
+            <div className="max-h-[75vh] overflow-x-auto overflow-visible">
+              <TableData cabecera={cabeceras}>
+                <ContenidoTabla data={data.records.data} />
+              </TableData>
+            </div>
+          </>
         )}
       </div>
+      <Paginate
+        paginate={data.pages}
+        setPagina={setPaginate}
+        pagina={paginate}
+      />
     </CardComponentsAll>
   );
 }
