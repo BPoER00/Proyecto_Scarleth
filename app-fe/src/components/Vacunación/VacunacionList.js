@@ -4,17 +4,26 @@ import LoadingBar from "../Inputs/LoadingBar.js";
 import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useVacunacion } from "@/context/Vacunacion.Context.js";
+import Paginate from "../Globales/Paginate.js";
+import Filtros from "./Filtros.js";
 
 function VacunacionList() {
   const { Vacunacion } = useVacunacion();
   const [data, setData] = useState([]);
+  const [paginate, setPaginate] = useState(1);
+  const [filtro, setFiltros] = useState({
+    personaId: "",
+    fechaInicioValue: "",
+    fechaFinValue: "",
+    vacunaId: "",
+  });
 
   useEffect(() => {
-    info();
-  }, []);
+    info(filtro);
+  }, [filtro, paginate]);
 
   const info = async () => {
-    setData(await Vacunacion());
+    setData(await Vacunacion(paginate, filtro));
   };
 
   const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];
@@ -38,15 +47,26 @@ function VacunacionList() {
 
   return (
     <CardComponentsAll>
-      <div className="w-full max-h-[55vh] overflow-auto">
+      <div className="w-full">
         {data.length === 0 ? (
           <LoadingBar />
         ) : (
-          <TableData cabecera={cabeceras}>
-            <ContenidoTabla data={data} />
-          </TableData>
+          <>
+            <Filtros setFiltros={setFiltros} />
+
+            <div className="max-h-[75vh] overflow-x-auto overflow-visible">
+              <TableData cabecera={cabeceras}>
+                <ContenidoTabla data={data.records.data} />
+              </TableData>
+            </div>
+          </>
         )}
       </div>
+      <Paginate
+        paginate={data.pages}
+        setPagina={setPaginate}
+        pagina={paginate}
+      />
     </CardComponentsAll>
   );
 }

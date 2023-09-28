@@ -10,10 +10,22 @@ const CargosApi = axios.create({
   },
 });
 
-export const get = async () => {
-  const res = await CargosApi.get(`/Get`)
+export const get = async (pagina) => {
+  const res = await CargosApi.get(`/Get?pagina=${pagina}`)
     .then((response) => {
-      return response.data.records.data;
+      return response.data;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return res;
+};
+
+export const getSP = async () => {
+  const res = await CargosApi.get(`/GetSP`)
+    .then((response) => {
+      return response.data.data;
     })
     .catch((error) => {
       return error.response;

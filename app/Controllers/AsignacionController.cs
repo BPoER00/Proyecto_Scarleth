@@ -108,6 +108,40 @@ namespace app.Controllers
             }
         }
 
+        [HttpGet("GetSP")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var resultAction = await this.action.obtenerSP();
+
+                return Ok(
+                    new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.SUCCESSFULL,
+                            resultAction,
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.OBTENIDO
+                                )
+                        )
+                );
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    new ReturnClassDefault()
+                    .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                    )
+                );
+            }
+        }
+
         [HttpPost("Post")]
         public async Task<IActionResult> Post(Asignacion asignacion)
         {

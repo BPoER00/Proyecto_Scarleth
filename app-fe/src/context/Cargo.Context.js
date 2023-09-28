@@ -27,8 +27,8 @@ function CargoProvider({ children }) {
     );
   };
 
-  const Cargos = async () => {
-    const cargo = await get()
+  const Cargos = async (pagina) => {
+    const cargo = await get(pagina)
       .then((data) => {
         return data;
       })

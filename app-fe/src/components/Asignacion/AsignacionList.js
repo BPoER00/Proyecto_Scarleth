@@ -4,17 +4,20 @@ import LoadingBar from "../Inputs/LoadingBar.js";
 import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useAsignacion } from "@/context/Asignacion.Context.js";
+import Paginate from "../Globales/Paginate.js";
+import Filtros from "./Filtros.js";
 
 function AsignacionList() {
   const { Asignacion } = useAsignacion();
   const [data, setData] = useState([]);
+  const [paginate, setPaginate] = useState(1);
 
   useEffect(() => {
     info();
-  }, []);
+  }, [paginate]);
 
   const info = async () => {
-    setData(await Asignacion());
+    setData(await Asignacion(paginate));
   };
 
   const cabeceras = ["Numero Colegiado", "Persona", "Cargo", "Opciones"];
@@ -38,15 +41,26 @@ function AsignacionList() {
 
   return (
     <CardComponentsAll>
-      <div className="w-full max-h-[55vh] overflow-auto">
+      <div className="w-full">
         {data.length === 0 ? (
           <LoadingBar />
         ) : (
-          <TableData cabecera={cabeceras}>
-            <ContenidoTabla data={data} />
-          </TableData>
+          <>
+            <Filtros />
+
+            <div className="max-h-[75vh] overflow-x-auto overflow-visible">
+              <TableData cabecera={cabeceras}>
+                <ContenidoTabla data={data.records.data} />
+              </TableData>
+            </div>
+          </>
         )}
       </div>
+      <Paginate
+        paginate={data.pages}
+        setPagina={setPaginate}
+        pagina={paginate}
+      />
     </CardComponentsAll>
   );
 }

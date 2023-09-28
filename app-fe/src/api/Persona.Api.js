@@ -10,10 +10,22 @@ const PersonaApi = axios.create({
   },
 });
 
-export const get = async () => {
-  const res = await PersonaApi.get(`/Get`)
+export const get = async (pagina) => {
+  const res = await PersonaApi.get(`/Get?pagina=${pagina}`)
     .then((response) => {
-      return response.data.records.data;
+      return response.data;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return res;
+};
+
+export const getSP = async () => {
+  const res = await PersonaApi.get(`/GetSP`)
+    .then((response) => {
+      return response.data.data;
     })
     .catch((error) => {
       return error.response;

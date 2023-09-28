@@ -9,12 +9,14 @@ namespace app.actions.persona
         private BuscarPersonasAction buscarPersonasAction;
         private NuevaPersonasActions nuevaPersonasActions;
         private ObtenerPersonasAction obtenerPersonasAction;
+        private ObtenerPersonaSinPaginadoAction obtenerPersonaSinPaginadoAction;
 
         public PersonasActions()
         {
             this.buscarPersonasAction = new BuscarPersonasAction(_db);
             this.nuevaPersonasActions = new NuevaPersonasActions(_db);
             this.obtenerPersonasAction = new ObtenerPersonasAction(_db);
+            this.obtenerPersonaSinPaginadoAction = new ObtenerPersonaSinPaginadoAction(_db);
         }
 
         public Task<Persona> buscar(int id) => this.buscarPersonasAction.ejecutar(id);
@@ -22,6 +24,8 @@ namespace app.actions.persona
         public Task<Boolean> guardar(Persona persona) => this.nuevaPersonasActions.ejecutar(persona);
 
         public Task<Object[]> obtener(int tp, int np) => this.obtenerPersonasAction.ejecutar(tp, np);
+        
+        public Task<List<Persona>> obtenerSP() => this.obtenerPersonaSinPaginadoAction.ejecutar();
 
     }
 }

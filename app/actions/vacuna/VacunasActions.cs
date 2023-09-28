@@ -10,12 +10,14 @@ namespace app.actions.vacuna
         private BuscarVacunaAction buscarVacunaAction;
         private NuevaVacunaAction nuevaVacunaAction;
         private ObtenerVacunaAction obtenerVacunaAction;
+        private ObtenerVacunaSinPaginadoAction obtenerVacunaSinPaginadoAction;
 
         public VacunasActions()
         {
             this.buscarVacunaAction = new BuscarVacunaAction(_db);
             this.nuevaVacunaAction = new NuevaVacunaAction(_db);
             this.obtenerVacunaAction = new ObtenerVacunaAction(_db);
+            this.obtenerVacunaSinPaginadoAction = new ObtenerVacunaSinPaginadoAction(_db);
         }
 
         public Task<Vacuna> buscar(int id) => this.buscarVacunaAction.ejecutar(id);
@@ -23,5 +25,7 @@ namespace app.actions.vacuna
         public Task<Boolean> guardar(VacunasDetalles vacuna) => this.nuevaVacunaAction.ejecutar(vacuna);
 
         public Task<Object[]> obtener(int tp, int np) => this.obtenerVacunaAction.ejecutar(tp, np);
+
+        public Task<List<Vacuna>> obtenerSP() => this.obtenerVacunaSinPaginadoAction.ejecutar();
     }
 }

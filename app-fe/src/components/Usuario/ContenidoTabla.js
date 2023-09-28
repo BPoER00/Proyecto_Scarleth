@@ -1,5 +1,4 @@
 function ContenidoTabla({ data }) {
-    console.log(data);
     return (
       <>
         {data.map((d, i) => (

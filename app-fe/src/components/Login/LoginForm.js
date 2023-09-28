@@ -30,7 +30,6 @@ function LoginForm() {
 
   const onSubmit = async (e) => {
     const res = await Login(e);
-    console.log(res);
     if (res.status === 200) {
       toast.success(res.data.message);
       router.push("/Dashboard");

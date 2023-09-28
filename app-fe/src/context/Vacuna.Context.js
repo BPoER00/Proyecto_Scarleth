@@ -27,8 +27,8 @@ function VacunaProvider({ children }) {
     );
   };
 
-  const Vacuna = async () => {
-    const vacuna = await get()
+  const Vacuna = async (pagina) => {
+    const vacuna = await get(pagina)
       .then((data) => {
         return data;
       })

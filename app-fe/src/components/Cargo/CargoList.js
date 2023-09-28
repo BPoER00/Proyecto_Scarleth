@@ -4,17 +4,20 @@ import LoadingBar from "../Inputs/LoadingBar.js";
 import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useCargo } from "@/context/Cargo.Context.js";
+import Paginate from "../Globales/Paginate.js";
+import Filtros from "./Filtros.js";
 
 function CargoList() {
   const { Cargos } = useCargo();
   const [data, setData] = useState([]);
+  const [paginate, setPaginate] = useState(1);
 
   useEffect(() => {
-    info();
+    info(paginate);
   }, []);
 
   const info = async () => {
-    setData(await Cargos());
+    setData(await Cargos(paginate));
   };
 
   const cabeceras = ["Nombre Cargo", "Opciones"];
@@ -38,15 +41,26 @@ function CargoList() {
 
   return (
     <CardComponentsAll>
-      <div className="w-full max-h-[55vh] overflow-auto">
+      <div className="w-full">
         {data.length === 0 ? (
           <LoadingBar />
         ) : (
-          <TableData cabecera={cabeceras}>
-            <ContenidoTabla data={data} />
-          </TableData>
+          <>
+            <Filtros />
+
+            <div className="max-h-[75vh] overflow-x-auto overflow-visible">
+              <TableData cabecera={cabeceras}>
+                <ContenidoTabla data={data.records.data} />
+              </TableData>
+            </div>
+          </>
         )}
       </div>
+      <Paginate
+        paginate={data.pages}
+        setPagina={setPaginate}
+        pagina={paginate}
+      />
     </CardComponentsAll>
   );
 }

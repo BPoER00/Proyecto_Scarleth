@@ -3,7 +3,7 @@ using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
 using app.middlewares;
-using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace app.Controllers
 {
@@ -24,8 +24,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] object filtroObj)
         {
+            string filtroJson = JsonConvert.SerializeObject(filtroObj);
+
+            Console.WriteLine(filtroJson);
             try
             {
                 var resultAction = await this.action.obtener(objetos, pagina);
@@ -129,7 +132,7 @@ namespace app.Controllers
                 else
                 {
 
-                    if (!validation.validatePersonaAsignacion(vacuncion.persona_id, vacuncion.asignacion_id))
+                    if (await validation.ValidatePersonaAsignacionAsync(vacuncion.persona_id, vacuncion.asignacion_id))
                         return BadRequest(
                             new ReturnClassDefault()
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()

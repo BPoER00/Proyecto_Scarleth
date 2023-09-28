@@ -36,9 +36,12 @@ namespace app.middlewares
             return result != null;
         }
 
-        public Boolean validatePersonaAsignacion(int id_persona, int id_asignacion)
+        public async Task<bool> ValidatePersonaAsignacionAsync(int idPersona, int idAsignacion)
         {
-            return id_asignacion != id_persona; 
+            var persona = await personasActions.buscar(idPersona);
+            var asignacion = await asignacionAction.buscar(idAsignacion);
+
+            return persona?.id == asignacion?.persona_id;
         }
     }
 }

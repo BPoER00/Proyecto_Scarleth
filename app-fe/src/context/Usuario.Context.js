@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { get } from "@/api/Usuario.Api";
-import { get as getPersona } from "@/api/Persona.Api";
+import { getSP as getPersona } from "@/api/Persona.Api";
 
 const UsuarioContext = createContext();
 
@@ -31,8 +31,8 @@ function UsuarioProvider({ children }) {
     );
   };
 
-  const Usuario = async () => {
-    const usuario = await get()
+  const Usuario = async (pagina) => {
+    const usuario = await get(pagina)
       .then((data) => {
         return data;
       })
