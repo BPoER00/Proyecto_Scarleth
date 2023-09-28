@@ -3,6 +3,7 @@ using app.Models;
 using app.helpers;
 using app.actions.vacunacion;
 using app.middlewares;
+using Newtonsoft.Json;
 
 namespace app.Controllers
 {
@@ -23,8 +24,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] object filtroObj)
         {
+            string filtroJson = JsonConvert.SerializeObject(filtroObj);
+
+            Console.WriteLine(filtroJson);
             try
             {
                 var resultAction = await this.action.obtener(objetos, pagina);

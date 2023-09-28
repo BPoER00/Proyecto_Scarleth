@@ -329,3 +329,4 @@
 /home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/obj/Debug/net7.0/app.genruntimeconfig.cache
 /home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/obj/Debug/net7.0/ref/app.dll
 /home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/bin/Debug/net7.0/Newtonsoft.Json.dll
