@@ -13,6 +13,7 @@ namespace app.actions.cargos
         private BuscarCargosAction buscarCargosAction;
         private NuevoCargosAction nuevoCargosAction;
         private ObtenerCargosAction obtenerCargosAction;
+        private ObtenerCargosSinPaginadoAction obtenerCargosSinPaginadoAction;
 
 
         public CargosAction()
@@ -20,10 +21,15 @@ namespace app.actions.cargos
             this.buscarCargosAction = new BuscarCargosAction(_db);
             this.nuevoCargosAction = new NuevoCargosAction(_db);
             this.obtenerCargosAction = new ObtenerCargosAction(_db);
+            this.obtenerCargosSinPaginadoAction = new ObtenerCargosSinPaginadoAction(_db);
         }
 
         public Task<Object[]> obtener(int tp, int np) => this.obtenerCargosAction.ejecutar(tp, np);
+
         public Task<Boolean> guardar(Cargo cargo) => this.nuevoCargosAction.ejecutar(cargo);
-        public Task<Cargo> buscar (int id) => this.buscarCargosAction.ejecutar(id);
+
+        public Task<Cargo> buscar(int id) => this.buscarCargosAction.ejecutar(id);
+
+        public Task<List<Cargo>> obtenerSP() => this.obtenerCargosSinPaginadoAction.ejecutar();
     }
 }

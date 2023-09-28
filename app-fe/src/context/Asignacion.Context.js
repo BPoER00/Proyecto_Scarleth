@@ -1,8 +1,8 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { get, post } from "@/api/Asignacion.Api";
-import { get as getPersona } from "@/api/Persona.Api";
-import { get as getCargo } from "@/api/Cargo.Api";
+import { getSP as getPersona } from "@/api/Persona.Api";
+import { getSP as getCargo } from "@/api/Cargo.Api";
 const AsignacionContext = createContext();
 
 export const useAsignacion = () => {

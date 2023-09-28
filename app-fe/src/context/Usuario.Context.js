@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { get } from "@/api/Usuario.Api";
-import { get as getPersona } from "@/api/Persona.Api";
+import { getSP as getPersona } from "@/api/Persona.Api";
 
 const UsuarioContext = createContext();
 
