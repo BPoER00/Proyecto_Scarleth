@@ -5,6 +5,7 @@ import TableData from "../Globales/TableData.js";
 import ContenidoTabla from "./ContenidoTabla";
 import { useAsignacion } from "@/context/Asignacion.Context.js";
 import Paginate from "../Globales/Paginate.js";
+import Filtros from "./Filtros.js";
 
 function AsignacionList() {
   const { Asignacion } = useAsignacion();
@@ -40,12 +41,12 @@ function AsignacionList() {
 
   return (
     <CardComponentsAll>
-      <div className="w-full max-h-[55vh]">
+      <div className="w-full">
         {data.length === 0 ? (
           <LoadingBar />
         ) : (
           <>
-            {/* <Filtros /> */}
+            <Filtros />
 
             <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>
