@@ -11,13 +11,19 @@ function VacunacionList() {
   const { Vacunacion } = useVacunacion();
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
+  const [filtro, setFiltros] = useState({
+    personaId: "",
+    fechaInicioValue: "",
+    fechaFinValue: "",
+    vacunaId: "",
+  });
 
   useEffect(() => {
-    info();
-  }, [paginate]);
+    info(filtro);
+  }, [filtro, paginate]);
 
   const info = async () => {
-    setData(await Vacunacion(paginate));
+    setData(await Vacunacion(paginate, filtro));
   };
 
   const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];
@@ -46,11 +52,9 @@ function VacunacionList() {
           <LoadingBar />
         ) : (
           <>
-            <Filtros />
+            <Filtros setFiltros={setFiltros} />
 
-            <div
-              className="max-h-[75vh] overflow-x-auto overflow-visible"
-            >
+            <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>
                 <ContenidoTabla data={data.records.data} />
               </TableData>
