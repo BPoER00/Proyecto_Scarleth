@@ -35,7 +35,7 @@ namespace app.actions.vacuna
             int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var listaFiltros = lista.Skip(paginate[0]).Take(paginate[1]).ToList();
 
-            return new Object[] { lista, np, tp, paginate[2] };
+            return new Object[] { listaFiltros, np, tp, paginate[2] };
         }
     }
 }

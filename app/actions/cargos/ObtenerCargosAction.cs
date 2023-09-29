@@ -16,19 +16,25 @@ namespace app.actions.cargos
 
         }
 
-        public async Task<Object[]> ejecutar(int tp, int np)
+        public async Task<Object[]> ejecutar(int tp, int np, string cargoId)
         {
-            int totalObjects = this.db.Cargos.Count();
+            int cargo_id = int.Parse(cargoId);
 
-            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
             .Cargos
             .Where(x => x.estado == Cargo.ACTIVO)
-            .Skip(paginate[0])
-            .Take(paginate[1])
             .ToListAsync();
 
-            return new Object[] { lista, np, tp, paginate[2] };
+            if (cargo_id > 0)
+            {
+                lista = lista.Where(x => x.id == cargo_id).ToList();
+            }
+
+            int totalObjects = lista.Count();
+            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
+            var listaFiltros = lista.Skip(paginate[0]).Take(paginate[1]).ToList();
+
+            return new Object[] { listaFiltros, np, tp, paginate[2] };
         }
     }
 }
