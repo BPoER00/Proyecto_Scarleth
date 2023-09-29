@@ -1,5 +1,8 @@
 using app.Models;
 using app.helpers;
+using app.Models.ModelView;
+using app.actions.asignacion;
+using app.actions.persona;
 
 namespace app.actions.usuario
 {
@@ -10,13 +13,14 @@ namespace app.actions.usuario
         private BuscarXNombreUsuarioAction buscarXNombreUsuarioAction;
         private NuevoUsuarioAction nuevoUsuarioAction;
         private ObtenerUsuarioAction obtenerUsuarioAction;
-
+        private ObtenerUsuarioSinPaginadoAction obtenerUsuarioSinPaginadoAction;
         public UsuarioActions()
         {
             this.buscarUsuarioAction = new BuscarUsuarioAction(_db);
             this.buscarXNombreUsuarioAction = new BuscarXNombreUsuarioAction(_db);
             this.nuevoUsuarioAction = new NuevoUsuarioAction(_db);
             this.obtenerUsuarioAction = new ObtenerUsuarioAction(_db);
+            this.obtenerUsuarioSinPaginadoAction = new ObtenerUsuarioSinPaginadoAction(_db);
         }
 
         public Task<Usuario> buscar(int id) => this.buscarUsuarioAction.ejecutar(id);
@@ -26,5 +30,7 @@ namespace app.actions.usuario
         public Task<Boolean> guardar(Usuario usuario) => this.nuevoUsuarioAction.ejecutar(usuario);
 
         public Task<Object[]> obtener(int tp, int np) => this.obtenerUsuarioAction.ejecutar(tp, np);
+
+        public Task<List<UsuarioInfo>> obtenerSP() => this.obtenerUsuarioSinPaginadoAction.ejecutar();
     }
 }

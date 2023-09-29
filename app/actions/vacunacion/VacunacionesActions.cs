@@ -21,6 +21,7 @@ namespace app.actions.vacunacion
 
         public Task<Boolean> guardar(VacunacionDetalles vacunacion) => this.nuevaVacunacionesAction.ejecutar(vacunacion);
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerVacunacionesAction.ejecutar(tp, np);
+        public Task<Object[]> obtener(int tp, int np, string personaId, string fechaInicioValue,
+        string fechaFinValue, string vacunaId) => this.obtenerVacunacionesAction.ejecutar(tp, np, personaId, fechaInicioValue, fechaFinValue, vacunaId);
     }
 }

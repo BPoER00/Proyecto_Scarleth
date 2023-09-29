@@ -2,6 +2,7 @@ import axios from "axios";
 import { END_POINT_API } from "@/config/props.js";
 import { getCookie } from "@/config/cookieConfig.js";
 import { Frijole } from "next/font/google";
+import { data } from "autoprefixer";
 
 const VacunacionApi = axios.create({
   baseURL: `${END_POINT_API}/Vacunacion`,
@@ -12,7 +13,9 @@ const VacunacionApi = axios.create({
 });
 
 export const get = async (pagina, filtro) => {
-  const res = await VacunacionApi.get(`/Get?pagina=${pagina}&filtro=${filtro}`)
+    const res = await VacunacionApi.get(
+    `/Get?pagina=${pagina}&personaId=${filtro.personaId}&fechaInicioValue=${filtro.fechaInicioValue}&fechaFinValue=${filtro.fechaFinValue}&vacunaId=${filtro.vacunaId}`
+  )
     .then((response) => {
       return response.data;
     })

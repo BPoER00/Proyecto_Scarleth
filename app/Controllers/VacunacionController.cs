@@ -24,14 +24,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] object filtroObj)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] string personaId, [FromQuery] string fechaInicioValue, [FromQuery] string fechaFinValue, [FromQuery] string vacunaId)
         {
-            string filtroJson = JsonConvert.SerializeObject(filtroObj);
-
-            Console.WriteLine(filtroJson);
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener(objetos, pagina, personaId, fechaInicioValue, fechaFinValue, vacunaId);
 
                 List<Vacunacion> data = (List<Vacunacion>)resultAction[0];
 

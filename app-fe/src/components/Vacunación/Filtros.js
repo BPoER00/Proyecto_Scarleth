@@ -3,20 +3,17 @@ import InputText from "../Inputs/InputText";
 import InputSelect from "../Inputs/InputSelect";
 import { useForm } from "react-hook-form";
 import { useVacunacion } from "@/context/Vacunacion.Context";
+import FormatearFecha from "@/config/fechasConfig";
 
 function Filtros({ setFiltros }) {
   const { vacuna, persona } = useVacunacion();
 
-  const {
-    register,
-    control,
-    watch,
-  } = useForm();
+  const { register, control, watch, reset } = useForm();
 
-  const personaId = watch("persona_id");
-  const fechaInicioValue = watch("fecha_vacunacion_inicio");
-  const fechaFinValue = watch("fecha_vacunacion_fin");
-  const vacunaId = watch("vacuna_id");
+  const personaId = (watch("persona_id") || 0).toString();
+  const fechaInicioValue = FormatearFecha(watch("fecha_vacunacion_inicio"));
+  const fechaFinValue = FormatearFecha(watch("fecha_vacunacion_fin"));
+  const vacunaId = (watch("vacuna_id") || 0).toString();
 
   useEffect(() => {
     const filtros = {
@@ -28,6 +25,10 @@ function Filtros({ setFiltros }) {
 
     setFiltros(filtros);
   }, [personaId, fechaInicioValue, fechaFinValue, vacunaId]);
+
+  const handleReset = async () => {
+    reset();
+  };
 
   return (
     <div className="px-8 pt-6 pb-4 mb-1 dark:bg-gray-800 rounded">
@@ -67,6 +68,15 @@ function Filtros({ setFiltros }) {
             control={control}
             placeholder={"Vacuna..."}
           />
+        </div>
+        <div className="w-full text-right px-4">
+          <button
+            type="button"
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            onClick={handleReset}
+          >
+            Limpiar Campos
+          </button>
         </div>
       </div>
     </div>

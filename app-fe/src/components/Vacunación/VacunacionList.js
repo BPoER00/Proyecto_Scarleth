@@ -12,10 +12,10 @@ function VacunacionList() {
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
   const [filtro, setFiltros] = useState({
-    personaId: "",
+    personaId: "0",
     fechaInicioValue: "",
     fechaFinValue: "",
-    vacunaId: "",
+    vacunaId: "0",
   });
 
   useEffect(() => {

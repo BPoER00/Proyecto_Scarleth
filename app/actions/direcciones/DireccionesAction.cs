@@ -1,5 +1,6 @@
 using app.Models;
 using app.helpers;
+using app.actions.persona;
 
 namespace app.actions.direcciones
 {
@@ -15,7 +16,6 @@ namespace app.actions.direcciones
             this.buscarDireccionesAction = new BuscarDireccionesAction(_db);
             this.nuevoDireccionesAction = new NuevoDireccionesAction(_db);
             this.obtenerDireccionesAction = new ObtenerDireccionesAction(_db);
-
         }
 
         public Task<Direccion> buscar(int id) => this.buscarDireccionesAction.ejecutar(id);
@@ -23,5 +23,6 @@ namespace app.actions.direcciones
         public Task<Boolean> guardar(Direccion direccion) => this.nuevoDireccionesAction.ejecutar(direccion);
 
         public Task<List<Direccion>> obtener() => this.obtenerDireccionesAction.ejecutar();
+
     }
 }

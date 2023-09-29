@@ -10,8 +10,8 @@ const VacunaApi = axios.create({
   },
 });
 
-export const get = async (pagina) => {
-  const res = await VacunaApi.get(`/Get?pagina=${pagina}`)
+export const get = async (pagina, filtro) => {
+  const res = await VacunaApi.get(`/Get?pagina=${pagina}&vacunaId=${filtro.vacunaId}`)
     .then((response) => {
       return response.data;
     })
