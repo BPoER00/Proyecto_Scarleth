@@ -6,12 +6,14 @@ const CargosApi = axios.create({
   baseURL: `${END_POINT_API}/Cargos`,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": getCookie(),
+    Authorization: getCookie(),
   },
 });
 
-export const get = async (pagina) => {
-  const res = await CargosApi.get(`/Get?pagina=${pagina}`)
+export const get = async (pagina, filtro) => {
+  const res = await CargosApi.get(
+    `/Get?pagina=${pagina}&cargoId=${filtro.cargoId}`
+  )
     .then((response) => {
       return response.data;
     })

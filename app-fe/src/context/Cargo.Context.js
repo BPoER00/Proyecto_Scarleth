@@ -1,6 +1,6 @@
 "use client";
-import { createContext, useContext, useState } from "react";
-import { get, post } from "@/api/Cargo.Api";
+import { createContext, useContext, useEffect, useState } from "react";
+import { get, post, getSP } from "@/api/Cargo.Api";
 
 const CargoContext = createContext();
 
@@ -17,6 +17,7 @@ function CargoProvider({ children }) {
   ];
 
   const [paginate, setPaginate] = useState(defaultPaginate);
+  const [cargo, setCargo] = useState();
 
   const changePage = (id) => {
     setPaginate((prevPaginate) =>
@@ -27,8 +28,8 @@ function CargoProvider({ children }) {
     );
   };
 
-  const Cargos = async (pagina) => {
-    const cargo = await get(pagina)
+  const Cargos = async (pagina, filtro) => {
+    const cargo = await get(pagina, filtro)
       .then((data) => {
         return data;
       })
@@ -37,10 +38,16 @@ function CargoProvider({ children }) {
     return cargo;
   };
 
+  useEffect(() => {
+    getSP().then((data) =>
+      setCargo(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
+  }, []);
+
   const insert = async (credentials) => post(credentials);
 
   return (
-    <CargoContext.Provider value={{ insert, Cargos, paginate, changePage }}>
+    <CargoContext.Provider value={{ cargo, insert, Cargos, paginate, changePage }}>
       {children}
     </CargoContext.Provider>
   );

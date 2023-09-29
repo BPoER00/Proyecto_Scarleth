@@ -23,8 +23,8 @@ namespace app.actions.persona
 
         public Task<Boolean> guardar(Persona persona) => this.nuevaPersonasActions.ejecutar(persona);
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerPersonasAction.ejecutar(tp, np);
-        
+        public Task<Object[]> obtener(int tp, int np, string personaId, string direccionId, string generoId) => this.obtenerPersonasAction.ejecutar(tp, np, personaId, direccionId, generoId);
+
         public Task<List<Persona>> obtenerSP() => this.obtenerPersonaSinPaginadoAction.ejecutar();
 
     }

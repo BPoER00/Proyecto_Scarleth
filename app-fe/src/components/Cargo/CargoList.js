@@ -11,13 +11,16 @@ function CargoList() {
   const { Cargos } = useCargo();
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
+  const [filtros, setFiltros] = useState({
+    cargoId: "0",
+  });
 
   useEffect(() => {
     info(paginate);
-  }, []);
+  }, [filtros, paginate]);
 
   const info = async () => {
-    setData(await Cargos(paginate));
+    setData(await Cargos(paginate, filtros));
   };
 
   const cabeceras = ["Nombre Cargo", "Opciones"];
@@ -46,7 +49,7 @@ function CargoList() {
           <LoadingBar />
         ) : (
           <>
-            <Filtros />
+            <Filtros setFiltros={setFiltros}/>
 
             <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>

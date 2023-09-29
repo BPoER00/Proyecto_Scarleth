@@ -1,6 +1,6 @@
 "use client";
-import { createContext, useContext, useState } from "react";
-import { get, post } from "@/api/Vacuna.Api";
+import { createContext, useContext, useEffect, useState } from "react";
+import { get, post, getSP } from "@/api/Vacuna.Api";
 
 const VacunaContext = createContext();
 
@@ -17,6 +17,7 @@ function VacunaProvider({ children }) {
   ];
 
   const [paginate, setPaginate] = useState(defaultPaginate);
+  const [vacuna, setVacuna] = useState();
 
   const changePage = (id) => {
     setPaginate((prevPaginate) =>
@@ -27,8 +28,14 @@ function VacunaProvider({ children }) {
     );
   };
 
-  const Vacuna = async (pagina) => {
-    const vacuna = await get(pagina)
+  useEffect(() => {
+    getSP().then((data) =>
+      setVacuna(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
+  }, []);
+
+  const Vacuna = async (pagina, filtro) => {
+    const vacuna = await get(pagina, filtro)
       .then((data) => {
         return data;
       })
@@ -40,7 +47,9 @@ function VacunaProvider({ children }) {
   const insert = async (credentials) => post(credentials);
 
   return (
-    <VacunaContext.Provider value={{ insert, Vacuna, paginate, changePage }}>
+    <VacunaContext.Provider
+      value={{ vacuna, insert, Vacuna, paginate, changePage }}
+    >
       {children}
     </VacunaContext.Provider>
   );

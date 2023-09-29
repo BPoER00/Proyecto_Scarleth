@@ -11,13 +11,18 @@ function PersonaList() {
   const { Persona } = usePersona();
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
+  const [filtros, setFiltros] = useState({
+    personaId: "0",
+    direccionId: "0",
+    generoId: "0",
+  });
 
   useEffect(() => {
     info();
-  }, [paginate]);
+  }, [filtros, paginate]);
 
   const info = async () => {
-    setData(await Persona(paginate));
+    setData(await Persona(paginate, filtros));
   };
 
   const cabeceras = [
@@ -54,7 +59,7 @@ function PersonaList() {
           <LoadingBar />
         ) : (
           <>
-            <Filtros />
+            <Filtros setFiltros={setFiltros} />
 
             <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>

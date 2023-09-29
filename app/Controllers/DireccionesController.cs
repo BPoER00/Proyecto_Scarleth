@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DireccionesController : ControllerBase

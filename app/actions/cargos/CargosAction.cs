@@ -24,7 +24,7 @@ namespace app.actions.cargos
             this.obtenerCargosSinPaginadoAction = new ObtenerCargosSinPaginadoAction(_db);
         }
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerCargosAction.ejecutar(tp, np);
+        public Task<Object[]> obtener(int tp, int np, string cargoId) => this.obtenerCargosAction.ejecutar(tp, np, cargoId);
 
         public Task<Boolean> guardar(Cargo cargo) => this.nuevoCargosAction.ejecutar(cargo);
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace app.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CargosController : ControllerBase
@@ -22,11 +22,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] string cargoId)
         {
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener(objetos, pagina, cargoId);
 
                 List<Cargo> data = (List<Cargo>)resultAction[0];
 

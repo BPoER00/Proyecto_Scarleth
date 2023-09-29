@@ -10,8 +10,10 @@ const PersonaApi = axios.create({
   },
 });
 
-export const get = async (pagina) => {
-  const res = await PersonaApi.get(`/Get?pagina=${pagina}`)
+export const get = async (pagina, filtros) => {
+  const res = await PersonaApi.get(
+    `/Get?pagina=${pagina}&personaId=${filtros.personaId}&direccionId=${filtros.direccionId}&generoId=${filtros.generoId}`
+  )
     .then((response) => {
       return response.data;
     })

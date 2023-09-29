@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
@@ -27,11 +27,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] string usuarioId, [FromQuery] string rolId)
         {
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener(objetos, pagina, usuarioId, rolId);
 
                 List<UsuarioInfo> data = (List<UsuarioInfo>)resultAction[0];
 
@@ -107,6 +107,41 @@ namespace app.Controllers
                 );
             }
         }
+
+        [HttpGet("GetSP")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var resultAction = await this.action.obtenerSP();
+
+                return Ok(
+                    new ReturnClassDefault()
+                        .returnDataDefault
+                        (
+                            Reply.SUCCESSFULL,
+                            resultAction,
+                            new ErrorHelperMessage().ErrorMessages(
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.DEFAULT_VALUE,
+                                ErrorHelperMessage.OBTENIDO
+                                )
+                        )
+                );
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    new ReturnClassDefault()
+                    .returnDataDefault(
+                        Reply.FAIL,
+                        Reply.DATA_FAIL,
+                        $"Error: {e.Message}"
+                    )
+                );
+            }
+        }
+
 
         [HttpPost("Post")]
         public async Task<IActionResult> Post(Usuario usuario)

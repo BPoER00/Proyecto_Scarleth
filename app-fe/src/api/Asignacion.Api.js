@@ -10,8 +10,10 @@ const AsignacionApi = axios.create({
   },
 });
 
-export const get = async (pagina) => {
-  const res = await AsignacionApi.get(`/Get?pagina=${pagina}`)
+export const get = async (pagina, filtros) => {
+  const res = await AsignacionApi.get(
+    `/Get?pagina=${pagina}&personaId=${filtros.personaId}&cargoId=${filtros.cargoId}`
+  )
     .then((response) => {
       return response.data;
     })

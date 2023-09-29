@@ -16,17 +16,16 @@ namespace app.actions.usuario
             this.pd = new PaginateData();
         }
 
-        public async Task<Object[]> ejecutar(int tp, int np)
+        public async Task<Object[]> ejecutar(int tp, int np, string usuarioId, string rolId)
         {
-            int totalObjects = this.db.Usuarios.Count();
 
-            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
+            int usuario_id = int.Parse(usuarioId);
+            int rol_id = int.Parse(rolId);
+
             var lista = await this.db
             .Usuarios
             .Where(x => x.estado == Usuario.ACTIVO)
-            .Skip(paginate[0])
-            .Take(paginate[1])
-            .Select(x => new UsuarioInfo // Utiliza la clase UsuarioInfo
+            .Select(x => new UsuarioInfo
             {
                 Id = x.id,
                 Cui = x.Persona.cui,
@@ -41,7 +40,21 @@ namespace app.actions.usuario
             })
             .ToListAsync();
 
-            return new Object[] { lista, np, tp, paginate[2] };
+            if (usuario_id > 0)
+            {
+                lista = lista.Where(x => x.Id == usuario_id).ToList();
+            }
+
+            if (rol_id > 0)
+            {
+                lista = lista.Where(x => x.RolId == rol_id).ToList();
+            }
+
+            int totalObjects = lista.Count();
+            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
+            var listaFiltros = lista.Skip(paginate[0]).Take(paginate[1]).ToList();
+
+            return new Object[] { listaFiltros, np, tp, paginate[2] };
         }
     }
 }
