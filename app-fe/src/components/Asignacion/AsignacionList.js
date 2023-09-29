@@ -11,13 +11,17 @@ function AsignacionList() {
   const { Asignacion } = useAsignacion();
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
+  const [filtros, setFiltros] = useState({
+    personaId: "0",
+    cargoId: "0",
+  });
 
   useEffect(() => {
     info();
-  }, [paginate]);
+  }, [filtros, paginate]);
 
   const info = async () => {
-    setData(await Asignacion(paginate));
+    setData(await Asignacion(paginate, filtros));
   };
 
   const cabeceras = ["Numero Colegiado", "Persona", "Cargo", "Opciones"];
@@ -46,7 +50,7 @@ function AsignacionList() {
           <LoadingBar />
         ) : (
           <>
-            <Filtros />
+            <Filtros setFiltros={setFiltros} />
 
             <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>

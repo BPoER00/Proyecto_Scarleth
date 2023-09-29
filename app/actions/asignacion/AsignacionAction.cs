@@ -22,7 +22,7 @@ namespace app.actions.asignacion
 
         public Task<Boolean> guardar(Asignacion asignacion) => this.nuevoAsignacionAction.ejecutar(asignacion);
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerAsignacionAction.ejecutar(tp, np);
+        public Task<Object[]> obtener(int tp, int np, string personaId, string cargoId) => this.obtenerAsignacionAction.ejecutar(tp, np, personaId, cargoId);
 
         public Task<List<Asignacion>> obtenerSP() => this.obtenerAsignacionSinPaginadoAction.ejecutar();
     }
