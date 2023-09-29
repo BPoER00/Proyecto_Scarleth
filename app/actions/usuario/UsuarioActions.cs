@@ -29,7 +29,7 @@ namespace app.actions.usuario
 
         public Task<Boolean> guardar(Usuario usuario) => this.nuevoUsuarioAction.ejecutar(usuario);
 
-        public Task<Object[]> obtener(int tp, int np) => this.obtenerUsuarioAction.ejecutar(tp, np);
+        public Task<Object[]> obtener(int tp, int np, string usuarioId, string rolId) => this.obtenerUsuarioAction.ejecutar(tp, np, usuarioId, rolId);
 
         public Task<List<UsuarioInfo>> obtenerSP() => this.obtenerUsuarioSinPaginadoAction.ejecutar();
     }

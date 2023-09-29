@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace app.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
@@ -27,11 +27,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] string usuarioId, [FromQuery] string rolId)
         {
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener(objetos, pagina, usuarioId, rolId);
 
                 List<UsuarioInfo> data = (List<UsuarioInfo>)resultAction[0];
 

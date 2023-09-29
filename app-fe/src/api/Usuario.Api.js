@@ -6,14 +6,28 @@ const PersonaApi = axios.create({
   baseURL: `${END_POINT_API}/Usuario`,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": getCookie(),
+    Authorization: getCookie(),
   },
 });
 
-export const get = async (pagina) => {
-  const res = await PersonaApi.get(`/Get?pagina=${pagina}`)
+export const get = async (pagina, filtros) => {
+  const res = await PersonaApi.get(
+    `/Get?pagina=${pagina}&usuarioId=${filtros.usuarioId}&rolId=${filtros.rolId}`
+  )
     .then((response) => {
       return response.data;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return res;
+};
+
+export const getSP = async () => {
+  const res = await PersonaApi.get(`/GetSP`)
+    .then((response) => {
+      return response.data.data;
     })
     .catch((error) => {
       return error.response;

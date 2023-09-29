@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace app.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RolController : ControllerBase

@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get } from "@/api/Usuario.Api";
+import { get, getSP } from "@/api/Usuario.Api";
 import { getSP as getPersona } from "@/api/Persona.Api";
 
 const UsuarioContext = createContext();
@@ -19,8 +19,8 @@ function UsuarioProvider({ children }) {
 
   const [paginate, setPaginate] = useState(defaultPaginate);
   const [persona, setPersona] = useState();
+  const [usuario, setUsuario] = useState();
   const [rol, setRol] = useState();
-
 
   const changePage = (id) => {
     setPaginate((prevPaginate) =>
@@ -31,8 +31,8 @@ function UsuarioProvider({ children }) {
     );
   };
 
-  const Usuario = async (pagina) => {
-    const usuario = await get(pagina)
+  const Usuario = async (pagina, filtros) => {
+    const usuario = await get(pagina, filtros)
       .then((data) => {
         return data;
       })
@@ -51,12 +51,16 @@ function UsuarioProvider({ children }) {
     getPersona().then((data) =>
       setPersona(data.map((m) => ({ value: m.id, label: m.nombre })))
     );
-    setRol(roles.map((m) => ({ value: m.id, label: m.nombre })))
-
+    setRol(roles.map((m) => ({ value: m.id, label: m.nombre })));
+    getSP().then((data) =>
+      setUsuario(data.map((m) => ({ value: m.id, label: m.nombreUsuario })))
+    );
   }, []);
 
   return (
-    <UsuarioContext.Provider value={{ rol, persona, Usuario, paginate, changePage }}>
+    <UsuarioContext.Provider
+      value={{ usuario, rol, persona, Usuario, paginate, changePage }}
+    >
       {children}
     </UsuarioContext.Provider>
   );

@@ -11,13 +11,17 @@ function UsuarioList() {
   const { Usuario } = useUsuario();
   const [data, setData] = useState([]);
   const [paginate, setPaginate] = useState(1);
+  const [filtros, setFiltros] = useState({
+    usuarioId: "0",
+    rolId: "0",
+  });
 
   useEffect(() => {
     info();
-  }, [paginate]);
+  }, [filtros, paginate]);
 
   const info = async () => {
-    setData(await Usuario(paginate));
+    setData(await Usuario(paginate, filtros));
   };
 
   const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol", "Opciones"];
@@ -46,7 +50,7 @@ function UsuarioList() {
           <LoadingBar />
         ) : (
           <>
-            <Filtros />
+            <Filtros setFiltros={setFiltros} />
 
             <div className="max-h-[75vh] overflow-x-auto overflow-visible">
               <TableData cabecera={cabeceras}>
