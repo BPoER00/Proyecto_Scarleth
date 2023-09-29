@@ -25,11 +25,11 @@ namespace app.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos)
+        public async Task<IActionResult> Get([FromQuery] int pagina, [FromQuery] int objetos, [FromQuery] string personaId, [FromQuery] string direccionId, [FromQuery] string generoId)
         {
             try
             {
-                var resultAction = await this.action.obtener(objetos, pagina);
+                var resultAction = await this.action.obtener(objetos, pagina, personaId, direccionId, generoId);
 
                 List<Persona> data = (List<Persona>)resultAction[0];
 

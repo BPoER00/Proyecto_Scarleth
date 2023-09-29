@@ -10,7 +10,7 @@ const DireccionApi = axios.create({
   },
 });
 
-export const get = async (params) => {
+export const get = async () => {
   const res = await DireccionApi.get(`/Get`)
     .then((response) => {
       return response.data.data;

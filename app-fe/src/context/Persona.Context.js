@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get, post } from "@/api/Persona.Api";
+import { get, post, getSP } from "@/api/Persona.Api";
 import { get as getDireccion } from "@/api/Direccion.Api";
 import { get as getGenero } from "@/api/Genero.Api";
 
@@ -19,6 +19,7 @@ function PersonaProvider({ children }) {
   ];
 
   const [paginate, setPaginate] = useState(defaultPaginate);
+  const [persona, setPersona] = useState();
   const [direccion, setDireccion] = useState();
   const [genero, setGenero] = useState();
 
@@ -32,6 +33,9 @@ function PersonaProvider({ children }) {
   };
 
   useEffect(() => {
+    getSP().then((data) =>
+      setPersona(data.map((m) => ({ value: m.id, label: m.nombre })))
+    );
     getDireccion().then((data) =>
       setDireccion(data.map((m) => ({ value: m.id, label: m.nombre })))
     );
@@ -40,8 +44,8 @@ function PersonaProvider({ children }) {
     );
   }, []);
 
-  const Persona = async (pagina) => {
-    const persona = await get(pagina)
+  const Persona = async (pagina, filtros) => {
+    const persona = await get(pagina, filtros)
       .then((data) => {
         return data;
       })
@@ -62,7 +66,7 @@ function PersonaProvider({ children }) {
 
   return (
     <PersonaContext.Provider
-      value={{ insert, direccion, genero, Persona, paginate, changePage }}
+      value={{ persona, insert, direccion, genero, Persona, paginate, changePage }}
     >
       {children}
     </PersonaContext.Provider>
