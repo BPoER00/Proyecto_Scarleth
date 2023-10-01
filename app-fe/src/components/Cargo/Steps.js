@@ -19,7 +19,7 @@ function Steps() {
             status === "List" ? "bg-white text-gray-800" : "text-white"
           } shadow flex items-center justify-center w-1/2 rounded-full h-8 top-[4px] absolute left-1`}
         >
-          <button onClick={() => changePage(1)}>Lista De Asignaciones</button>
+          <button onClick={() => changePage(1)}>Lista De Cargo</button>
         </span>
       </div>
       <div className="w-full flex justify-center">
@@ -28,7 +28,7 @@ function Steps() {
             status === "New" ? "bg-white text-gray-800" : "text-white"
           } shadow flex items-center justify-center w-1/2 rounded-full h-8 top-[4px] absolute right-1`}
         >
-          <button onClick={() => changePage(2)}>Agregar Asignaciones</button>
+          <button onClick={() => changePage(2)}>Agregar Cargo</button>
         </span>
       </div>
     </div>
