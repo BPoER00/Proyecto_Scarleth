@@ -6,4 +6,5 @@ export const ValidateVacuna = yup.object().shape({
   fecha_vencimiento: yup.date().required(),
   nombre: yup.string().required(),
   cubre: yup.string().required(),
+  dosis: yup.number().required(),
 });

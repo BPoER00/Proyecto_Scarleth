@@ -23,7 +23,7 @@ function CargoList() {
     setData(await Cargos(paginate, filtros));
   };
 
-  const cabeceras = ["Nombre Cargo", "Opciones"];
+  const cabeceras = ["Nombre Cargo"];
   if (data.length === 0) {
     return (
       <>

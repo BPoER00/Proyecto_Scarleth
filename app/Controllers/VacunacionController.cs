@@ -154,6 +154,13 @@ namespace app.Controllers
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
                             .ErrorMessages("Vacuna", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
 
+                    if (!await validation.ValidatePersonaFinishDosisAsync(vacuncion.persona_id, vacuncion.vacuna_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Ya existe un registro iniciado", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REGISTRO_EXISTENTE)));
+
+
                     var result = await this.action.guardar(vacuncion);
 
                     return StatusCode(201,

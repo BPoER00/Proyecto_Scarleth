@@ -24,7 +24,7 @@ function UsuarioList() {
     setData(await Usuario(paginate, filtros));
   };
 
-  const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol", "Opciones"];
+  const cabeceras = ["CUI", "Nombre Usuario", "Correo", "Rol"];
   if (data.length === 0) {
     return (
       <>

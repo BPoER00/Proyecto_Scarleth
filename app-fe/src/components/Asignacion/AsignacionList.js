@@ -24,7 +24,7 @@ function AsignacionList() {
     setData(await Asignacion(paginate, filtros));
   };
 
-  const cabeceras = ["Numero Colegiado", "Persona", "Cargo", "Opciones"];
+  const cabeceras = ["Numero Colegiado", "Persona", "Cargo"];
   if (data.length === 0) {
     return (
       <>

@@ -12,7 +12,7 @@ namespace app.Controllers
     [ApiController]
     public class RolController : ControllerBase
     {
-        private ConexionContext _db = new DbContextConection().context();
+        private ConexionContext _db;
 
         public RolController()
         {

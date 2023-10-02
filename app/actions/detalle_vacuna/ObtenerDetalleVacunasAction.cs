@@ -15,18 +15,30 @@ namespace app.actions.detalle_vacuna
             this.pd = new PaginateData();
         }
 
-        public async Task<Object[]> ejecutar(int tp, int np)
+        public async Task<Object[]> ejecutar(int tp, int np, string idVacuna)
         {
-            int totalObjects = this.db.Detalle_Vacunas.Count();
+            int vacuna_id = int.Parse(idVacuna);
 
-            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
             var lista = await this.db
             .Detalle_Vacunas
-            .Skip(paginate[0])
-            .Take(paginate[1])
+            .Include(x => x.Vacuna)
             .ToListAsync();
 
-            return new Object[] { lista, np, tp, paginate[2] };
+            if (vacuna_id > 0)
+            {
+                lista = lista.Where(x => x.vacuna_id == vacuna_id).ToList();
+            }
+
+            int totalObjects = lista.Count();
+
+            int[] paginate = this.pd.paginateData(tp, np, totalObjects);
+
+            var listaResult = lista
+                                .Skip(paginate[0])
+                                .Take(paginate[1])
+                                .ToList();
+
+            return new Object[] { listaResult, np, tp, paginate[2] };
         }
     }
 }

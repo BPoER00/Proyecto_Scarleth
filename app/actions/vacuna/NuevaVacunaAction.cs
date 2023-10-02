@@ -22,6 +22,7 @@ namespace app.actions.vacuna
                 nombre = vacuna.nombre,
                 unidades = vacuna.cantidad,
                 cubre = vacuna.cubre,
+                dosis = vacuna.dosis
             };
 
             var newDetalleVacuna = new Detalle_Vacuna

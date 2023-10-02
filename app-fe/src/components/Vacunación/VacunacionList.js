@@ -26,7 +26,14 @@ function VacunacionList() {
     setData(await Vacunacion(paginate, filtro));
   };
 
-  const cabeceras = ["Descripcion", "Persona", "Dosis", "Vacuna", "Opciones"];
+  const cabeceras = [
+    "Descripcion",
+    "Persona",
+    "Dosis",
+    "Vacuna",
+    "Proceso",
+    "Opciones",
+  ];
   if (data.length === 0) {
     return (
       <>

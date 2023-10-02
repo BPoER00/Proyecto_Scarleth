@@ -1,9 +1,7 @@
 import * as yup from "yup";
 
 export const ValidateDetalleVacuna = yup.object().shape({
-  descripcion: yup.number().required(),
-  cantidad: yup.date().required(),
-  fecha_vencimiento: yup.number().required(),
-  vacuna_id: yup.number().required(),
-  usuario_id: yup.number().required(),
+  descripcion: yup.string().required(),
+  cantidad: yup.number().required(),
+  fecha_vencimiento: yup.date().required(),
 });

@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { get, post, getSP } from "@/api/Persona.Api";
+import { get as getDetalleVacunacion } from "@/api/DetalleVacunacion.Api";
 import { get as getDireccion } from "@/api/Direccion.Api";
 import { get as getGenero } from "@/api/Genero.Api";
 
@@ -54,6 +55,16 @@ function PersonaProvider({ children }) {
     return persona;
   };
 
+  const Vacunacion = async (pagina, personaId) => {
+    const vacunacion = await getDetalleVacunacion(pagina, personaId)
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return vacunacion;
+  };
+
   const insert = async (credentials) =>
     post({
       nombre: credentials.nombre,
@@ -66,7 +77,16 @@ function PersonaProvider({ children }) {
 
   return (
     <PersonaContext.Provider
-      value={{ persona, insert, direccion, genero, Persona, paginate, changePage }}
+      value={{
+        Vacunacion,
+        persona,
+        insert,
+        direccion,
+        genero,
+        Persona,
+        paginate,
+        changePage,
+      }}
     >
       {children}
     </PersonaContext.Provider>

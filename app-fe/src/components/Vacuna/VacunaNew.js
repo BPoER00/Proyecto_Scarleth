@@ -87,6 +87,17 @@ function VacunaNew() {
 
               <div className="mb-4">
                 <InputText
+                  label={"Total Dosis"}
+                  name={"dosis"}
+                  type={"text"}
+                  placeholder={"Ingrese dosis..."}
+                  register={register}
+                  errors={errors.dosis?.message}
+                />
+              </div>
+
+              <div className="mb-4">
+                <InputText
                   label={"Nombre Vacuna"}
                   name={"nombre"}
                   type={"text"}

@@ -6,14 +6,16 @@ const DetalleVacunaApi = axios.create({
   baseURL: `${END_POINT_API}/DetalleVacunas`,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": getCookie(),
+    Authorization: getCookie(),
   },
 });
 
-export const get = async () => {
-  const res = await DetalleVacunaApi.get(`/Get`)
+export const get = async (pagina, idVacuna) => {
+  const res = await DetalleVacunaApi.get(
+    `/Get?pagina=${pagina}&idVacuna=${idVacuna}`
+  )
     .then((response) => {
-      return response.data.records.data;
+      return response.data;
     })
     .catch((error) => {
       return error.response;
