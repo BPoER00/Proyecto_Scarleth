@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using app.actions.vacunacion;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace app.Controllers
 {
@@ -16,6 +17,8 @@ namespace app.Controllers
     {
         private ConexionContext _db;
         private DateTime fechaHoy = DateTime.Now.Date;
+        private DateTime fechaManana = DateTime.Now.Date.AddDays(1);
+
 
         public DashboardController()
         {
@@ -27,8 +30,10 @@ namespace app.Controllers
         {
             try
             {
-                var resultVacunacionHoy = await this._db.Detalle_Vacunacions
-                .Where(x => x.fecha_vacunacion == fechaHoy).CountAsync();
+
+                var resultVacunacion = await this._db.Detalle_Vacunacions.ToListAsync();
+
+                var resultVacunacionHoy = resultVacunacion.Where(x => x.fecha_vacunacion >= fechaHoy).Count();
 
                 var resultVacunasInventario = await this._db.Vacunas.SumAsync(x => x.unidades);
 
@@ -121,7 +126,7 @@ namespace app.Controllers
             try
             {
                 var resultAction = await this._db.Detalle_Vacunacions
-                    .Where(x => x.fecha_vacunacion == fechaHoy)
+                    .Where(x => x.fecha_vacunacion >= fechaHoy)
                     .GroupBy(x => x.Vacunacion.Vacuna.nombre)
                     .Select(Group => new
                     {

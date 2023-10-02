@@ -56,10 +56,7 @@ function InfoDashboard() {
           nombre={"Vacunas En Inventario"}
           data={grap1}
         />
-        <CardMidComponentDashboard
-          nombre={"Vacunas Del Dia"}
-          data={grap2}
-        />
+        <CardMidComponentDashboard nombre={"Vacunas Del Dia"} data={grap2} />
       </div>
 
       <div className="mt-8 mx-4">
