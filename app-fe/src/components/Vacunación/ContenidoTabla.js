@@ -6,8 +6,8 @@ function ContenidoTabla({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const openModalWithComponent2 = () => {
-    setModalContent(<ActionModal />);
+  const openModalWithComponent2 = (id) => {
+    setModalContent(<ActionModal id={id} action={closeModal} />);
     setIsModalOpen(true);
   };
 
@@ -39,7 +39,7 @@ function ContenidoTabla({ data }) {
               <div>
                 <button
                   className="group relative h-12 w-12 overflow-hidden rounded-2xl bg-yellow-500 text-lg font-bold text-white text-center"
-                  onClick={openModalWithComponent2}
+                  onClick={() => openModalWithComponent2(d.id)}
                 >
                   N
                   <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>

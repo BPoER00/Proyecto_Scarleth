@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import { post as postDetalleVacunacion } from "@/api/DetalleVacunacion.Api";
 import { get, post } from "@/api/Vacunacion.Api";
 import { getSP as getAsignacion } from "@/api/Asignacion.Api";
 import { getSP as getVacuna } from "@/api/Vacuna.Api";
@@ -57,9 +58,13 @@ function VacunacionProvider({ children }) {
 
   const insert = async (credentials) => post(credentials);
 
+  const insertDetalleVacunacion = async (credentials) =>
+    postDetalleVacunacion(credentials);
+
   return (
     <VacunacionContext.Provider
       value={{
+        insertDetalleVacunacion,
         insert,
         asignacion,
         vacuna,
