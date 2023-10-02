@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
@@ -10,10 +8,10 @@ function Modal({ isOpen, onClose, title, children }) {
         onClick={onClose} // Cierra el modal al hacer clic fuera de él
       ></div>
 
-      <div className="modal-container bg-white w-3/4 md:w-96 mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+      <div className="modal-container bg-white w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="modal-header">
-            <h3 className="text-2xl font-semibold text-black">{title}</h3>
+            <h3 className="text-2xl font-semibold text-black mb-3">{title}</h3>
           </div>
 
           <div className="modal-body text-black">{children}</div>

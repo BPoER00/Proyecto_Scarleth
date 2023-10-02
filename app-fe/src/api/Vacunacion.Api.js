@@ -1,8 +1,6 @@
 import axios from "axios";
 import { END_POINT_API } from "@/config/props.js";
 import { getCookie } from "@/config/cookieConfig.js";
-import { Frijole } from "next/font/google";
-import { data } from "autoprefixer";
 
 const VacunacionApi = axios.create({
   baseURL: `${END_POINT_API}/Vacunacion`,
