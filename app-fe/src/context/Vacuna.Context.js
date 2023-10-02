@@ -1,5 +1,9 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import {
+  get as getDetalleVacuna,
+  post as postDetalleVacuna,
+} from "@/api/DetalleVacuna.Api";
 import { get, post, getSP } from "@/api/Vacuna.Api";
 
 const VacunaContext = createContext();
@@ -44,11 +48,23 @@ function VacunaProvider({ children }) {
     return vacuna;
   };
 
+  const VacunaDetalle = async (pagina, filtro) => {
+    const vacuna = await getDetalleVacuna(pagina, filtro)
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => error);
+
+    return vacuna;
+  };
+
   const insert = async (credentials) => post(credentials);
+
+  const insertDetalle = async (credentials) => postDetalleVacuna(credentials);
 
   return (
     <VacunaContext.Provider
-      value={{ vacuna, insert, Vacuna, paginate, changePage }}
+      value={{ insertDetalle, VacunaDetalle, vacuna, insert, Vacuna, paginate, changePage }}
     >
       {children}
     </VacunaContext.Provider>

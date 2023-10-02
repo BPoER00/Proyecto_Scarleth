@@ -13,7 +13,7 @@ function ContenidoTabla({ data }) {
   };
 
   const openModalWithComponent2 = (id) => {
-    setModalContent(<ActionModal idVacuna={id} />);
+    setModalContent(<ActionModal idVacuna={id} action={closeModal} />);
     setIsModalOpen(true);
   };
 
