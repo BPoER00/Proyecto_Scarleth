@@ -16,7 +16,6 @@ namespace app.Models
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [persona]")]
         public int persona_id { get; set; }
 
-        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [numero colegiado]")]
         [StringLength(25, ErrorMessage = $"{ErrorHelperMessage.campoLenght} [25 caracteres] [numero colegiado]")]
         [DataType(DataType.Text)]
         public string numero_colegiado { get; set; }

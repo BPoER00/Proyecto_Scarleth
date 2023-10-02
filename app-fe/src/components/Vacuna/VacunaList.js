@@ -23,7 +23,7 @@ function VacunaList() {
     setData(await Vacuna(paginate, filtros));
   };
 
-  const cabeceras = ["Nombre", "Unidades", "Cubre", "Opciones"];
+  const cabeceras = ["Nombre", "Unidades", "Cubre", "Total Dosis", "Opciones"];
   if (data.length === 0) {
     return (
       <>

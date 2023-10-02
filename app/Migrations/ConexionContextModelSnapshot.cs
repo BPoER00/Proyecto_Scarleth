@@ -46,7 +46,6 @@ namespace app.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("numero_colegiado")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -58,7 +57,8 @@ namespace app.Migrations
                     b.HasIndex("cargo_id");
 
                     b.HasIndex("numero_colegiado")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[numero_colegiado] IS NOT NULL");
 
                     b.HasIndex("persona_id")
                         .IsUnique();
@@ -211,7 +211,7 @@ namespace app.Migrations
                         new
                         {
                             id = 1,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8861),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1416),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -220,7 +220,7 @@ namespace app.Migrations
                         new
                         {
                             id = 2,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8867),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1423),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -229,7 +229,7 @@ namespace app.Migrations
                         new
                         {
                             id = 3,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8870),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1427),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -238,7 +238,7 @@ namespace app.Migrations
                         new
                         {
                             id = 4,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8874),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1430),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -247,7 +247,7 @@ namespace app.Migrations
                         new
                         {
                             id = 5,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8899),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1456),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -256,7 +256,7 @@ namespace app.Migrations
                         new
                         {
                             id = 6,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8903),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1460),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -265,7 +265,7 @@ namespace app.Migrations
                         new
                         {
                             id = 7,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8906),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1463),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -274,7 +274,7 @@ namespace app.Migrations
                         new
                         {
                             id = 8,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8928),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1487),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -283,7 +283,7 @@ namespace app.Migrations
                         new
                         {
                             id = 9,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8932),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1491),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -292,7 +292,7 @@ namespace app.Migrations
                         new
                         {
                             id = 10,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(8937),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1495),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -336,7 +336,7 @@ namespace app.Migrations
                         new
                         {
                             id = 1,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9340),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1951),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -345,7 +345,7 @@ namespace app.Migrations
                         new
                         {
                             id = 2,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9344),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1955),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -412,7 +412,7 @@ namespace app.Migrations
                         new
                         {
                             id = 1,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9468),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(2213),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             cui = "111111111111",
@@ -464,7 +464,7 @@ namespace app.Migrations
                         new
                         {
                             id = 1,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9375),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1989),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -473,7 +473,7 @@ namespace app.Migrations
                         new
                         {
                             id = 2,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9379),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(1992),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -482,7 +482,7 @@ namespace app.Migrations
                         new
                         {
                             id = 3,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9393),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(2132),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             estado = 1,
@@ -550,13 +550,13 @@ namespace app.Migrations
                         new
                         {
                             id = 1,
-                            CreateAt = new DateTime(2023, 9, 24, 22, 59, 34, 204, DateTimeKind.Local).AddTicks(9740),
+                            CreateAt = new DateTime(2023, 10, 1, 19, 42, 15, 923, DateTimeKind.Local).AddTicks(2536),
                             DeleteAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             correo = "pazbryan32@gmail.com",
                             estado = 1,
                             nombre_usuario = "admin",
-                            password = "$2a$11$KE1alLS08T4xNXloeDjdfOYz0Ny/aN7ikmms8.z27Unz3hztXRMgm",
+                            password = "$2a$11$m8ucddR3p45T3WkefCg7selD4BDqoHBgRzEGX9Q7y94YG9jpfjJYG",
                             persona_id = 1,
                             rol_id = 1
                         });
@@ -583,6 +583,9 @@ namespace app.Migrations
                         .IsRequired()
                         .HasMaxLength(85)
                         .HasColumnType("nvarchar(85)");
+
+                    b.Property<long>("dosis")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("estado")
                         .HasColumnType("int");

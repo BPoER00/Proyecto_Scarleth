@@ -15,6 +15,9 @@ namespace app.Models.ModelView
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [cantidad]")]
         public long cantidad { get; set; }
 
+        [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [dosis]")]
+        public long dosis { get; set; }
+
         [Required(ErrorMessage = $"{ErrorHelperMessage.campoRequired} [fecha vencimiento]")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
