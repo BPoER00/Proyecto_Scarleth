@@ -94,6 +94,12 @@ namespace app.Controllers
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
                             .ErrorMessages("Medico", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
 
+                    if (!await validation.validateRegistroDetalleVacunacion(detalle_Vacunacion.vacunacion_id, detalle_Vacunacion.dosis))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NO_GUARDADO)));
+
                     var result = await this.action.guardar(detalle_Vacunacion);
 
                     return StatusCode(201,

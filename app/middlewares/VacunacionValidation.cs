@@ -51,7 +51,7 @@ namespace app.middlewares
         public async Task<bool> ValidatePersonaFinishDosisAsync(int idPersona, int idVacuna)
         {
             var vacunacionActiva = await this.db.Vacunacions
-                                        .Where(x => x.persona_id == idPersona && x.vacuna_id == idVacuna && x.estado == Vacunacion.ACTIVO).FirstAsync();
+                                        .Where(x => x.persona_id == idPersona && x.vacuna_id == idVacuna && x.estado == Vacunacion.ACTIVO).FirstOrDefaultAsync();
 
             if (vacunacionActiva != null)
             {

@@ -25,14 +25,14 @@ function CargoNew() {
   });
 
   const onSubmit = async (e) => {
-    // const res = await insert(e);
-    // if (res.status === 204) {
-    //   toast.success("Revision Realizada Correctamente");
-    //   await sleep(3000);
-    //   changePage(1);
-    // } else if (res.status === 400 || res.status === 401) {
-    //   toast.warning(`Error ${res.data.message}`);
-    // }
+    const res = await insert(e);
+    if (res.status === 201) {
+      toast.success("Usuario Guardado Correctamente");
+      await sleep(3000);
+      changePage(1);
+    } else if (res.status === 400 || res.status === 401) {
+      toast.warning(`Error ${res.data.message}`);
+    }
   };
 
   return (
