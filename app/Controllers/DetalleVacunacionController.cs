@@ -94,11 +94,23 @@ namespace app.Controllers
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
                             .ErrorMessages("Medico", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NOT_FOUND)));
 
+                    if (await validation.ValidatePersonaAsignacionAsync(detalle_Vacunacion.vacunacion_id, detalle_Vacunacion.asignacion_id))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Persona/Asignacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.MISMA_PERSONA)));
+
                     if (!await validation.validateRegistroDetalleVacunacion(detalle_Vacunacion.vacunacion_id, detalle_Vacunacion.dosis))
                         return BadRequest(
                             new ReturnClassDefault()
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
-                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NO_GUARDADO)));
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.SUPERA)));
+
+                    if (!await validation.validateVacunas0(detalle_Vacunacion.vacunacion_id, detalle_Vacunacion.dosis))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NO_ALCANZA)));
 
                     var result = await this.action.guardar(detalle_Vacunacion);
 

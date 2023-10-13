@@ -32,18 +32,20 @@ function ContenidoTabla({ data }) {
             {d.vacuna.nombre}
           </td>
           <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {d.estado === 1 ? "Terminado" : "Activo"}
+            {d.estado === 1 ? "Activo" : "Terminado"}
           </td>
           <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <div className="flex flex-row">
               <div>
-                <button
-                  className="group relative h-12 w-12 overflow-hidden rounded-2xl bg-yellow-500 text-lg font-bold text-white text-center"
-                  onClick={() => openModalWithComponent2(d.id)}
-                >
-                  N
-                  <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                </button>
+                {d.estado === 1 && (
+                  <button
+                    className="group relative h-12 w-12 overflow-hidden rounded-2xl bg-yellow-500 text-lg font-bold text-white text-center"
+                    onClick={() => openModalWithComponent2(d.id)}
+                  >
+                    N
+                    <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                  </button>
+                )}
               </div>
             </div>
           </td>

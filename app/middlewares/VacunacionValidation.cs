@@ -67,5 +67,21 @@ namespace app.middlewares
 
             return true;
         }
+
+        public async Task<Boolean> validateRegistroDetalleVacunacion(int idVacuna, int dosis)
+        {
+            var vacuna = await this.vacunasActions.buscar(idVacuna);
+
+            return vacuna.dosis >= dosis;
+        }
+
+        public async Task<Boolean> validateVacunas0(int idVacuna, int dosis)
+        {
+            var vacuna = await this.vacunasActions.buscar(idVacuna);
+
+            return (vacuna.dosis - dosis) > 0;
+        }
+
+
     }
 }
