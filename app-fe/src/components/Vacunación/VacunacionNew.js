@@ -32,6 +32,8 @@ function VacunacionNew() {
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {
       toast.warning(`Error ${res.data.message}`);
+    } else if (res.status === 500) {
+      toast.warning("Error al ingresar una nueva vacunacion");
     }
   };
 

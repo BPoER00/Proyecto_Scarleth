@@ -160,6 +160,18 @@ namespace app.Controllers
                             .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
                             .ErrorMessages("Ya existe un registro iniciado", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.REGISTRO_EXISTENTE)));
 
+                    if (!await validation.validateRegistroDetalleVacunacion(vacuncion.vacuna_id, vacuncion.dosis))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.SUPERA)));
+
+                    if (!await validation.validateVacunas0(vacuncion.vacuna_id, vacuncion.dosis))
+                        return BadRequest(
+                            new ReturnClassDefault()
+                            .returnDataDefault(Reply.FAIL, Reply.DATA_FAIL, new ErrorHelperMessage()
+                            .ErrorMessages("Vacunacion", ErrorHelperMessage.DEFAULT_VALUE, ErrorHelperMessage.NO_ALCANZA)));
+
 
                     var result = await this.action.guardar(vacuncion);
 

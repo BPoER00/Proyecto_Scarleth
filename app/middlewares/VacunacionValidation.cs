@@ -51,7 +51,7 @@ namespace app.middlewares
         public async Task<bool> ValidatePersonaFinishDosisAsync(int idPersona, int idVacuna)
         {
             var vacunacionActiva = await this.db.Vacunacions
-                                        .Where(x => x.persona_id == idPersona && x.vacuna_id == idVacuna && x.estado == Vacunacion.ACTIVO).FirstAsync();
+                                        .Where(x => x.persona_id == idPersona && x.vacuna_id == idVacuna && x.estado == Vacunacion.ACTIVO).FirstOrDefaultAsync();
 
             if (vacunacionActiva != null)
             {
@@ -67,5 +67,21 @@ namespace app.middlewares
 
             return true;
         }
+
+        public async Task<Boolean> validateRegistroDetalleVacunacion(int idVacuna, int dosis)
+        {
+            var vacuna = await this.vacunasActions.buscar(idVacuna);
+
+            return vacuna.dosis >= dosis;
+        }
+
+        public async Task<Boolean> validateVacunas0(int idVacuna, int dosis)
+        {
+            var vacuna = await this.vacunasActions.buscar(idVacuna);
+
+            return (vacuna.dosis - dosis) > 0;
+        }
+
+
     }
 }

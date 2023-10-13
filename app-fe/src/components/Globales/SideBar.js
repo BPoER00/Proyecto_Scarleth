@@ -201,7 +201,7 @@ function SideBar() {
                 </ComponentSidebarRedirect>
               </button>
 
-              <button
+              {/* <button
                 type="button"
                 onClick={() => {
                   router.push("/Reportes");
@@ -227,7 +227,7 @@ function SideBar() {
                     </span>
                   </div>
                 </ComponentSidebarRedirect>
-              </button>
+              </button> */}
 
               <button
                 type="button"

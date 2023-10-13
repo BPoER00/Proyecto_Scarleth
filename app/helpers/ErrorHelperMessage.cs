@@ -15,6 +15,8 @@ namespace app.helpers
         public const int REPETIDO = 9;
         public const int MISMA_PERSONA = 10;
         public const int REGISTRO_EXISTENTE = 11;
+        public const int SUPERA = 12;
+        public const int NO_ALCANZA = 13;
 
         public const String campoRequired = "El Campo es obligatorio";
         public const String campoLenght = "El campo tiene un maximo de";
@@ -64,9 +66,17 @@ namespace app.helpers
                 case MISMA_PERSONA:
                     mensaje = "No puedes asignar la misma persona en vacunacion";
                     break;
-                
+
                 case REGISTRO_EXISTENTE:
                     mensaje = $"{campo}";
+                    break;
+
+                case SUPERA:
+                    mensaje = "Pasando limite de dosis de vacunacion, revisa el historial";
+                    break;
+
+                case NO_ALCANZA:
+                    mensaje = "No existen unidades suficientes";
                     break;
 
                 default:

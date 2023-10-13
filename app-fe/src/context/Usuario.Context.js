@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { get, getSP } from "@/api/Usuario.Api";
+import { get, getSP, post } from "@/api/Usuario.Api";
 import { getSP as getPersona } from "@/api/Persona.Api";
 
 const UsuarioContext = createContext();
@@ -57,9 +57,11 @@ function UsuarioProvider({ children }) {
     );
   }, []);
 
+  const insert = async (credentials) => post(credentials);
+
   return (
     <UsuarioContext.Provider
-      value={{ usuario, rol, persona, Usuario, paginate, changePage }}
+      value={{ insert, usuario, rol, persona, Usuario, paginate, changePage }}
     >
       {children}
     </UsuarioContext.Provider>
