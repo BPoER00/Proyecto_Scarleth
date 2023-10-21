@@ -26,7 +26,7 @@ function CargoNew() {
     const res = await insert(e);
     console.log(res);
     if (res.data === true) {
-      toast.success("Revision Realizada Correctamente");
+      toast.success("Cargo Guardado Correctamente");
       await sleep(3000);
       changePage(1);
     } else if (res.status === 400 || res.status === 401) {

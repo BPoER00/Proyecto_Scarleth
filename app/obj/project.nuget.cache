@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wnIr6XQLFIwviCTQZ3r0Yt9gw67wwILOYUWQPbTAOnc6OWIdPM20FcJSpwmqYVg4M2zksUPEGmySseujtExH5g==",
+  "dgSpecHash": "/KzETIBx3ITKOB5/YFsPxYUi62wF8OmyJovxCWOFgR2gWxX0+LwMaFhHx0C/VUZ8rCg3xG+8qFdDitpR+OfPLg==",
   "success": true,
-  "projectFilePath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
+  "projectFilePath": "/home/mrkobp/Desktop/Universidad/seminario/proyectoFinal/Proyecto_Scarleth/app/app.csproj",
   "expectedPackageFiles": [
     "/home/mrkobp/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/home/mrkobp/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",

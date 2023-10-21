@@ -57,10 +57,6 @@ namespace app.Models
                 .HasIndex(p => p.persona_id)
                 .IsUnique();
 
-            modelBuilder.Entity<Asignacion>()
-                .HasIndex(p => p.numero_colegiado)
-                .IsUnique();
-
             modelBuilder.Entity<Vacuna>()
                 .HasIndex(p => p.nombre)
                 .IsUnique();
