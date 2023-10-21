@@ -16,7 +16,13 @@ namespace app.middlewares
         {
             try
             {
-                return await db.Set<T>().AnyAsync(entity => EF.Property<object>(entity, property) == value);
+                if (value.ToString().Length > 0)
+                {
+
+                    return await db.Set<T>().AnyAsync(entity => EF.Property<object>(entity, property) == value);
+                }
+
+                return false;
             }
             catch (Exception ex)
             {

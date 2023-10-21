@@ -7999,11 +7999,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
+      "projectUniqueName": "/home/mrkobp/Desktop/Universidad/seminario/proyectoFinal/Proyecto_Scarleth/app/app.csproj",
       "projectName": "app",
-      "projectPath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/app.csproj",
+      "projectPath": "/home/mrkobp/Desktop/Universidad/seminario/proyectoFinal/Proyecto_Scarleth/app/app.csproj",
       "packagesPath": "/home/mrkobp/.nuget/packages/",
-      "outputPath": "/home/mrkobp/Desktop/Universidad/seminario/Proyecto_Scarleth/app/obj/",
+      "outputPath": "/home/mrkobp/Desktop/Universidad/seminario/proyectoFinal/Proyecto_Scarleth/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/mrkobp/.nuget/NuGet/NuGet.Config"
